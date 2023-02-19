@@ -13,9 +13,10 @@ menu:
 weight: 999
 toc: true
 ---
-# dnsx
+
 
 ## Description
+
 dnsx is a fast and multi-purpose DNS toolkit designed for running various probes through the retryabledns library. It supports multiple DNS queries, user supplied resolvers, DNS wildcard filtering like shuffledns etc.
 
 ## install
@@ -27,41 +28,22 @@ brew install dnsx
 
 ## sample usage
 
-```
+```bash
 echo 69.52.0.0/16 | dnsx -silent -resp-only -ptr
 ```
 
 ### sample output
 
-```
+```text
 www.origina.blackrock.com
 e-confirm.blackrock.com
 www.blackrocksolutions.com
 ftp.blackrock.com
 ```
 
-## packege info
-
-```
-Name         : dnsx
-Version      : 1.1.0
-Release      : 5.fc37
-Architecture : x86_64
-Size         : 11 M
-Source       : dnsx-1.1.0-5.fc37.src.rpm
-Repository   : @System
-From repo    : fedora
-Summary      : Dnsx is a fast and multi-purpose DNS toolkit
-URL          : https://github.com/projectdiscovery/dnsx
-License      : MIT
-Description  : 
-             : Dnsx is a fast and multi-purpose DNS toolkit allow to run multiple DNS queries
-             : of your choice with a list of user-supplied resolvers.
-```
-
 ## help
 
-```
+```text
 dnsx is a fast and multi-purpose DNS toolkit allow to run multiple probes using retryabledns library.
 
 Usage:
@@ -109,4 +91,4 @@ CONFIGURATIONS:
    -r, -resolver string          list of resolvers to use (file or comma separated)
    -wt, -wildcard-threshold int  wildcard filter threshold (default 5)
    -wd, -wildcard-domain string  domain name for wildcard filtering (other flags will be ignored)
-```
+```bash

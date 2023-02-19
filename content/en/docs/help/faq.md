@@ -13,38 +13,32 @@ weight: 630
 toc: true
 ---
 
-## Hyas?
+## Linux & GNU?
 
-Doks is a [Hyas theme](https://gethyas.com/themes/) build by the creator of Hyas.
-
-## Footer notice?
-
-Please keep it in place.
+Nutek Terminal is a [GNU/Linux](https://www.gnu.org/gnu/linux-and-gnu.en.html) build by the best for the best. Enclosed in _Docker_ image, portable,
+easy to run and available everywhere...
 
 ## Keyboard shortcuts for search?
 
-- focus: `Ctrl + /`
-- select: `↓` and `↑`
-- open: `Enter`
-- close: `Esc`
+* focus: `Ctrl + /`
+* select: `↓` and `↑`
+* open: `Enter`
+* close: `Esc`
 
 ## Other documentation?
 
-- [Netlify](https://docs.netlify.com/)
-- [Hugo](https://gohugo.io/documentation/)
+* [Docker](https://docs.docker.com/)
+* [Stack Overflow](https://stackoverflow.com/)
+* [ChatGPT](https://chat.openai.com/chat)
 
 ## Can I get support?
 
-Create a topic:
+Reach out to me:
 
-- [Netlify Community](https://community.netlify.com/)
-- [Hugo Forums](https://discourse.gohugo.io/)
-- [Doks Discussions](https://github.com/h-enk/doks/discussions)
+* [Contact]({{< relref "Contact" >}})
 
 ## Contact the creator?
 
-Send `h-enk` a message:
+Send `Neosb` a message:
 
-- [Netlify Community](https://community.netlify.com/)
-- [Hugo Forums](https://discourse.gohugo.io/)
-- [Doks Discussions](https://github.com/h-enk/doks/discussions)
+* [Contact]({{< relref "Contact" >}})

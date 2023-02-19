@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# discount
+
 
 ## Description
 
@@ -38,7 +38,6 @@ markdown input.md -o output.html
 
 ## help
 
-```bash
-markdown: illegal option -- h
+```text
 usage: markdown [-5dVGnSTxX] [-b url-base] [-E flags] [-F bitmap] [-f {+-}flags] [-s text] [-t text] [-C prefix] [-o file] [-html5] [-base url-base] [-debug] [-version] [-style] [-toc] [-squash] [-codefmt] [file]
 ```

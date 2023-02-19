@@ -6,25 +6,20 @@ date: 2020-11-12T15:22:20+01:00
 lastmod: 2020-11-12T15:22:20+01:00
 draft: false
 images: []
-menu: 
+menu:
   docs:
     parent: "help"
 weight: 620
 toc: true
 ---
 
-## Problems updating npm packages
+## Problems with Docker?
 
-Delete the `./node_modules` folder, and run again:
+With the worst case scenario, you will have to delete all the configuration,
+images and containers, but sometimes simple update does the trick.
 
-```bash
-npm install
-```
+Sometimes, switching to [Podman](https://podman.io/) is the answer.
 
-## Problems with cache
+## Problems with Linux?
 
-Delete the temporary directories:
-
-```bash
-npm run clean
-```
+Please look around the internet, ask `ChatGPT`, or `StackOverflow` - `Google Search`, or `Bing.com`.

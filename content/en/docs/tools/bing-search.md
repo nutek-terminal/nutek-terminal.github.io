@@ -14,7 +14,7 @@ weight: 999
 toc: true
 ---
 
-# Search and explore 🌍
+ and explore 🌍
 
 Using `bing-search` you can find information that you want. Although
 limited to displaying only headers, just like on the graphical interface
@@ -92,7 +92,7 @@ bing-search "y2k date:1999-01-01..2001-12-31"
 
 ## Location
 
-Search for a specific location: Use `location:` operator to search for pages related to a specific location, for example: 
+Search for a specific location: Use `location:` operator to search for pages related to a specific location, for example:
 
 ```shell
 bing-search "pancakes recipe location:Paris"
@@ -108,7 +108,7 @@ bing-search "intitle:pancakes recipe"
 
 ## In URL
 
-Search for specific words in the URL, use `inurl:` operator to search for pages that have a specific word in the URL, for example: 
+Search for specific words in the URL, use `inurl:` operator to search for pages that have a specific word in the URL, for example:
 
 ```shell
 bing-search "inurl:pancakes recipe"
@@ -116,7 +116,7 @@ bing-search "inurl:pancakes recipe"
 
 ## Search for a specific link
 
-Use `link:` operator to search for pages that link to a specific URL, for example: 
+Use `link:` operator to search for pages that link to a specific URL, for example:
 
 ```shell
 bing-search "link:https://example.com/pancakes-recipe"
@@ -130,9 +130,9 @@ Use `~` operator to search for pages that contain synonyms of a specific word, f
 bing-search "~pancakes recipe"
 ```
 
-## Search for a specific phrase: 
+## Search for a specific phrase:
 
-Use `"` operator to search for pages that contain a specific phrase, for example: 
+Use `"` operator to search for pages that contain a specific phrase, for example:
 
 ```shell
 bing-search "\"Katy Perry Part of Me lyrics\""
@@ -142,7 +142,7 @@ Here, you have to escape the inner `"` with `\` backslash like that `\" somthing
 
 ## Search for a specific word
 
-Use `+` operator to search for pages that contain a specific word, for example: 
+Use `+` operator to search for pages that contain a specific word, for example:
 
 ```shell
 bing-search "+pancakes +recipe"
@@ -150,10 +150,10 @@ bing-search "+pancakes +recipe"
 
 ## Search for images
 
-Use `--image` switch to search for images, for example: 
+Use `--image` switch to search for images, for example:
 
 ```shell
 bing-search --image "pancakes recipe"
 ```
 
-Currently supported on Linux and macOS.
+Currently supported on Linux and macOS. Also works in Nutek Terminal container.

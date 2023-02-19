@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# xh
+
 
 ## Description
 
@@ -111,7 +111,7 @@ xh POST https://httpbin.org/post foo=bar baz=quux < file.json -h "X-Foo: bar" -h
 
 ## help
 
-```bash
+```text
 xh 0.17.0
 xh is a friendly and fast tool for sending HTTP requests
 
@@ -438,4 +438,4 @@ OPTIONS:
             Print version information
 
 Each option can be reset with a --no-OPTION argument.
-```
+```bash

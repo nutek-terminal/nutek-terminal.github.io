@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# ripgrep
+
 
 ## Description
 
@@ -37,7 +37,6 @@ file | rg pattern
 
 ## help
 
-```bash
 ripgrep 13.0.0
 Andrew Gallant <jamslam@gmail.com>
 
@@ -50,1136 +49,1020 @@ Use -h for short descriptions and --help for more details.
 Project home page: https://github.com/BurntSushi/ripgrep
 
 
-USAGE:
-    rg [OPTIONS] PATTERN [PATH ...]
-    rg [OPTIONS] -e PATTERN ... [PATH ...]
-    rg [OPTIONS] -f PATTERNFILE ... [PATH ...]
-    rg [OPTIONS] --files [PATH ...]
-    rg [OPTIONS] --type-list
-    command | rg [OPTIONS] PATTERN
-    rg [OPTIONS] --help
-    rg [OPTIONS] --version
+## User Guide
 
-ARGS:
-    <PATTERN>    
-            A regular expression used for searching. To match a pattern beginning with a
-            dash, use the -e/--regexp flag.
-            
-            For example, to search for the literal '-foo', you can use this flag:
-            
-                rg -e -foo
-            
-            You can also use the special '--' delimiter to indicate that no more flags
-            will be provided. Namely, the following is equivalent to the above:
-            
-                rg -- -foo
-             
-    <PATH>...    
-            A file or directory to search. Directories are searched recursively. File paths
-            specified on the command line override glob and ignore rules.  
+This guide is intended to give an elementary description of ripgrep and an
+overview of its capabilities. This guide assumes that ripgrep is
+[installed](README.md#installation)
+and that readers have passing familiarity with using command line tools. This
+also assumes a Unix-like system, although most commands are probably easily
+translatable to any command line shell environment.
 
-OPTIONS:
-    -A, --after-context <NUM>                    
-            Show NUM lines after each match.
-            
-            This overrides the --context and --passthru flags.
-             
-        --auto-hybrid-regex                      
-            DEPRECATED. Use --engine instead.
-            
-            When this flag is used, ripgrep will dynamically choose between supported regex
-            engines depending on the features used in a pattern. When ripgrep chooses a
-            regex engine, it applies that choice for every regex provided to ripgrep (e.g.,
-            via multiple -e/--regexp or -f/--file flags).
-            
-            As an example of how this flag might behave, ripgrep will attempt to use
-            its default finite automata based regex engine whenever the pattern can be
-            successfully compiled with that regex engine. If PCRE2 is enabled and if the
-            pattern given could not be compiled with the default regex engine, then PCRE2
-            will be automatically used for searching. If PCRE2 isn't available, then this
-            flag has no effect because there is only one regex engine to choose from.
-            
-            In the future, ripgrep may adjust its heuristics for how it decides which
-            regex engine to use. In general, the heuristics will be limited to a static
-            analysis of the patterns, and not to any specific runtime behavior observed
-            while searching files.
-            
-            The primary downside of using this flag is that it may not always be obvious
-            which regex engine ripgrep uses, and thus, the match semantics or performance
-            profile of ripgrep may subtly and unexpectedly change. However, in many cases,
-            all regex engines will agree on what constitutes a match and it can be nice
-            to transparently support more advanced regex features like look-around and
-            backreferences without explicitly needing to enable them.
-            
-            This flag can be disabled with --no-auto-hybrid-regex.
-             
-    -B, --before-context <NUM>                   
-            Show NUM lines before each match.
-            
-            This overrides the --context and --passthru flags.
-             
-        --binary                                 
-            Enabling this flag will cause ripgrep to search binary files. By default,
-            ripgrep attempts to automatically skip binary files in order to improve the
-            relevance of results and make the search faster.
-            
-            Binary files are heuristically detected based on whether they contain a NUL
-            byte or not. By default (without this flag set), once a NUL byte is seen,
-            ripgrep will stop searching the file. Usually, NUL bytes occur in the beginning
-            of most binary files. If a NUL byte occurs after a match, then ripgrep will
-            still stop searching the rest of the file, but a warning will be printed.
-            
-            In contrast, when this flag is provided, ripgrep will continue searching a file
-            even if a NUL byte is found. In particular, if a NUL byte is found then ripgrep
-            will continue searching until either a match is found or the end of the file is
-            reached, whichever comes sooner. If a match is found, then ripgrep will stop
-            and print a warning saying that the search stopped prematurely.
-            
-            If you want ripgrep to search a file without any special NUL byte handling at
-            all (and potentially print binary data to stdout), then you should use the
-            '-a/--text' flag.
-            
-            The '--binary' flag is a flag for controlling ripgrep's automatic filtering
-            mechanism. As such, it does not need to be used when searching a file
-            explicitly or when searching stdin. That is, it is only applicable when
-            recursively searching a directory.
-            
-            Note that when the '-u/--unrestricted' flag is provided for a third time, then
-            this flag is automatically enabled.
-            
-            This flag can be disabled with '--no-binary'. It overrides the '-a/--text'
-            flag.
-             
-        --block-buffered                         
-            When enabled, ripgrep will use block buffering. That is, whenever a matching
-            line is found, it will be written to an in-memory buffer and will not be
-            written to stdout until the buffer reaches a certain size. This is the default
-            when ripgrep's stdout is redirected to a pipeline or a file. When ripgrep's
-            stdout is connected to a terminal, line buffering will be used. Forcing block
-            buffering can be useful when dumping a large amount of contents to a terminal.
-            
-            Forceful block buffering can be disabled with --no-block-buffered. Note that
-            using --no-block-buffered causes ripgrep to revert to its default behavior of
-            automatically detecting the buffering strategy. To force line buffering, use
-            the --line-buffered flag.
-             
-    -b, --byte-offset
-            Print the 0-based byte offset within the input file before each line of output.
-            If -o (--only-matching) is specified, print the offset of the matching part
-            itself.
-            
-            If ripgrep does transcoding, then the byte offset is in terms of the the result
-            of transcoding and not the original data. This applies similarly to another
-            transformation on the source, such as decompression or a --pre filter. Note
-            that when the PCRE2 regex engine is used, then UTF-8 transcoding is done by
-            default.
-             
-    -s, --case-sensitive                         
-            Search case sensitively.
-            
-            This overrides the -i/--ignore-case and -S/--smart-case flags.
-             
-        --color <WHEN>                           
-            This flag controls when to use colors. The default setting is 'auto', which
-            means ripgrep will try to guess when to use colors. For example, if ripgrep is
-            printing to a terminal, then it will use colors, but if it is redirected to a
-            file or a pipe, then it will suppress color output. ripgrep will suppress color
-            output in some other circumstances as well. For example, if the TERM
-            environment variable is not set or set to 'dumb', then ripgrep will not use
-            colors.
-            
-            The possible values for this flag are:
-            
-                never    Colors will never be used.
-                auto     The default. ripgrep tries to be smart.
-                always   Colors will always be used regardless of where output is sent.
-                ansi     Like 'always', but emits ANSI escapes (even in a Windows console).
-            
-            When the --vimgrep flag is given to ripgrep, then the default value for the
-            --color flag changes to 'never'.
-             
-        --colors <COLOR_SPEC>...                 
-            This flag specifies color settings for use in the output. This flag may be
-            provided multiple times. Settings are applied iteratively. Colors are limited
-            to one of eight choices: red, blue, green, cyan, magenta, yellow, white and
-            black. Styles are limited to nobold, bold, nointense, intense, nounderline
-            or underline.
-            
-            The format of the flag is '{type}:{attribute}:{value}'. '{type}' should be
-            one of path, line, column or match. '{attribute}' can be fg, bg or style.
-            '{value}' is either a color (for fg and bg) or a text style. A special format,
-            '{type}:none', will clear all color settings for '{type}'.
-            
-            For example, the following command will change the match color to magenta and
-            the background color for line numbers to yellow:
-            
-                rg --colors 'match:fg:magenta' --colors 'line:bg:yellow' foo.
-            
-            Extended colors can be used for '{value}' when the terminal supports ANSI color
-            sequences. These are specified as either 'x' (256-color) or 'x,x,x' (24-bit
-            truecolor) where x is a number between 0 and 255 inclusive. x may be given as
-            a normal decimal number or a hexadecimal number, which is prefixed by `0x`.
-            
-            For example, the following command will change the match background color to
-            that represented by the rgb value (0,128,255):
-            
-                rg --colors 'match:bg:0,128,255'
-            
-            or, equivalently,
-            
-                rg --colors 'match:bg:0x0,0x80,0xFF'
-            
-            Note that the the intense and nointense style flags will have no effect when
-            used alongside these extended color codes.
-             
-        --column                                 
-            Show column numbers (1-based). This only shows the column numbers for the first
-            match on each line. This does not try to account for Unicode. One byte is equal
-            to one column. This implies --line-number.
-            
-            This flag can be disabled with --no-column.
-             
-    -C, --context <NUM>                          
-            Show NUM lines before and after each match. This is equivalent to providing
-            both the -B/--before-context and -A/--after-context flags with the same value.
-            
-            This overrides both the -B/--before-context and -A/--after-context flags,
-            in addition to the --passthru flag.
-             
-        --context-separator <SEPARATOR>          
-            The string used to separate non-contiguous context lines in the output. This
-            is only used when one of the context flags is used (-A, -B or -C). Escape
-            sequences like \x7F or \t may be used. The default value is --.
-            
-            When the context separator is set to an empty string, then a line break
-            is still inserted. To completely disable context separators, use the
-            --no-context-separator flag.
-             
-    -c, --count
-            This flag suppresses normal output and shows the number of lines that match
-            the given patterns for each file searched. Each file containing a match has its
-            path and count printed on each line. Note that this reports the number of lines
-            that match and not the total number of matches, unless -U/--multiline is
-            enabled. In multiline mode, --count is equivalent to --count-matches.
-            
-            If only one file is given to ripgrep, then only the count is printed if there
-            is a match. The --with-filename flag can be used to force printing the file
-            path in this case. If you need a count to be printed regardless of whether
-            there is a match, then use --include-zero.
-            
-            This overrides the --count-matches flag. Note that when --count is combined
-            with --only-matching, then ripgrep behaves as if --count-matches was given.
-             
-        --count-matches
-            This flag suppresses normal output and shows the number of individual
-            matches of the given patterns for each file searched. Each file
-            containing matches has its path and match count printed on each line.
-            Note that this reports the total number of individual matches and not
-            the number of lines that match.
-            
-            If only one file is given to ripgrep, then only the count is printed if there
-            is a match. The --with-filename flag can be used to force printing the file
-            path in this case.
-            
-            This overrides the --count flag. Note that when --count is combined with
-            --only-matching, then ripgrep behaves as if --count-matches was given.
-             
-        --crlf                                   
-            When enabled, ripgrep will treat CRLF ('\r\n') as a line terminator instead
-            of just '\n'.
-            
-            Principally, this permits '$' in regex patterns to match just before CRLF
-            instead of just before LF. The underlying regex engine may not support this
-            natively, so ripgrep will translate all instances of '$' to '(?:\r??$)'. This
-            may produce slightly different than desired match offsets. It is intended as a
-            work-around until the regex engine supports this natively.
-            
-            CRLF support can be disabled with --no-crlf.
-             
-        --debug                                  
-            Show debug messages. Please use this when filing a bug report.
-            
-            The --debug flag is generally useful for figuring out why ripgrep skipped
-            searching a particular file. The debug messages should mention all files
-            skipped and why they were skipped.
-            
-            To get even more debug output, use the --trace flag, which implies --debug
-            along with additional trace data. With --trace, the output could be quite
-            large and is generally more useful for development.
-             
-        --dfa-size-limit <NUM+SUFFIX?>           
-            The upper size limit of the regex DFA. The default limit is 10M. This should
-            only be changed on very large regex inputs where the (slower) fallback regex
-            engine may otherwise be used if the limit is reached.
-            
-            The argument accepts the same size suffixes as allowed in with the
-            --max-filesize flag.
-             
-    -E, --encoding <ENCODING>                    
-            Specify the text encoding that ripgrep will use on all files searched. The
-            default value is 'auto', which will cause ripgrep to do a best effort automatic
-            detection of encoding on a per-file basis. Automatic detection in this case
-            only applies to files that begin with a UTF-8 or UTF-16 byte-order mark (BOM).
-            No other automatic detection is performed. One can also specify 'none' which
-            will then completely disable BOM sniffing and always result in searching the
-            raw bytes, including a BOM if it's present, regardless of its encoding.
-            
-            Other supported values can be found in the list of labels here:
-            https://encoding.spec.whatwg.org/#concept-encoding-get
-            
-            For more details on encoding and how ripgrep deals with it, see GUIDE.md.
-            
-            This flag can be disabled with --no-encoding.
-             
-        --engine <ENGINE>
-            Specify which regular expression engine to use. When you choose a regex engine,
-            it applies that choice for every regex provided to ripgrep (e.g., via multiple
-            -e/--regexp or -f/--file flags).
-            
-            Accepted values are 'default', 'pcre2', or 'auto'.
-            
-            The default value is 'default', which is the fastest and should be good for
-            most use cases. The 'pcre2' engine is generally useful when you want to use
-            features such as look-around or backreferences. 'auto' will dynamically choose
-            between supported regex engines depending on the features used in a pattern on
-            a best effort basis.
-            
-            Note that the 'pcre2' engine is an optional ripgrep feature. If PCRE2 wasn't
-            included in your build of ripgrep, then using this flag will result in ripgrep
-            printing an error message and exiting.
-            
-            This overrides previous uses of --pcre2 and --auto-hybrid-regex flags.
-              [default: default]
-        --field-context-separator <SEPARATOR>    
-            Set the field context separator, which is used to delimit file paths, line
-            numbers, columns and the context itself, when printing contextual lines. The
-            separator may be any number of bytes, including zero. Escape sequences like
-            \x7F or \t may be used. The default value is -.
-             
-        --field-match-separator <SEPARATOR>      
-            Set the field match separator, which is used to delimit file paths, line
-            numbers, columns and the match itself. The separator may be any number of
-            bytes, including zero. Escape sequences like \x7F or \t may be used. The
-            default value is -.
-             
-    -f, --file <PATTERNFILE>...                  
-            Search for patterns from the given file, with one pattern per line. When this
-            flag is used multiple times or in combination with the -e/--regexp flag,
-            then all patterns provided are searched. Empty pattern lines will match all
-            input lines, and the newline is not counted as part of the pattern.
-            
-            A line is printed if and only if it matches at least one of the patterns.
-             
-        --files                                  
-            Print each file that would be searched without actually performing the search.
-            This is useful to determine whether a particular file is being searched or not.
-             
-    -l, --files-with-matches                     
-            Print the paths with at least one match and suppress match contents.
-            
-            This overrides --files-without-match.
-             
-        --files-without-match                    
-            Print the paths that contain zero matches and suppress match contents. This
-            inverts/negates the --files-with-matches flag.
-            
-            This overrides --files-with-matches.
-             
-    -F, --fixed-strings                          
-            Treat the pattern as a literal string instead of a regular expression. When
-            this flag is used, special regular expression meta characters such as .(){}*+
-            do not need to be escaped.
-            
-            This flag can be disabled with --no-fixed-strings.
-             
-    -L, --follow                                 
-            When this flag is enabled, ripgrep will follow symbolic links while traversing
-            directories. This is disabled by default. Note that ripgrep will check for
-            symbolic link loops and report errors if it finds one.
-            
-            This flag can be disabled with --no-follow.
-             
-    -g, --glob <GLOB>...                         
-            Include or exclude files and directories for searching that match the given
-            glob. This always overrides any other ignore logic. Multiple glob flags may be
-            used. Globbing rules match .gitignore globs. Precede a glob with a ! to exclude
-            it. If multiple globs match a file or directory, the glob given later in the
-            command line takes precedence.
-            
-            As an extension, globs support specifying alternatives: *-g ab{c,d}* is
-            equivalet to *-g abc -g abd*. Empty alternatives like *-g ab{,c}* are not
-            currently supported. Note that this syntax extension is also currently enabled
-            in gitignore files, even though this syntax isn't supported by git itself.
-            ripgrep may disable this syntax extension in gitignore files, but it will
-            always remain available via the -g/--glob flag.
-            
-            When this flag is set, every file and directory is applied to it to test for
-            a match. So for example, if you only want to search in a particular directory
-            'foo', then *-g foo* is incorrect because 'foo/bar' does not match the glob
-            'foo'. Instead, you should use *-g 'foo/**'*.
-             
-        --glob-case-insensitive                  
-            Process glob patterns given with the -g/--glob flag case insensitively. This
-            effectively treats --glob as --iglob.
-            
-            This flag can be disabled with the --no-glob-case-insensitive flag.
-             
-    -h, --help
-            Prints help information. Use --help for more details.
 
-        --heading                                
-            This flag prints the file path above clusters of matches from each file instead
-            of printing the file path as a prefix for each matched line. This is the
-            default mode when printing to a terminal.
-            
-            This overrides the --no-heading flag.
-             
-    -., --hidden                                 
-            Search hidden files and directories. By default, hidden files and directories
-            are skipped. Note that if a hidden file or a directory is whitelisted in an
-            ignore file, then it will be searched even if this flag isn't provided.
-            
-            A file or directory is considered hidden if its base name starts with a dot
-            character ('.'). On operating systems which support a `hidden` file attribute,
-            like Windows, files with this attribute are also considered hidden.
-            
-            This flag can be disabled with --no-hidden.
-             
-        --iglob <GLOB>...                        
-            Include or exclude files and directories for searching that match the given
-            glob. This always overrides any other ignore logic. Multiple glob flags may be
-            used. Globbing rules match .gitignore globs. Precede a glob with a ! to exclude
-            it. Globs are matched case insensitively.
-             
-    -i, --ignore-case                            
-            When this flag is provided, the given patterns will be searched case
-            insensitively. The case insensitivity rules used by ripgrep conform to
-            Unicode's "simple" case folding rules.
-            
-            This flag overrides -s/--case-sensitive and -S/--smart-case.
-             
-        --ignore-file <PATH>...                  
-            Specifies a path to one or more .gitignore format rules files. These patterns
-            are applied after the patterns found in .gitignore and .ignore are applied
-            and are matched relative to the current working directory. Multiple additional
-            ignore files can be specified by using the --ignore-file flag several times.
-            When specifying multiple ignore files, earlier files have lower precedence
-            than later files.
-            
-            If you are looking for a way to include or exclude files and directories
-            directly on the command line, then used -g instead.
-             
-        --ignore-file-case-insensitive           
-            Process ignore files (.gitignore, .ignore, etc.) case insensitively. Note that
-            this comes with a performance penalty and is most useful on case insensitive
-            file systems (such as Windows).
-            
-            This flag can be disabled with the --no-ignore-file-case-insensitive flag.
-             
-        --include-zero                           
-            When used with --count or --count-matches, print the number of matches for
-            each file even if there were zero matches. This is disabled by default but can
-            be enabled to make ripgrep behave more like grep.
-             
-    -v, --invert-match                           
-            Invert matching. Show lines that do not match the given patterns.
-             
-        --json                                   
-            Enable printing results in a JSON Lines format.
-            
-            When this flag is provided, ripgrep will emit a sequence of messages, each
-            encoded as a JSON object, where there are five different message types:
-            
-            **begin** - A message that indicates a file is being searched and contains at
-            least one match.
-            
-            **end** - A message the indicates a file is done being searched. This message
-            also include summary statistics about the search for a particular file.
-            
-            **match** - A message that indicates a match was found. This includes the text
-            and offsets of the match.
-            
-            **context** - A message that indicates a contextual line was found. This
-            includes the text of the line, along with any match information if the search
-            was inverted.
-            
-            **summary** - The final message emitted by ripgrep that contains summary
-            statistics about the search across all files.
-            
-            Since file paths or the contents of files are not guaranteed to be valid UTF-8
-            and JSON itself must be representable by a Unicode encoding, ripgrep will emit
-            all data elements as objects with one of two keys: 'text' or 'bytes'. 'text' is
-            a normal JSON string when the data is valid UTF-8 while 'bytes' is the base64
-            encoded contents of the data.
-            
-            The JSON Lines format is only supported for showing search results. It cannot
-            be used with other flags that emit other types of output, such as --files,
-            --files-with-matches, --files-without-match, --count or --count-matches.
-            ripgrep will report an error if any of the aforementioned flags are used in
-            concert with --json.
-            
-            Other flags that control aspects of the standard output such as
-            --only-matching, --heading, --replace, --max-columns, etc., have no effect
-            when --json is set.
-            
-            A more complete description of the JSON format used can be found here:
-            https://docs.rs/grep-printer/*/grep_printer/struct.JSON.html
-            
-            The JSON Lines format can be disabled with --no-json.
-             
-        --line-buffered                          
-            When enabled, ripgrep will use line buffering. That is, whenever a matching
-            line is found, it will be flushed to stdout immediately. This is the default
-            when ripgrep's stdout is connected to a terminal, but otherwise, ripgrep will
-            use block buffering, which is typically faster. This flag forces ripgrep to
-            use line buffering even if it would otherwise use block buffering. This is
-            typically useful in shell pipelines, e.g.,
-            'tail -f something.log | rg foo --line-buffered | rg bar'.
-            
-            Forceful line buffering can be disabled with --no-line-buffered. Note that
-            using --no-line-buffered causes ripgrep to revert to its default behavior of
-            automatically detecting the buffering strategy. To force block buffering, use
-            the --block-buffered flag.
-             
-    -n, --line-number                            
-            Show line numbers (1-based). This is enabled by default when searching in a
-            terminal.
-             
-    -x, --line-regexp                            
-            Only show matches surrounded by line boundaries. This is equivalent to putting
-            ^...$ around all of the search patterns. In other words, this only prints lines
-            where the entire line participates in a match.
-            
-            This overrides the --word-regexp flag.
-             
-    -M, --max-columns <NUM>                      
-            Don't print lines longer than this limit in bytes. Longer lines are omitted,
-            and only the number of matches in that line is printed.
-            
-            When this flag is omitted or is set to 0, then it has no effect.
-             
-        --max-columns-preview                    
-            When the '--max-columns' flag is used, ripgrep will by default completely
-            replace any line that is too long with a message indicating that a matching
-            line was removed. When this flag is combined with '--max-columns', a preview
-            of the line (corresponding to the limit size) is shown instead, where the part
-            of the line exceeding the limit is not shown.
-            
-            If the '--max-columns' flag is not set, then this has no effect.
-            
-            This flag can be disabled with '--no-max-columns-preview'.
-             
-    -m, --max-count <NUM>                        
-            Limit the number of matching lines per file searched to NUM.
-             
-        --max-depth <NUM>                        
-            Limit the depth of directory traversal to NUM levels beyond the paths given. A
-            value of zero only searches the explicitly given paths themselves.
-            
-            For example, 'rg --max-depth 0 dir/' is a no-op because dir/ will not be
-            descended into. 'rg --max-depth 1 dir/' will search only the direct children of
-            'dir'.
-             
-        --max-filesize <NUM+SUFFIX?>             
-            Ignore files larger than NUM in size. This does not apply to directories.
-            
-            The input format accepts suffixes of K, M or G which correspond to kilobytes,
-            megabytes and gigabytes, respectively. If no suffix is provided the input is
-            treated as bytes.
-            
-            Examples: --max-filesize 50K or --max-filesize 80M
-             
-        --mmap                                   
-            Search using memory maps when possible. This is enabled by default when ripgrep
-            thinks it will be faster.
-            
-            Memory map searching doesn't currently support all options, so if an
-            incompatible option (e.g., --context) is given with --mmap, then memory maps
-            will not be used.
-            
-            Note that ripgrep may abort unexpectedly when --mmap if it searches a file that
-            is simultaneously truncated.
-            
-            This flag overrides --no-mmap.
-             
-    -U, --multiline                              
-            Enable matching across multiple lines.
-            
-            When multiline mode is enabled, ripgrep will lift the restriction that a match
-            cannot include a line terminator. For example, when multiline mode is not
-            enabled (the default), then the regex '\p{any}' will match any Unicode
-            codepoint other than '\n'. Similarly, the regex '\n' is explicitly forbidden,
-            and if you try to use it, ripgrep will return an error. However, when multiline
-            mode is enabled, '\p{any}' will match any Unicode codepoint, including '\n',
-            and regexes like '\n' are permitted.
-            
-            An important caveat is that multiline mode does not change the match semantics
-            of '.'. Namely, in most regex matchers, a '.' will by default match any
-            character other than '\n', and this is true in ripgrep as well. In order to
-            make '.' match '\n', you must enable the "dot all" flag inside the regex.
-            For example, both '(?s).' and '(?s:.)' have the same semantics, where '.' will
-            match any character, including '\n'. Alternatively, the '--multiline-dotall'
-            flag may be passed to make the "dot all" behavior the default. This flag only
-            applies when multiline search is enabled.
-            
-            There is no limit on the number of the lines that a single match can span.
-            
-            **WARNING**: Because of how the underlying regex engine works, multiline
-            searches may be slower than normal line-oriented searches, and they may also
-            use more memory. In particular, when multiline mode is enabled, ripgrep
-            requires that each file it searches is laid out contiguously in memory
-            (either by reading it onto the heap or by memory-mapping it). Things that
-            cannot be memory-mapped (such as stdin) will be consumed until EOF before
-            searching can begin. In general, ripgrep will only do these things when
-            necessary. Specifically, if the --multiline flag is provided but the regex
-            does not contain patterns that would match '\n' characters, then ripgrep
-            will automatically avoid reading each file into memory before searching it.
-            Nevertheless, if you only care about matches spanning at most one line, then it
-            is always better to disable multiline mode.
-            
-            This flag can be disabled with --no-multiline.
-             
-        --multiline-dotall                       
-            This flag enables "dot all" in your regex pattern, which causes '.' to match
-            newlines when multiline searching is enabled. This flag has no effect if
-            multiline searching isn't enabled with the --multiline flag.
-            
-            Normally, a '.' will match any character except newlines. While this behavior
-            typically isn't relevant for line-oriented matching (since matches can span at
-            most one line), this can be useful when searching with the -U/--multiline flag.
-            By default, the multiline mode runs without this flag.
-            
-            This flag is generally intended to be used in an alias or your ripgrep config
-            file if you prefer "dot all" semantics by default. Note that regardless of
-            whether this flag is used, "dot all" semantics can still be controlled via
-            inline flags in the regex pattern itself, e.g., '(?s:.)' always enables "dot
-            all" whereas '(?-s:.)' always disables "dot all".
-            
-            This flag can be disabled with --no-multiline-dotall.
-             
-        --no-config                              
-            Never read configuration files. When this flag is present, ripgrep will not
-            respect the RIPGREP_CONFIG_PATH environment variable.
-            
-            If ripgrep ever grows a feature to automatically read configuration files in
-            pre-defined locations, then this flag will also disable that behavior as well.
-             
-    -I, --no-filename                            
-            Never print the file path with the matched lines. This is the default when
-            ripgrep is explicitly instructed to search one file or stdin.
-            
-            This flag overrides --with-filename.
-             
-        --no-heading                             
-            Don't group matches by each file. If --no-heading is provided in addition to
-            the -H/--with-filename flag, then file paths will be printed as a prefix for
-            every matched line. This is the default mode when not printing to a terminal.
-            
-            This overrides the --heading flag.
-             
-        --no-ignore                              
-            Don't respect ignore files (.gitignore, .ignore, etc.). This implies
-            --no-ignore-dot, --no-ignore-exclude, --no-ignore-global, no-ignore-parent and
-            --no-ignore-vcs.
-            
-            This does *not* imply --no-ignore-files, since --ignore-file is specified
-            explicitly as a command line argument.
-            
-            When given only once, the -u flag is identical in behavior to --no-ignore and
-            can be considered an alias. However, subsequent -u flags have additional
-            effects; see --unrestricted.
-            
-            This flag can be disabled with the --ignore flag.
-             
-        --no-ignore-dot                          
-            Don't respect .ignore files.
-            
-            This does *not* affect whether ripgrep will ignore files and directories
-            whose names begin with a dot. For that, see the -./--hidden flag.
-            
-            This flag can be disabled with the --ignore-dot flag.
-             
-        --no-ignore-exclude                      
-            Don't respect ignore files that are manually configured for the repository
-            such as git's '.git/info/exclude'.
-            
-            This flag can be disabled with the --ignore-exclude flag.
-             
-        --no-ignore-files                        
-            When set, any --ignore-file flags, even ones that come after this flag, are
-            ignored.
-            
-            This flag can be disabled with the --ignore-files flag.
-             
-        --no-ignore-global                       
-            Don't respect ignore files that come from "global" sources such as git's
-            `core.excludesFile` configuration option (which defaults to
-            `$HOME/.config/git/ignore`).
-            
-            This flag can be disabled with the --ignore-global flag.
-             
-        --no-ignore-messages                     
-            Suppresses all error messages related to parsing ignore files such as .ignore
-            or .gitignore.
-            
-            This flag can be disabled with the --ignore-messages flag.
-             
-        --no-ignore-parent                       
-            Don't respect ignore files (.gitignore, .ignore, etc.) in parent directories.
-            
-            This flag can be disabled with the --ignore-parent flag.
-             
-        --no-ignore-vcs                          
-            Don't respect version control ignore files (.gitignore, etc.). This implies
-            --no-ignore-parent for VCS files. Note that .ignore files will continue to be
-            respected.
-            
-            This flag can be disabled with the --ignore-vcs flag.
-             
-    -N, --no-line-number                         
-            Suppress line numbers. This is enabled by default when not searching in a
-            terminal.
-             
-        --no-messages                            
-            Suppress all error messages related to opening and reading files. Error
-            messages related to the syntax of the pattern given are still shown.
-            
-            This flag can be disabled with the --messages flag.
-             
-        --no-mmap                                
-            Never use memory maps, even when they might be faster.
-            
-            This flag overrides --mmap.
-             
-        --no-pcre2-unicode                       
-            DEPRECATED. Use --no-unicode instead.
-            
-            This flag is now an alias for --no-unicode. And --pcre2-unicode is an alias
-            for --unicode.
-             
-        --no-require-git                         
-            By default, ripgrep will only respect global gitignore rules, .gitignore rules
-            and local exclude rules if ripgrep detects that you are searching inside a
-            git repository. This flag allows you to relax this restriction such that
-            ripgrep will respect all git related ignore rules regardless of whether you're
-            searching in a git repository or not.
-            
-            This flag can be disabled with --require-git.
-             
-        --no-unicode                             
-            By default, ripgrep will enable "Unicode mode" in all of its regexes. This
-            has a number of consequences:
-            
-            * '.' will only match valid UTF-8 encoded scalar values.
-            * Classes like '\w', '\s', '\d' are all Unicode aware and much bigger
-              than their ASCII only versions.
-            * Case insensitive matching will use Unicode case folding.
-            * A large array of classes like '\p{Emoji}' are available.
-            * Word boundaries ('\b' and '\B') use the Unicode definition of a word
-              character.
-            
-            In some cases it can be desirable to turn these things off. The --no-unicode
-            flag will do exactly that.
-            
-            For PCRE2 specifically, Unicode mode represents a critical trade off in the
-            user experience of ripgrep. In particular, unlike the default regex engine,
-            PCRE2 does not support the ability to search possibly invalid UTF-8 with
-            Unicode features enabled. Instead, PCRE2 *requires* that everything it searches
-            when Unicode mode is enabled is valid UTF-8. (Or valid UTF-16/UTF-32, but for
-            the purposes of ripgrep, we only discuss UTF-8.) This means that if you have
-            PCRE2's Unicode mode enabled and you attempt to search invalid UTF-8, then
-            the search for that file will halt and print an error. For this reason, when
-            PCRE2's Unicode mode is enabled, ripgrep will automatically "fix" invalid
-            UTF-8 sequences by replacing them with the Unicode replacement codepoint. This
-            penalty does not occur when using the default regex engine.
-            
-            If you would rather see the encoding errors surfaced by PCRE2 when Unicode mode
-            is enabled, then pass the --no-encoding flag to disable all transcoding.
-            
-            The --no-unicode flag can be disabled with --unicode. Note that
-            --no-pcre2-unicode and --pcre2-unicode are aliases for --no-unicode and
-            --unicode, respectively.
-             
-    -0, --null                                   
-            Whenever a file path is printed, follow it with a NUL byte. This includes
-            printing file paths before matches, and when printing a list of matching files
-            such as with --count, --files-with-matches and --files. This option is useful
-            for use with xargs.
-             
-        --null-data                              
-            Enabling this option causes ripgrep to use NUL as a line terminator instead of
-            the default of '\n'.
-            
-            This is useful when searching large binary files that would otherwise have very
-            long lines if '\n' were used as the line terminator. In particular, ripgrep
-            requires that, at a minimum, each line must fit into memory. Using NUL instead
-            can be a useful stopgap to keep memory requirements low and avoid OOM (out of
-            memory) conditions.
-            
-            This is also useful for processing NUL delimited data, such as that emitted
-            when using ripgrep's -0/--null flag or find's --print0 flag.
-            
-            Using this flag implies -a/--text.
-             
-        --one-file-system
-            When enabled, ripgrep will not cross file system boundaries relative to where
-            the search started from.
-            
-            Note that this applies to each path argument given to ripgrep. For example, in
-            the command 'rg --one-file-system /foo/bar /quux/baz', ripgrep will search both
-            '/foo/bar' and '/quux/baz' even if they are on different file systems, but will
-            not cross a file system boundary when traversing each path's directory tree.
-            
-            This is similar to find's '-xdev' or '-mount' flag.
-            
-            This flag can be disabled with --no-one-file-system.
-             
-    -o, --only-matching                          
-            Print only the matched (non-empty) parts of a matching line, with each such
-            part on a separate output line.
-             
-        --passthru                               
-            Print both matching and non-matching lines.
-            
-            Another way to achieve a similar effect is by modifying your pattern to match
-            the empty string. For example, if you are searching using 'rg foo' then using
-            'rg "^|foo"' instead will emit every line in every file searched, but only
-            occurrences of 'foo' will be highlighted. This flag enables the same behavior
-            without needing to modify the pattern.
-            
-            This overrides the --context, --after-context and --before-context flags.
-             
-        --path-separator <SEPARATOR>             
-            Set the path separator to use when printing file paths. This defaults to your
-            platform's path separator, which is / on Unix and \ on Windows. This flag is
-            intended for overriding the default when the environment demands it (e.g.,
-            cygwin). A path separator is limited to a single byte.
-             
-    -P, --pcre2                                  
-            When this flag is present, ripgrep will use the PCRE2 regex engine instead of
-            its default regex engine.
-            
-            This is generally useful when you want to use features such as look-around
-            or backreferences.
-            
-            Note that PCRE2 is an optional ripgrep feature. If PCRE2 wasn't included in
-            your build of ripgrep, then using this flag will result in ripgrep printing
-            an error message and exiting. PCRE2 may also have worse user experience in
-            some cases, since it has fewer introspection APIs than ripgrep's default regex
-            engine. For example, if you use a '\n' in a PCRE2 regex without the
-            '-U/--multiline' flag, then ripgrep will silently fail to match anything
-            instead of reporting an error immediately (like it does with the default
-            regex engine).
-            
-            Related flags: --no-pcre2-unicode
-            
-            This flag can be disabled with --no-pcre2.
-             
-        --pcre2-version                          
-            When this flag is present, ripgrep will print the version of PCRE2 in use,
-            along with other information, and then exit. If PCRE2 is not available, then
-            ripgrep will print an error message and exit with an error code.
-             
-        --pre <COMMAND>                          
-            For each input FILE, search the standard output of COMMAND FILE rather than the
-            contents of FILE. This option expects the COMMAND program to either be an
-            absolute path or to be available in your PATH. Either an empty string COMMAND
-            or the '--no-pre' flag will disable this behavior.
-            
-                WARNING: When this flag is set, ripgrep will unconditionally spawn a
-                process for every file that is searched. Therefore, this can incur an
-                unnecessarily large performance penalty if you don't otherwise need the
-                flexibility offered by this flag. One possible mitigation to this is to use
-                the '--pre-glob' flag to limit which files a preprocessor is run with.
-            
-            A preprocessor is not run when ripgrep is searching stdin.
-            
-            When searching over sets of files that may require one of several decoders
-            as preprocessors, COMMAND should be a wrapper program or script which first
-            classifies FILE based on magic numbers/content or based on the FILE name and
-            then dispatches to an appropriate preprocessor. Each COMMAND also has its
-            standard input connected to FILE for convenience.
-            
-            For example, a shell script for COMMAND might look like:
-            
-                case "$1" in
-                *.pdf)
-                    exec pdftotext "$1" -
-                    ;;
-                *)
-                    case $(file "$1") in
-                    *Zstandard*)
-                        exec pzstd -cdq
-                        ;;
-                    *)
-                        exec cat
-                        ;;
-                    esac
-                    ;;
-                esac
-            
-            The above script uses `pdftotext` to convert a PDF file to plain text. For
-            all other files, the script uses the `file` utility to sniff the type of the
-            file based on its contents. If it is a compressed file in the Zstandard format,
-            then `pzstd` is used to decompress the contents to stdout.
-            
-            This overrides the -z/--search-zip flag.
-             
-        --pre-glob <GLOB>...
-            This flag works in conjunction with the --pre flag. Namely, when one or more
-            --pre-glob flags are given, then only files that match the given set of globs
-            will be handed to the command specified by the --pre flag. Any non-matching
-            files will be searched without using the preprocessor command.
-            
-            This flag is useful when searching many files with the --pre flag. Namely,
-            it permits the ability to avoid process overhead for files that don't need
-            preprocessing. For example, given the following shell script, 'pre-pdftotext':
-            
-                #!/bin/sh
-            
-                pdftotext "$1" -
-            
-            then it is possible to use '--pre pre-pdftotext --pre-glob '*.pdf'' to make
-            it so ripgrep only executes the 'pre-pdftotext' command on files with a '.pdf'
-            extension.
-            
-            Multiple --pre-glob flags may be used. Globbing rules match .gitignore globs.
-            Precede a glob with a ! to exclude it.
-            
-            This flag has no effect if the --pre flag is not used.
-             
-    -p, --pretty                                 
-            This is a convenience alias for '--color always --heading --line-number'. This
-            flag is useful when you still want pretty output even if you're piping ripgrep
-            to another program or file. For example: 'rg -p foo | less -R'.
-             
-    -q, --quiet                                  
-            Do not print anything to stdout. If a match is found in a file, then ripgrep
-            will stop searching. This is useful when ripgrep is used only for its exit
-            code (which will be an error if no matches are found).
-            
-            When --files is used, then ripgrep will stop finding files after finding the
-            first file that matches all ignore rules.
-             
-        --regex-size-limit <NUM+SUFFIX?>         
-            The upper size limit of the compiled regex. The default limit is 10M.
-            
-            The argument accepts the same size suffixes as allowed in the --max-filesize
-            flag.
-             
-    -e, --regexp <PATTERN>...                    
-            A pattern to search for. This option can be provided multiple times, where
-            all patterns given are searched. Lines matching at least one of the provided
-            patterns are printed. This flag can also be used when searching for patterns
-            that start with a dash.
-            
-            For example, to search for the literal '-foo', you can use this flag:
-            
-                rg -e -foo
-            
-            You can also use the special '--' delimiter to indicate that no more flags
-            will be provided. Namely, the following is equivalent to the above:
-            
-                rg -- -foo
-             
-    -r, --replace <REPLACEMENT_TEXT>             
-            Replace every match with the text given when printing results. Neither this
-            flag nor any other ripgrep flag will modify your files.
-            
-            Capture group indices (e.g., $5) and names (e.g., $foo) are supported in the
-            replacement string. Capture group indices are numbered based on the position of
-            the opening parenthesis of the group, where the leftmost such group is $1. The
-            special $0 group corresponds to the entire match.
-            
-            In shells such as Bash and zsh, you should wrap the pattern in single quotes
-            instead of double quotes. Otherwise, capture group indices will be replaced by
-            expanded shell variables which will most likely be empty.
-            
-            To write a literal '$', use '$$'.
-            
-            Note that the replacement by default replaces each match, and NOT the entire
-            line. To replace the entire line, you should match the entire line.
-            
-            This flag can be used with the -o/--only-matching flag.
-             
-    -z, --search-zip                             
-            Search in compressed files. Currently gzip, bzip2, xz, LZ4, LZMA, Brotli and
-            Zstd files are supported. This option expects the decompression binaries to be
-            available in your PATH.
-            
-            This flag can be disabled with --no-search-zip.
-             
-    -S, --smart-case                             
-            Searches case insensitively if the pattern is all lowercase. Search case
-            sensitively otherwise.
-            
-            A pattern is considered all lowercase if both of the following rules hold:
-            
-            First, the pattern contains at least one literal character. For example, 'a\w'
-            contains a literal ('a') but just '\w' does not.
-            
-            Second, of the literals in the pattern, none of them are considered to be
-            uppercase according to Unicode. For example, 'foo\pL' has no uppercase
-            literals but 'Foo\pL' does.
-            
-            This overrides the -s/--case-sensitive and -i/--ignore-case flags.
-             
-        --sort <SORTBY>
-            This flag enables sorting of results in ascending order. The possible values
-            for this flag are:
-            
-                none      (Default) Do not sort results. Fastest. Can be multi-threaded.
-                path      Sort by file path. Always single-threaded.
-                modified  Sort by the last modified time on a file. Always single-threaded.
-                accessed  Sort by the last accessed time on a file. Always single-threaded.
-                created   Sort by the creation time on a file. Always single-threaded.
-            
-            If the chosen (manually or by-default) sorting criteria isn't available on your
-            system (for example, creation time is not available on ext4 file systems), then
-            ripgrep will attempt to detect this, print an error and exit without searching.
-            
-            To sort results in reverse or descending order, use the --sortr flag. Also,
-            this flag overrides --sortr.
-            
-            Note that sorting results currently always forces ripgrep to abandon
-            parallelism and run in a single thread.
-             
-        --sortr <SORTBY>
-            This flag enables sorting of results in descending order. The possible values
-            for this flag are:
-            
-                none      (Default) Do not sort results. Fastest. Can be multi-threaded.
-                path      Sort by file path. Always single-threaded.
-                modified  Sort by the last modified time on a file. Always single-threaded.
-                accessed  Sort by the last accessed time on a file. Always single-threaded.
-                created   Sort by the creation time on a file. Always single-threaded.
-            
-            If the chosen (manually or by-default) sorting criteria isn't available on your
-            system (for example, creation time is not available on ext4 file systems), then
-            ripgrep will attempt to detect this, print an error and exit without searching.
-            
-            To sort results in ascending order, use the --sort flag. Also, this flag
-            overrides --sort.
-            
-            Note that sorting results currently always forces ripgrep to abandon
-            parallelism and run in a single thread.
-             
-        --stats                                  
-            Print aggregate statistics about this ripgrep search. When this flag is
-            present, ripgrep will print the following stats to stdout at the end of the
-            search: number of matched lines, number of files with matches, number of files
-            searched, and the time taken for the entire search to complete.
-            
-            This set of aggregate statistics may expand over time.
-            
-            Note that this flag has no effect if --files, --files-with-matches or
-            --files-without-match is passed.
-            
-            This flag can be disabled with --no-stats.
-             
-    -a, --text                                   
-            Search binary files as if they were text. When this flag is present, ripgrep's
-            binary file detection is disabled. This means that when a binary file is
-            searched, its contents may be printed if there is a match. This may cause
-            escape codes to be printed that alter the behavior of your terminal.
-            
-            When binary file detection is enabled it is imperfect. In general, it uses
-            a simple heuristic. If a NUL byte is seen during search, then the file is
-            considered binary and search stops (unless this flag is present).
-            Alternatively, if the '--binary' flag is used, then ripgrep will only quit
-            when it sees a NUL byte after it sees a match (or searches the entire file).
-            
-            This flag can be disabled with '--no-text'. It overrides the '--binary' flag.
-             
-    -j, --threads <NUM>                          
-            The approximate number of threads to use. A value of 0 (which is the default)
-            causes ripgrep to choose the thread count using heuristics.
-             
-        --trim                                   
-            When set, all ASCII whitespace at the beginning of each line printed will be
-            trimmed.
-            
-            This flag can be disabled with --no-trim.
-             
-    -t, --type <TYPE>...                         
-            Only search files matching TYPE. Multiple type flags may be provided. Use the
-            --type-list flag to list all available types.
-            
-            This flag supports the special value 'all', which will behave as if --type
-            was provided for every file type supported by ripgrep (including any custom
-            file types). The end result is that '--type all' causes ripgrep to search in
-            "whitelist" mode, where it will only search files it recognizes via its type
-            definitions.
-             
-        --type-add <TYPE_SPEC>...                
-            Add a new glob for a particular file type. Only one glob can be added at a
-            time. Multiple --type-add flags can be provided. Unless --type-clear is used,
-            globs are added to any existing globs defined inside of ripgrep.
-            
-            Note that this MUST be passed to every invocation of ripgrep. Type settings are
-            NOT persisted. See CONFIGURATION FILES for a workaround.
-            
-            Example:
-            
-                rg --type-add 'foo:*.foo' -tfoo PATTERN.
-            
-            --type-add can also be used to include rules from other types with the special
-            include directive. The include directive permits specifying one or more other
-            type names (separated by a comma) that have been defined and its rules will
-            automatically be imported into the type specified. For example, to create a
-            type called src that matches C++, Python and Markdown files, one can use:
-            
-                --type-add 'src:include:cpp,py,md'
-            
-            Additional glob rules can still be added to the src type by using the
-            --type-add flag again:
-            
-                --type-add 'src:include:cpp,py,md' --type-add 'src:*.foo'
-            
-            Note that type names must consist only of Unicode letters or numbers.
-            Punctuation characters are not allowed.
-             
-        --type-clear <TYPE>...                   
-            Clear the file type globs previously defined for TYPE. This only clears the
-            default type definitions that are found inside of ripgrep.
-            
-            Note that this MUST be passed to every invocation of ripgrep. Type settings are
-            NOT persisted. See CONFIGURATION FILES for a workaround.
-             
-        --type-list                              
-            Show all supported file types and their corresponding globs.
-             
-    -T, --type-not <TYPE>...                     
-            Do not search files matching TYPE. Multiple type-not flags may be provided. Use
-            the --type-list flag to list all available types.
-             
-    -u, --unrestricted                           
-            Reduce the level of "smart" searching. A single -u won't respect .gitignore
-            (etc.) files (--no-ignore). Two -u flags will additionally search hidden files
-            and directories (-./--hidden). Three -u flags will additionally search binary
-            files (--binary).
-            
-            'rg -uuu' is roughly equivalent to 'grep -r'.
-             
-    -V, --version                                
-            Prints version information
+### Table of Contents
 
-        --vimgrep                                
-            Show results with every match on its own line, including line numbers and
-            column numbers. With this option, a line with more than one match will be
-            printed more than once.
-             
-    -H, --with-filename                          
-            Display the file path for matches. This is the default when more than one
-            file is searched. If --heading is enabled (the default when printing to a
-            terminal), the file path will be shown above clusters of matches from each
-            file; otherwise, the file name will be shown as a prefix for each matched line.
-            
-            This flag overrides --no-filename.
-             
-    -w, --word-regexp                            
-            Only show matches surrounded by word boundaries. This is roughly equivalent to
-            putting \b before and after all of the search patterns.
-            
-            This overrides the --line-regexp flag.          
+* [Basics](#basics)
+* [Recursive search](#recursive-search)
+* [Automatic filtering](#automatic-filtering)
+* [Manual filtering: globs](#manual-filtering-globs)
+* [Manual filtering: file types](#manual-filtering-file-types)
+* [Replacements](#replacements)
+* [Configuration file](#configuration-file)
+* [File encoding](#file-encoding)
+* [Binary data](#binary-data)
+* [Preprocessor](#preprocessor)
+* [Common options](#common-options)
+
+
+### Basics
+
+ripgrep is a command line tool that searches your files for patterns that
+you give it. ripgrep behaves as if reading each file line by line. If a line
+matches the pattern provided to ripgrep, then that line will be printed. If a
+line does not match the pattern, then the line is not printed.
+
+The best way to see how this works is with an example. To show an example, we
+need something to search. Let's try searching ripgrep's source code. First
+grab a ripgrep source archive from
+https://github.com/BurntSushi/ripgrep/archive/0.7.1.zip
+and extract it:
+
 ```
+$ curl -LO https://github.com/BurntSushi/ripgrep/archive/0.7.1.zip
+$ unzip 0.7.1.zip
+$ cd ripgrep-0.7.1
+$ ls
+benchsuite  grep       tests         Cargo.toml       LICENSE-MIT
+ci          ignore     wincolor      CHANGELOG.md     README.md
+complete    pkg        appveyor.yml  compile          snapcraft.yaml
+doc         src        build.rs      COPYING          UNLICENSE
+globset     termcolor  Cargo.lock    HomebrewFormula
+```
+
+Let's try our first search by looking for all occurrences of the word `fast`
+in `README.md`:
+
+```
+$ rg fast README.md
+75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast while
+119:### Is it really faster than everything else?
+124:Summarizing, `ripgrep` is fast because:
+129:  optimizations to make searching very fast.
+```
+
+(**Note:** If you see an error message from ripgrep saying that it didn't
+search any files, then re-run ripgrep with the `--debug` flag. One likely cause
+of this is that you have a `*` rule in a `$HOME/.gitignore` file.)
+
+So what happened here? ripgrep read the contents of `README.md`, and for each
+line that contained `fast`, ripgrep printed it to your terminal. ripgrep also
+included the line number for each line by default. If your terminal supports
+colors, then your output might actually look something like this screenshot:
+
+[![A screenshot of a sample search ripgrep](https://burntsushi.net/stuff/ripgrep-guide-sample.png)](https://burntsushi.net/stuff/ripgrep-guide-sample.png)
+
+In this example, we searched for something called a "literal" string. This
+means that our pattern was just some normal text that we asked ripgrep to
+find. But ripgrep supports the ability to specify patterns via [regular
+expressions](https://en.wikipedia.org/wiki/Regular_expression). As an example,
+what if we wanted to find all lines have a word that contains `fast` followed
+by some number of other letters?
+
+```
+$ rg 'fast\w+' README.md
+75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
+119:### Is it really faster than everything else?
+```
+
+In this example, we used the pattern `fast\w+`. This pattern tells ripgrep to
+look for any lines containing the letters `fast` followed by *one or more*
+word-like characters. Namely, `\w` matches characters that compose words (like
+`a` and `L` but unlike `.` and ` `). The `+` after the `\w` means, "match the
+previous pattern one or more times." This means that the word `fast` won't
+match because there are no word characters following the final `t`. But a word
+like `faster` will. `faste` would also match!
+
+Here's a different variation on this same theme:
+
+```
+$ rg 'fast\w*' README.md
+75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast while
+119:### Is it really faster than everything else?
+124:Summarizing, `ripgrep` is fast because:
+129:  optimizations to make searching very fast.
+```
+
+In this case, we used `fast\w*` for our pattern instead of `fast\w+`. The `*`
+means that it should match *zero* or more times. In this case, ripgrep will
+print the same lines as the pattern `fast`, but if your terminal supports
+colors, you'll notice that `faster` will be highlighted instead of just the
+`fast` prefix.
+
+It is beyond the scope of this guide to provide a full tutorial on regular
+expressions, but ripgrep's specific syntax is documented here:
+https://docs.rs/regex/1.7.1/regex/#syntax
+
+
+### Recursive search
+
+In the previous section, we showed how to use ripgrep to search a single file.
+In this section, we'll show how to use ripgrep to search an entire directory
+of files. In fact, *recursively* searching your current working directory is
+the default mode of operation for ripgrep, which means doing this is very
+simple.
+
+Using our unzipped archive of ripgrep source code, here's how to find all
+function definitions whose name is `write`:
+
+```
+$ rg 'fn write\('
+src/printer.rs
+469:    fn write(&mut self, buf: &[u8]) {
+
+termcolor/src/lib.rs
+227:    fn write(&mut self, b: &[u8]) -> io::Result<usize> {
+250:    fn write(&mut self, b: &[u8]) -> io::Result<usize> {
+428:    fn write(&mut self, b: &[u8]) -> io::Result<usize> { self.wtr.write(b) }
+441:    fn write(&mut self, b: &[u8]) -> io::Result<usize> { self.wtr.write(b) }
+454:    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+511:    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+848:    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+915:    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+949:    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+1114:    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+1348:    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+1353:    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+```
+
+(**Note:** We escape the `(` here because `(` has special significance inside
+regular expressions. You could also use `rg -F 'fn write('` to achieve the
+same thing, where `-F` interprets your pattern as a literal string instead of
+a regular expression.)
+
+In this example, we didn't specify a file at all. Instead, ripgrep defaulted
+to searching your current directory in the absence of a path. In general,
+`rg foo` is equivalent to `rg foo ./`.
+
+This particular search showed us results in both the `src` and `termcolor`
+directories. The `src` directory is the core ripgrep code where as `termcolor`
+is a dependency of ripgrep (and is used by other tools). What if we only wanted
+to search core ripgrep code? Well, that's easy, just specify the directory you
+want:
+
+```
+$ rg 'fn write\(' src
+src/printer.rs
+469:    fn write(&mut self, buf: &[u8]) {
+```
+
+Here, ripgrep limited its search to the `src` directory. Another way of doing
+this search would be to `cd` into the `src` directory and simply use `rg 'fn
+write\('` again.
+
+
+### Automatic filtering
+
+After recursive search, ripgrep's most important feature is what it *doesn't*
+search. By default, when you search a directory, ripgrep will ignore all of
+the following:
+
+1. Files and directories that match glob patterns in these three categories:
+      1. gitignore globs (including global and repo-specific globs).
+      2. `.ignore` globs, which take precedence over all gitignore globs
+         when there's a conflict.
+      3. `.rgignore` globs, which take precedence over all `.ignore` globs
+         when there's a conflict.
+2. Hidden files and directories.
+3. Binary files. (ripgrep considers any file with a `NUL` byte to be binary.)
+4. Symbolic links aren't followed.
+
+All of these things can be toggled using various flags provided by ripgrep:
+
+1. You can disable all ignore-related filtering with the `--no-ignore` flag.
+2. Hidden files and directories can be searched with the `--hidden` (`-.` for 
+short) flag.
+3. Binary files can be searched via the `--text` (`-a` for short) flag.
+   Be careful with this flag! Binary files may emit control characters to your
+   terminal, which might cause strange behavior.
+4. ripgrep can follow symlinks with the `--follow` (`-L` for short) flag.
+
+As a special convenience, ripgrep also provides a flag called `--unrestricted`
+(`-u` for short). Repeated uses of this flag will cause ripgrep to disable
+more and more of its filtering. That is, `-u` will disable `.gitignore`
+handling, `-uu` will search hidden files and directories and `-uuu` will search
+binary files. This is useful when you're using ripgrep and you aren't sure
+whether its filtering is hiding results from you. Tacking on a couple `-u`
+flags is a quick way to find out. (Use the `--debug` flag if you're still
+perplexed, and if that doesn't help,
+[file an issue](https://github.com/BurntSushi/ripgrep/issues/new).)
+
+ripgrep's `.gitignore` handling actually goes a bit beyond just `.gitignore`
+files. ripgrep will also respect repository specific rules found in
+`$GIT_DIR/info/exclude`, as well as any global ignore rules in your
+`core.excludesFile` (which is usually `$XDG_CONFIG_HOME/git/ignore` on
+Unix-like systems).
+
+Sometimes you want to search files that are in your `.gitignore`, so it is
+possible to specify additional ignore rules or overrides in a `.ignore`
+(application agnostic) or `.rgignore` (ripgrep specific) file.
+
+For example, let's say you have a `.gitignore` file that looks like this:
+
+```
+log/
+```
+
+This generally means that any `log` directory won't be tracked by `git`.
+However, perhaps it contains useful output that you'd like to include in your
+searches, but you still don't want to track it in `git`. You can achieve this
+by creating a `.ignore` file in the same directory as the `.gitignore` file
+with the following contents:
+
+```
+!log/
+```
+
+ripgrep treats `.ignore` files with higher precedence than `.gitignore` files
+(and treats `.rgignore` files with higher precedence than `.ignore` files).
+This means ripgrep will see the `!log/` whitelist rule first and search that
+directory.
+
+Like `.gitignore`, a `.ignore` file can be placed in any directory. Its rules
+will be processed with respect to the directory it resides in, just like
+`.gitignore`.
+
+To process `.gitignore` and `.ignore` files case insensitively, use the flag
+`--ignore-file-case-insensitive`. This is especially useful on case insensitive
+file systems like those on Windows and macOS. Note though that this can come
+with a significant performance penalty, and is therefore disabled by default.
+
+For a more in depth description of how glob patterns in a `.gitignore` file
+are interpreted, please see `man gitignore`.
+
+
+### Manual filtering: globs
+
+In the previous section, we talked about ripgrep's filtering that it does by
+default. It is "automatic" because it reacts to your environment. That is, it
+uses already existing `.gitignore` files to produce more relevant search
+results.
+
+In addition to automatic filtering, ripgrep also provides more manual or ad hoc
+filtering. This comes in two varieties: additional glob patterns specified in
+your ripgrep commands and file type filtering. This section covers glob
+patterns while the next section covers file type filtering.
+
+In our ripgrep source code (see [Basics](#basics) for instructions on how to
+get a source archive to search), let's say we wanted to see which things depend
+on `clap`, our argument parser.
+
+We could do this:
+
+```
+$ rg clap
+[lots of results]
+```
+
+But this shows us many things, and we're only interested in where we wrote
+`clap` as a dependency. Instead, we could limit ourselves to TOML files, which
+is how dependencies are communicated to Rust's build tool, Cargo:
+
+```
+$ rg clap -g '*.toml'
+Cargo.toml
+35:clap = "2.26"
+51:clap = "2.26"
+```
+
+The `-g '*.toml'` syntax says, "make sure every file searched matches this
+glob pattern." Note that we put `'*.toml'` in single quotes to prevent our
+shell from expanding the `*`.
+
+If we wanted, we could tell ripgrep to search anything *but* `*.toml` files:
+
+```
+$ rg clap -g '!*.toml'
+[lots of results]
+```
+
+This will give you a lot of results again as above, but they won't include
+files ending with `.toml`. Note that the use of a `!` here to mean "negation"
+is a bit non-standard, but it was chosen to be consistent with how globs in
+`.gitignore` files are written. (Although, the meaning is reversed. In
+`.gitignore` files, a `!` prefix means whitelist, and on the command line, a
+`!` means blacklist.)
+
+Globs are interpreted in exactly the same way as `.gitignore` patterns. That
+is, later globs will override earlier globs. For example, the following command
+will search only `*.toml` files:
+
+```
+$ rg clap -g '!*.toml' -g '*.toml'
+```
+
+Interestingly, reversing the order of the globs in this case will match
+nothing, since the presence of at least one non-blacklist glob will institute a
+requirement that every file searched must match at least one glob. In this
+case, the blacklist glob takes precedence over the previous glob and prevents
+any file from being searched at all!
+
+
+### Manual filtering: file types
+
+Over time, you might notice that you use the same glob patterns over and over.
+For example, you might find yourself doing a lot of searches where you only
+want to see results for Rust files:
+
+```
+$ rg 'fn run' -g '*.rs'
+```
+
+Instead of writing out the glob every time, you can use ripgrep's support for
+file types:
+
+```
+$ rg 'fn run' --type rust
+```
+
+or, more succinctly,
+
+```
+$ rg 'fn run' -trust
+```
+
+The way the `--type` flag functions is simple. It acts as a name that is
+assigned to one or more globs that match the relevant files. This lets you
+write a single type that might encompass a broad range of file extensions. For
+example, if you wanted to search C files, you'd have to check both C source
+files and C header files:
+
+```
+$ rg 'int main' -g '*.{c,h}'
+```
+
+or you could just use the C file type:
+
+```
+$ rg 'int main' -tc
+```
+
+Just as you can write blacklist globs, you can blacklist file types too:
+
+```
+$ rg clap --type-not rust
+```
+
+or, more succinctly,
+
+```
+$ rg clap -Trust
+```
+
+That is, `-t` means "include files of this type" where as `-T` means "exclude
+files of this type."
+
+To see the globs that make up a type, run `rg --type-list`:
+
+```
+$ rg --type-list | rg '^make:'
+make: *.mak, *.mk, GNUmakefile, Gnumakefile, Makefile, gnumakefile, makefile
+```
+
+By default, ripgrep comes with a bunch of pre-defined types. Generally, these
+types correspond to well known public formats. But you can define your own
+types as well. For example, perhaps you frequently search "web" files, which
+consist of JavaScript, HTML and CSS:
+
+```
+$ rg --type-add 'web:*.html' --type-add 'web:*.css' --type-add 'web:*.js' -tweb title
+```
+
+or, more succinctly,
+
+```
+$ rg --type-add 'web:*.{html,css,js}' -tweb title
+```
+
+The above command defines a new type, `web`, corresponding to the glob
+`*.{html,css,js}`. It then applies the new filter with `-tweb` and searches for
+the pattern `title`. If you ran
+
+```
+$ rg --type-add 'web:*.{html,css,js}' --type-list
+```
+
+Then you would see your `web` type show up in the list, even though it is not
+part of ripgrep's built-in types.
+
+It is important to stress here that the `--type-add` flag only applies to the
+current command. It does not add a new file type and save it somewhere in a
+persistent form. If you want a type to be available in every ripgrep command,
+then you should either create a shell alias:
+
+```
+alias rg="rg --type-add 'web:*.{html,css,js}'"
+```
+
+or add `--type-add=web:*.{html,css,js}` to your ripgrep configuration file.
+([Configuration files](#configuration-file) are covered in more detail later.)
+
+#### The special `all` file type
+
+A special option supported by the `--type` flag is `all`. `--type all` looks
+for a match in any of the supported file types listed by `--type-list`,
+including those added on the command line using `--type-add`. It's equivalent
+to the command `rg --type agda --type asciidoc --type asm ...`, where `...`
+stands for a list of `--type` flags for the rest of the types in `--type-list`.
+
+As an example, let's suppose you have a shell script in your current directory,
+`my-shell-script`, which includes a shell library, `my-shell-library.bash`.
+Both `rg --type sh` and `rg --type all` would only search for matches in
+`my-shell-library.bash`, not `my-shell-script`, because the globs matched
+by the `sh` file type don't include files without an extension. On the
+other hand, `rg --type-not all` would search `my-shell-script` but not
+`my-shell-library.bash`.
+
+### Replacements
+
+ripgrep provides a limited ability to modify its output by replacing matched
+text with some other text. This is easiest to explain with an example. Remember
+when we searched for the word `fast` in ripgrep's README?
+
+```
+$ rg fast README.md
+75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast while
+119:### Is it really faster than everything else?
+124:Summarizing, `ripgrep` is fast because:
+129:  optimizations to make searching very fast.
+```
+
+What if we wanted to *replace* all occurrences of `fast` with `FAST`? That's
+easy with ripgrep's `--replace` flag:
+
+```
+$ rg fast README.md --replace FAST
+75:  FASTer than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays FAST while
+119:### Is it really FASTer than everything else?
+124:Summarizing, `ripgrep` is FAST because:
+129:  optimizations to make searching very FAST.
+```
+
+or, more succinctly,
+
+```
+$ rg fast README.md -r FAST
+[snip]
+```
+
+In essence, the `--replace` flag applies *only* to the matching portion of text
+in the output. If you instead wanted to replace an entire line of text, then
+you need to include the entire line in your match. For example:
+
+```
+$ rg '^.*fast.*$' README.md -r FAST
+75:FAST
+88:FAST
+119:FAST
+124:FAST
+129:FAST
+```
+
+Alternatively, you can combine the `--only-matching` (or `-o` for short) with
+the `--replace` flag to achieve the same result:
+
+```
+$ rg fast README.md --only-matching --replace FAST
+75:FAST
+88:FAST
+119:FAST
+124:FAST
+129:FAST
+```
+
+or, more succinctly,
+
+```
+$ rg fast README.md -or FAST
+[snip]
+```
+
+Finally, replacements can include capturing groups. For example, let's say
+we wanted to find all occurrences of `fast` followed by another word and
+join them together with a dash. The pattern we might use for that is
+`fast\s+(\w+)`, which matches `fast`, followed by any amount of whitespace,
+followed by any number of "word" characters. We put the `\w+` in a "capturing
+group" (indicated by parentheses) so that we can reference it later in our
+replacement string. For example:
+
+```
+$ rg 'fast\s+(\w+)' README.md -r 'fast-$1'
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast-while
+124:Summarizing, `ripgrep` is fast-because:
+```
+
+Our replacement string here, `fast-$1`, consists of `fast-` followed by the
+contents of the capturing group at index `1`. (Capturing groups actually start
+at index 0, but the `0`th capturing group always corresponds to the entire
+match. The capturing group at index `1` always corresponds to the first
+explicit capturing group found in the regex pattern.)
+
+Capturing groups can also be named, which is sometimes more convenient than
+using the indices. For example, the following command is equivalent to the
+above command:
+
+```
+$ rg 'fast\s+(?P<word>\w+)' README.md -r 'fast-$word'
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast-while
+124:Summarizing, `ripgrep` is fast-because:
+```
+
+It is important to note that ripgrep **will never modify your files**. The
+`--replace` flag only controls ripgrep's output. (And there is no flag to let
+you do a replacement in a file.)
+
+
+### Configuration file
+
+It is possible that ripgrep's default options aren't suitable in every case.
+For that reason, and because shell aliases aren't always convenient, ripgrep
+supports configuration files.
+
+Setting up a configuration file is simple. ripgrep will not look in any
+predetermined directory for a config file automatically. Instead, you need to
+set the `RIPGREP_CONFIG_PATH` environment variable to the file path of your
+config file. Once the environment variable is set, open the file and just type
+in the flags you want set automatically. There are only two rules for
+describing the format of the config file:
+
+1. Every line is a shell argument, after trimming whitespace.
+2. Lines starting with `#` (optionally preceded by any amount of whitespace)
+are ignored.
+
+In particular, there is no escaping. Each line is given to ripgrep as a single
+command line argument verbatim.
+
+Here's an example of a configuration file, which demonstrates some of the
+formatting peculiarities:
+
+```
+$ cat $HOME/.ripgreprc
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview
+
+# Add my 'web' type.
+--type-add
+web:*.{html,css,js}*
+
+# Using glob patterns to include/exclude files or folders
+--glob=!git/*
+
+# or
+--glob
+!git/*
+
+# Set the colors.
+--colors=line:none
+--colors=line:style:bold
+
+# Because who cares about case!?
+--smart-case
+```
+
+When we use a flag that has a value, we either put the flag and the value on
+the same line but delimited by an `=` sign (e.g., `--max-columns=150`), or we
+put the flag and the value on two different lines. This is because ripgrep's
+argument parser knows to treat the single argument `--max-columns=150` as a
+flag with a value, but if we had written `--max-columns 150` in our
+configuration file, then ripgrep's argument parser wouldn't know what to do
+with it.
+
+Putting the flag and value on different lines is exactly equivalent and is a
+matter of style.
+
+Comments are encouraged so that you remember what the config is doing. Empty
+lines are OK too.
+
+So let's say you're using the above configuration file, but while you're at a
+terminal, you really want to be able to see lines longer than 150 columns. What
+do you do? Thankfully, all you need to do is pass `--max-columns 0` (or `-M0`
+for short) on the command line, which will override your configuration file's
+setting. This works because ripgrep's configuration file is *prepended* to the
+explicit arguments you give it on the command line. Since flags given later
+override flags given earlier, everything works as expected. This works for most
+other flags as well, and each flag's documentation states which other flags
+override it.
+
+If you're confused about what configuration file ripgrep is reading arguments
+from, then running ripgrep with the `--debug` flag should help clarify things.
+The debug output should note what config file is being loaded and the arguments
+that have been read from the configuration.
+
+Finally, if you want to make absolutely sure that ripgrep *isn't* reading a
+configuration file, then you can pass the `--no-config` flag, which will always
+prevent ripgrep from reading extraneous configuration from the environment,
+regardless of what other methods of configuration are added to ripgrep in the
+future.
+
+
+### File encoding
+
+[Text encoding](https://en.wikipedia.org/wiki/Character_encoding) is a complex
+topic, but we can try to summarize its relevancy to ripgrep:
+
+* Files are generally just a bundle of bytes. There is no reliable way to know
+  their encoding.
+* Either the encoding of the pattern must match the encoding of the files being
+  searched, or a form of transcoding must be performed that converts either the
+  pattern or the file to the same encoding as the other.
+* ripgrep tends to work best on plain text files, and among plain text files,
+  the most popular encodings likely consist of ASCII, latin1 or UTF-8. As
+  a special exception, UTF-16 is prevalent in Windows environments
+
+In light of the above, here is how ripgrep behaves when `--encoding auto` is
+given, which is the default:
+
+* All input is assumed to be ASCII compatible (which means every byte that
+  corresponds to an ASCII codepoint actually is an ASCII codepoint). This
+  includes ASCII itself, latin1 and UTF-8.
+* ripgrep works best with UTF-8. For example, ripgrep's regular expression
+  engine supports Unicode features. Namely, character classes like `\w` will
+  match all word characters by Unicode's definition and `.` will match any
+  Unicode codepoint instead of any byte. These constructions assume UTF-8,
+  so they simply won't match when they come across bytes in a file that aren't
+  UTF-8.
+* To handle the UTF-16 case, ripgrep will do something called "BOM sniffing"
+  by default. That is, the first three bytes of a file will be read, and if
+  they correspond to a UTF-16 BOM, then ripgrep will transcode the contents of
+  the file from UTF-16 to UTF-8, and then execute the search on the transcoded
+  version of the file. (This incurs a performance penalty since transcoding
+  is needed in addition to regex searching.) If the file contains invalid
+  UTF-16, then the Unicode replacement codepoint is substituted in place of
+  invalid code units.
+* To handle other cases, ripgrep provides a `-E/--encoding` flag, which permits
+  you to specify an encoding from the
+  [Encoding Standard](https://encoding.spec.whatwg.org/#concept-encoding-get).
+  ripgrep will assume *all* files searched are the encoding specified (unless
+  the file has a BOM) and will perform a transcoding step just like in the
+  UTF-16 case described above.
+
+By default, ripgrep will not require its input be valid UTF-8. That is, ripgrep
+can and will search arbitrary bytes. The key here is that if you're searching
+content that isn't UTF-8, then the usefulness of your pattern will degrade. If
+you're searching bytes that aren't ASCII compatible, then it's likely the
+pattern won't find anything. With all that said, this mode of operation is
+important, because it lets you find ASCII or UTF-8 *within* files that are
+otherwise arbitrary bytes.
+
+As a special case, the `-E/--encoding` flag supports the value `none`, which
+will completely disable all encoding related logic, including BOM sniffing.
+When `-E/--encoding` is set to `none`, ripgrep will search the raw bytes of
+the underlying file with no transcoding step. For example, here's how you might
+search the raw UTF-16 encoding of the string `Шерлок`:
+
+```
+$ rg '(?-u)\(\x045\x04@\x04;\x04>\x04:\x04' -E none -a some-utf16-file
+```
+
+Of course, that's just an example meant to show how one can drop down into
+raw bytes. Namely, the simpler command works as you might expect automatically:
+
+```
+$ rg 'Шерлок' some-utf16-file
+```
+
+Finally, it is possible to disable ripgrep's Unicode support from within the
+regular expression. For example, let's say you wanted `.` to match any byte
+rather than any Unicode codepoint. (You might want this while searching a
+binary file, since `.` by default will not match invalid UTF-8.) You could do
+this by disabling Unicode via a regular expression flag:
+
+```
+$ rg '(?-u:.)'
+```
+
+This works for any part of the pattern. For example, the following will find
+any Unicode word character followed by any ASCII word character followed by
+another Unicode word character:
+
+```
+$ rg '\w(?-u:\w)\w'
+```
+
+
+### Binary data
+
+In addition to skipping hidden files and files in your `.gitignore` by default,
+ripgrep also attempts to skip binary files. ripgrep does this by default
+because binary files (like PDFs or images) are typically not things you want to
+search when searching for regex matches. Moreover, if content in a binary file
+did match, then it's possible for undesirable binary data to be printed to your
+terminal and wreak havoc.
+
+Unfortunately, unlike skipping hidden files and respecting your `.gitignore`
+rules, a file cannot as easily be classified as binary. In order to figure out
+whether a file is binary, the most effective heuristic that balances
+correctness with performance is to simply look for `NUL` bytes. At that point,
+the determination is simple: a file is considered "binary" if and only if it
+contains a `NUL` byte somewhere in its contents.
+
+The issue is that while most binary files will have a `NUL` byte toward the
+beginning of its contents, this is not necessarily true. The `NUL` byte might
+be the very last byte in a large file, but that file is still considered
+binary. While this leads to a fair amount of complexity inside ripgrep's
+implementation, it also results in some unintuitive user experiences.
+
+At a high level, ripgrep operates in three different modes with respect to
+binary files:
+
+1. The default mode is to attempt to remove binary files from a search
+   completely. This is meant to mirror how ripgrep removes hidden files and
+   files in your `.gitignore` automatically. That is, as soon as a file is
+   detected as binary, searching stops. If a match was already printed (because
+   it was detected long before a `NUL` byte), then ripgrep will print a warning
+   message indicating that the search stopped prematurely. This default mode
+   **only applies to files searched by ripgrep as a result of recursive
+   directory traversal**, which is consistent with ripgrep's other automatic
+   filtering. For example, `rg foo .file` will search `.file` even though it
+   is hidden. Similarly, `rg foo binary-file` will search `binary-file` in
+   "binary" mode automatically.
+2. Binary mode is similar to the default mode, except it will not always
+   stop searching after it sees a `NUL` byte. Namely, in this mode, ripgrep
+   will continue searching a file that is known to be binary until the first
+   of two conditions is met: 1) the end of the file has been reached or 2) a
+   match is or has been seen. This means that in binary mode, if ripgrep
+   reports no matches, then there are no matches in the file. When a match does
+   occur, ripgrep prints a message similar to one it prints when in its default
+   mode indicating that the search has stopped prematurely. This mode can be
+   forcefully enabled for all files with the `--binary` flag. The purpose of
+   binary mode is to provide a way to discover matches in all files, but to
+   avoid having binary data dumped into your terminal.
+3. Text mode completely disables all binary detection and searches all files
+   as if they were text. This is useful when searching a file that is
+   predominantly text but contains a `NUL` byte, or if you are specifically
+   trying to search binary data. This mode can be enabled with the `-a/--text`
+   flag. Note that when using this mode on very large binary files, it is
+   possible for ripgrep to use a lot of memory.
+
+Unfortunately, there is one additional complexity in ripgrep that can make it
+difficult to reason about binary files. That is, the way binary detection works
+depends on the way that ripgrep searches your files. Specifically:
+
+* When ripgrep uses memory maps, then binary detection is only performed on the
+  first few kilobytes of the file in addition to every matching line.
+* When ripgrep doesn't use memory maps, then binary detection is performed on
+  all bytes searched.
+
+This means that whether a file is detected as binary or not can change based
+on the internal search strategy used by ripgrep. If you prefer to keep
+ripgrep's binary file detection consistent, then you can disable memory maps
+via the `--no-mmap` flag. (The cost will be a small performance regression when
+searching very large files on some platforms.)
+
+
+### Preprocessor
+
+In ripgrep, a preprocessor is any type of command that can be run to transform
+the input of every file before ripgrep searches it. This makes it possible to
+search virtually any kind of content that can be automatically converted to
+text without having to teach ripgrep how to read said content.
+
+One common example is searching PDFs. PDFs are first and foremost meant to be
+displayed to users. But PDFs often have text streams in them that can be useful
+to search. In our case, we want to search Bruce Watson's excellent
+dissertation,
+[Taxonomies and Toolkits of Regular Language Algorithms](https://burntsushi.net/stuff/1995-watson.pdf).
+After downloading it, let's try searching it:
+
+```
+$ rg 'The Commentz-Walter algorithm' 1995-watson.pdf
+$
+```
+
+Surely, a dissertation on regular language algorithms would mention
+Commentz-Walter. Indeed it does, but our search isn't picking it up because
+PDFs are a binary format, and the text shown in the PDF may not be encoded as
+simple contiguous UTF-8. Namely, even passing the `-a/--text` flag to ripgrep
+will not make our search work.
+
+One way to fix this is to convert the PDF to plain text first. This won't work
+well for all PDFs, but does great in a lot of cases. (Note that the tool we
+use, `pdftotext`, is part of the [poppler](https://poppler.freedesktop.org)
+PDF rendering library.)
+
+```
+$ pdftotext 1995-watson.pdf > 1995-watson.txt
+$ rg 'The Commentz-Walter algorithm' 1995-watson.txt
+316:The Commentz-Walter algorithms : : : : : : : : : : : : : : :
+7165:4.4 The Commentz-Walter algorithms
+10062:in input string S , we obtain the Boyer-Moore algorithm. The Commentz-Walter algorithm
+17218:The Commentz-Walter algorithm (and its variants) displayed more interesting behaviour,
+17249:Aho-Corasick algorithms are used extensively. The Commentz-Walter algorithms are used
+17297: The Commentz-Walter algorithms (CW). In all versions of the CW algorithms, a common program skeleton is used with di erent shift functions. The CW algorithms are
+```
+
+But having to explicitly convert every file can be a pain, especially when you
+have a directory full of PDF files. Instead, we can use ripgrep's preprocessor
+feature to search the PDF. ripgrep's `--pre` flag works by taking a single
+command name and then executing that command for every file that it searches.
+ripgrep passes the file path as the first and only argument to the command and
+also sends the contents of the file to stdin. So let's write a simple shell
+script that wraps `pdftotext` in a way that conforms to this interface:
+
+```
+$ cat preprocess
+#!/bin/sh
+
+exec pdftotext - -
+```
+
+With `preprocess` in the same directory as `1995-watson.pdf`, we can now use it
+to search the PDF:
+
+```
+$ rg --pre ./preprocess 'The Commentz-Walter algorithm' 1995-watson.pdf
+316:The Commentz-Walter algorithms : : : : : : : : : : : : : : :
+7165:4.4 The Commentz-Walter algorithms
+10062:in input string S , we obtain the Boyer-Moore algorithm. The Commentz-Walter algorithm
+17218:The Commentz-Walter algorithm (and its variants) displayed more interesting behaviour,
+17249:Aho-Corasick algorithms are used extensively. The Commentz-Walter algorithms are used
+17297: The Commentz-Walter algorithms (CW). In all versions of the CW algorithms, a common program skeleton is used with di erent shift functions. The CW algorithms are
+```
+
+Note that `preprocess` must be resolvable to a command that ripgrep can read.
+The simplest way to do this is to put your preprocessor command in a directory
+that is in your `PATH` (or equivalent), or otherwise use an absolute path.
+
+As a bonus, this turns out to be quite a bit faster than other specialized PDF
+grepping tools:
+
+```
+$ time rg --pre ./preprocess 'The Commentz-Walter algorithm' 1995-watson.pdf -c
+6
+
+real    0.697
+user    0.684
+sys     0.007
+maxmem  16 MB
+faults  0
+
+$ time pdfgrep 'The Commentz-Walter algorithm' 1995-watson.pdf -c
+6
+
+real    1.336
+user    1.310
+sys     0.023
+maxmem  16 MB
+faults  0
+```
+
+If you wind up needing to search a lot of PDFs, then ripgrep's parallelism can
+make the speed difference even greater.
+
+#### A more robust preprocessor
+
+One of the problems with the aforementioned preprocessor is that it will fail
+if you try to search a file that isn't a PDF:
+
+```
+$ echo foo > not-a-pdf
+$ rg --pre ./preprocess 'The Commentz-Walter algorithm' not-a-pdf
+not-a-pdf: preprocessor command failed: '"./preprocess" "not-a-pdf"':
+-------------------------------------------------------------------------------
+Syntax Warning: May not be a PDF file (continuing anyway)
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't read xref table
+```
+
+To fix this, we can make our preprocessor script a bit more robust by only
+running `pdftotext` when we think the input is a non-empty PDF:
+
+```
+$ cat preprocessor
+#!/bin/sh
+
+case "$1" in
+*.pdf)
+  # The -s flag ensures that the file is non-empty.
+  if [ -s "$1" ]; then
+    exec pdftotext - -
+  else
+    exec cat
+  fi
+  ;;
+*)
+  exec cat
+  ;;
+esac
+```
+
+We can even extend our preprocessor to search other kinds of files. Sometimes
+we don't always know the file type from the file name, so we can use the `file`
+utility to "sniff" the type of the file based on its contents:
+
+```
+$ cat processor
+#!/bin/sh
+
+case "$1" in
+*.pdf)
+  # The -s flag ensures that the file is non-empty.
+  if [ -s "$1" ]; then
+    exec pdftotext - -
+  else
+    exec cat
+  fi
+  ;;
+*)
+  case $(file "$1") in
+  *Zstandard*)
+    exec pzstd -cdq
+    ;;
+  *)
+    exec cat
+    ;;
+  esac
+  ;;
+esac
+```
+
+#### Reducing preprocessor overhead
+
+There is one more problem with the above approach: it requires running a
+preprocessor for every single file that ripgrep searches. If every file needs
+a preprocessor, then this is OK. But if most don't, then this can substantially
+slow down searches because of the overhead of launching new processors. You
+can avoid this by telling ripgrep to only invoke the preprocessor when the file
+path matches a glob. For example, consider the performance difference even when
+searching a repository as small as ripgrep's:
+
+```
+$ time rg --pre pre-rg 'fn is_empty' -c
+crates/globset/src/lib.rs:1
+crates/matcher/src/lib.rs:2
+crates/ignore/src/overrides.rs:1
+crates/ignore/src/gitignore.rs:1
+crates/ignore/src/types.rs:1
+
+real    0.138
+user    0.485
+sys     0.209
+maxmem  7 MB
+faults  0
+
+$ time rg --pre pre-rg --pre-glob '*.pdf' 'fn is_empty' -c
+crates/globset/src/lib.rs:1
+crates/ignore/src/types.rs:1
+crates/ignore/src/gitignore.rs:1
+crates/ignore/src/overrides.rs:1
+crates/matcher/src/lib.rs:2
+
+real    0.008
+user    0.010
+sys     0.002
+maxmem  7 MB
+faults  0
+```
+
+
+### Common options
+
+ripgrep has a lot of flags. Too many to keep in your head at once. This section
+is intended to give you a sampling of some of the most important and frequently
+used options that will likely impact how you use ripgrep on a regular basis.
+
+* `-h`: Show ripgrep's condensed help output.
+* `--help`: Show ripgrep's longer form help output. (Nearly what you'd find in
+  ripgrep's help, so pipe it into a pager!)
+* `-i/--ignore-case`: When searching for a pattern, ignore case differences.
+  That is `rg -i fast` matches `fast`, `fASt`, `FAST`, etc.
+* `-S/--smart-case`: This is similar to `--ignore-case`, but disables itself
+  if the pattern contains any uppercase letters. Usually this flag is put into
+  alias or a config file.
+* `-F/--fixed-strings`: Disable regular expression matching and treat the pattern
+   as a literal string. 
+* `-w/--word-regexp`: Require that all matches of the pattern be surrounded
+  by word boundaries. That is, given `pattern`, the `--word-regexp` flag will
+  cause ripgrep to behave as if `pattern` were actually `\b(?:pattern)\b`.
+* `-c/--count`: Report a count of total matched lines.
+* `--files`: Print the files that ripgrep *would* search, but don't actually
+  search them.
+* `-a/--text`: Search binary files as if they were plain text.
+* `-U/--multiline`: Permit matches to span multiple lines.
+* `-z/--search-zip`: Search compressed files (gzip, bzip2, lzma, xz, lz4,
+  brotli, zstd). This is disabled by default.
+* `-C/--context`: Show the lines surrounding a match.
+* `--sort path`: Force ripgrep to sort its output by file name. (This disables
+  parallelism, so it might be slower.)
+* `-L/--follow`: Follow symbolic links while recursively searching.
+* `-M/--max-columns`: Limit the length of lines printed by ripgrep.
+* `--debug`: Shows ripgrep's debug output. This is useful for understanding
+  why a particular file might be ignored from search, or what kinds of
+  configuration ripgrep is loading from the environment.
+
+this `user guide` is taken from [here](https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md)

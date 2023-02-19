@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# atuin
+
 
 ## Description
 
@@ -39,7 +39,7 @@ echo 'eval "$(atuin init zsh)"' >> ~/.zshrc
 
 ## help
 
-```bash
+```text
 atuin 12.0.0
 Ellie Huxtable <e@elm.sh>
 Magical shell history

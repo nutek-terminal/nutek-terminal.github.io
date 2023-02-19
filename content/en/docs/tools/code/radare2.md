@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# radare2
+
 
 ## Description
 
@@ -38,7 +38,7 @@ r2 /bin/ls
 
 ## help
 
-```bash
+```text
 r2 /bin/bash
 Warning: run r2 with -e bin.cache=true to fix relocations in disassembly
  -- The only way to learn a new programming language is by writing programs in it.
@@ -91,10 +91,10 @@ Prefix with number to repeat command N times (f.ex: 3x)
 | ?@?                     misc help for '@' (seek), '~' (grep) (see ~?""?)
 | ?>?                     output redirection
 | ?|?                     help for '|' (pipe)
-```
+```bash
 
 ```bash
-RADARE2(1)									      BSD General Commands Manual									     RADARE2(1)
+RADARE2(1)                                          BSD General Commands Manual                                         RADARE2(1)
 
 NAME
      radare2 — Advanced command-line hexadecimal editor, disassembler and debugger
@@ -111,94 +111,94 @@ DESCRIPTION
 
      The options are:
 
-     --		 Open radare2 on an empty file
+     --         Open radare2 on an empty file
 
-     -		 Equivalent of 'r2 malloc://512'
+     -         Equivalent of 'r2 malloc://512'
 
-     -0		 Print \x00 after initialization and after every command executed
+     -0         Print \x00 after initialization and after every command executed
 
-     -2		 Close stderr before starting RCore
+     -2         Close stderr before starting RCore
 
-     -a arch	 force asm.arch (x86, ppc, arm, mips, bf, java, ...)
+     -a arch     force asm.arch (x86, ppc, arm, mips, bf, java, ...)
 
-     -A		 run 'aaa' command before prompt or patch to analyze all referenced code. Use -AA to run aaaa
+     -A         run 'aaa' command before prompt or patch to analyze all referenced code. Use -AA to run aaaa
 
-     -b bits	 force asm.bits (16, 32, 64)
+     -b bits     force asm.bits (16, 32, 64)
 
-     -B baddr	 Specify the base address to be used when loading a new binary. See 'e?bin.baddr'
+     -B baddr     Specify the base address to be used when loading a new binary. See 'e?bin.baddr'
 
-     -c cmd	 Execute the given command before giving prompt
+     -c cmd     Execute the given command before giving prompt
 
-     -d		 Start in debugger mode
+     -d         Start in debugger mode
 
      -D dbg.backend
-		 Enable debug mode. Set cfg.debug=true
+         Enable debug mode. Set cfg.debug=true
 
-     -e k=v	 Set configuration eval variable key=value. For example -e scr.color=false
+     -e k=v     Set configuration eval variable key=value. For example -e scr.color=false
 
-     -f		 Blocksize = file size
+     -f         Blocksize = file size
 
-     -i file	 Run script file. After the file is loaded
+     -i file     Run script file. After the file is loaded
 
-     -I file	 Run script file. Before the file is loaded
+     -I file     Run script file. Before the file is loaded
 
-     -k kernel	 Select kernel (asm.os) for syscall resolution
+     -k kernel     Select kernel (asm.os) for syscall resolution
 
      -l plugfile
-		 Load given plugin file
+         Load given plugin file
 
-     -L		 List supported IO plugins.
+     -L         List supported IO plugins.
 
-     -m addr	 map file at given address
+     -m addr     map file at given address
 
-     -M		 Disable demangling
+     -M         Disable demangling
 
-     -n		 Do not perform any analysis (r_bin). Just load the raw file
+     -n         Do not perform any analysis (r_bin). Just load the raw file
 
-     -nn	 Only load the rbin structures (elf, mach0, ...)
+     -nn     Only load the rbin structures (elf, mach0, ...)
 
-     -N		 Do not load user settings/projects from ~/.radare2rc, ~/.config/radare2/radare2rc and the scripts inside .../radare2rc.d/ directory.
+     -N         Do not load user settings/projects from ~/.radare2rc, ~/.config/radare2/radare2rc and the scripts inside .../radare2rc.d/ directory.
 
-     -NN	 Same as -N but also disables the automatic loading of plugins on startup time
+     -NN     Same as -N but also disables the automatic loading of plugins on startup time
 
-     -q		 Quiet mode (no prompt) and quit after running the commands specified with -i or -c
+     -q         Quiet mode (no prompt) and quit after running the commands specified with -i or -c
 
-     -qq	 Quit before showing the prompt. Right after all the -e -c and -i arguments are evaluated.
+     -qq     Quit before showing the prompt. Right after all the -e -c and -i arguments are evaluated.
 
-     -Q		 Same as q, but exiting without freeing RCore, this produces leaks at exit time, but saves some precious ms to run the testsuite in fast mode.
+     -Q         Same as q, but exiting without freeing RCore, this produces leaks at exit time, but saves some precious ms to run the testsuite in fast mode.
 
-     -p prj	 Set project file
+     -p prj     Set project file
 
-     -P file	 Apply rapatch file and quit (see doc/rapatch.md for more details)
+     -P file     Apply rapatch file and quit (see doc/rapatch.md for more details)
 
-     -r rarun2	 Specify dbg.profile rarun2 profile to use when spawning a program for debugging
+     -r rarun2     Specify dbg.profile rarun2 profile to use when spawning a program for debugging
 
      -R rarun2-directive
-		 Specify custom rarun2 directives without having to create a rarun2 profile
+         Specify custom rarun2 directives without having to create a rarun2 profile
 
-     -s addr	 Start seeking at this address
+     -s addr     Start seeking at this address
 
-     -S		 Enable sandboxed mode (same as -e cfg.sandbox=true)
+     -S         Enable sandboxed mode (same as -e cfg.sandbox=true)
 
-     -t		 Get binary information using a thread
+     -t         Get binary information using a thread
 
-     -T		 Avoid computing the file hashes
+     -T         Avoid computing the file hashes
 
-     -u		 Set bin.filter=false to load rbin info without filtering names
+     -u         Set bin.filter=false to load rbin info without filtering names
 
-     -v		 Show version information and exit (Use -qv to get just the version number)
+     -v         Show version information and exit (Use -qv to get just the version number)
 
-     -V		 Show radare2 library versions (prints JSON format if -j is used)
+     -V         Show radare2 library versions (prints JSON format if -j is used)
 
-     -w		 Open in write mode
+     -w         Open in write mode
 
-     -h		 Show help message
+     -h         Show help message
 
-     -H		 Show files and environment help
+     -H         Show files and environment help
 
-     -x		 Open the file map without executable permissions
+     -x         Open the file map without executable permissions
 
-     -X		 Same as -e bin.usextr=false, do not use extract plugins, useful for dyldcache
+     -X         Same as -e bin.usextr=false, do not use extract plugins, useful for dyldcache
 
 SHELL
      Type '?' for help
@@ -210,12 +210,12 @@ DEBUGGER
      In r2 the debugger commands are implemented under the 'd' command. Type 'd?' for help
 
 ENVIRONMENT
-      R2_IGNVER	    load plugins ignoring the specified version. (be careful)
-      R2_DEBUG	    if defined, show error messages and crash signal
+      R2_IGNVER        load plugins ignoring the specified version. (be careful)
+      R2_DEBUG        if defined, show error messages and crash signal
       R2_DEBUG_ASSERT=1 set a breakpoint when hitting an assert
       R2_MAGICPATH /Users/pancake/.local/share/radare2/share/radare2/4.5.0-git/magic
       R2_NOPLUGINS do not load r2 shared plugins
-      R2_RCFILE	   ~/.radare2rc (user preferences, batch script)
+      R2_RCFILE       ~/.radare2rc (user preferences, batch script)
       R2_RDATAHOME /usr/local FILE path to the current working file.
 
 SEE ALSO
@@ -224,5 +224,5 @@ SEE ALSO
 AUTHORS
      pancake <pancake@nopcode.org>
 
-											      May 20, 2022
-```
+                                                  May 20, 2022
+```bash

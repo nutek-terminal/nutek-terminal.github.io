@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# ipcalc
+
 
 ## Description
 
@@ -34,15 +34,15 @@ ipcalc 192.168.0.1/24
 ## Output
 
 ```bash
-Address:	192.168.0.1
-Network:	192.168.0.0/24
-Netmask:	255.255.255.0 = 24
-Broadcast:	192.168.0.255
+Address:    192.168.0.1
+Network:    192.168.0.0/24
+Netmask:    255.255.255.0 = 24
+Broadcast:    192.168.0.255
 
-Address space:	Private Use
-HostMin:	192.168.0.1
-HostMax:	192.168.0.254
-Hosts/Net:	254
+Address space:    Private Use
+HostMin:    192.168.0.1
+HostMax:    192.168.0.254
+Hosts/Net:    254
 ```
 
 ## Resources
@@ -51,7 +51,7 @@ Hosts/Net:	254
 
 ## help
 
-```bash
+```text
 Usage: ipcalc [OPTION...]
   -c, --check                     Validate IP address
   -r, --random-private=PREFIX     Generate a random private IP network using

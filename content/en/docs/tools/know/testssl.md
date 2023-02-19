@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# testssl
+
 
 ## Description
 
@@ -35,10 +35,10 @@ brew install testssl
 testssl.sh example.com
 ```
 
-## man page
+## help
 
-```bash
-TESTSSL(1)										General Commands Manual										     TESTSSL(1)
+```text
+TESTSSL(1)                                        General Commands Manual                                             TESTSSL(1)
 
 NAME
        testssl
@@ -63,14 +63,14 @@ DESCRIPTION
        even third parties for any test.
 
 REQUIREMENTS
-       Testssl.sh  is  out  of	the box portable: it runs under any Unix-like stack: Linux, *BSD, MacOS X, WSL=Windows Subsystem for Linux, Cygwin and MSYS2. bash is a prerequisite, also version 3 is
+       Testssl.sh  is  out  of    the box portable: it runs under any Unix-like stack: Linux, *BSD, MacOS X, WSL=Windows Subsystem for Linux, Cygwin and MSYS2. bash is a prerequisite, also version 3 is
        still supported. Standard utilities like awk, sed, tr and head are also needed. This can be of a BSD, System 5 or GNU flavor whereas grep from System V is not yet supported.
 
        Any OpenSSL or LibreSSL version is needed as a helper. Unlike previous versions of testssl almost every check is done via (TCP) sockets. In addition statically linked OpenSSL binaries for  ma‐
        jor operating systems are supplied in ./bin/.
 
 GENERAL
-       testssl	URI  as	 the  default  invocation does the so-called default run which does a number of checks and puts out the results colorized (ANSI and termcap) on the screen. It does every check
+       testssl    URI  as     the  default  invocation does the so-called default run which does a number of checks and puts out the results colorized (ANSI and termcap) on the screen. It does every check
        listed below except -E which are (order of appearance):
 
        0) displays a banner (see below), does a DNS lookup also for further IP addresses and does for the returned IP address a reverse lookup. Last but not least a service check is being done.
@@ -109,7 +109,7 @@ OPTIONS AND PARAMETERS
 
        -v, --version same as before
 
-       -V [pattern] , --local [pattern] pretty print all local ciphers supported by openssl version. If a pattern is supplied it performs a match (ignore case) on any of the strings supplied	in  the
+       -V [pattern] , --local [pattern] pretty print all local ciphers supported by openssl version. If a pattern is supplied it performs a match (ignore case) on any of the strings supplied    in  the
        wide  output,  see below. The pattern will be searched in the any of the columns: hexcode, cipher suite name (OpenSSL or IANA), key exchange, encryption, bits. It does a word pattern match for
        non-numbers, for number just a normal match applies. Numbers here are defined as [0-9,A-F]. This means (attention: catch) that the pattern CBC is matched as non-word, but AES as word.
 
@@ -126,23 +126,23 @@ OPTIONS AND PARAMETERS
 
        Alternatively fname can be in nmap's grep(p)able output format (-oG). Only open ports will be considered. Multiple ports per line are allowed. The ports can be different and will be tested  by
        testssl according to common practice in the internet, i.e. if nmap shows in its output an open port 25, automatically -t smtp will be added before the URI whereas port 465 will be treated as a
-       plain TLS/SSL port, not requiring an STARTTLS SMTP handshake upfront. This is done by an internal table which correlates nmap's open port detected to  the  STARTTLS/plain  text	 decision  from
+       plain TLS/SSL port, not requiring an STARTTLS SMTP handshake upfront. This is done by an internal table which correlates nmap's open port detected to  the  STARTTLS/plain  text     decision  from
        testssl.
 
-       Nmap's  output  always  returns	IP  addresses  and  only if there's a PTR DNS record available a hostname. As it is not checked by nmap whether the hostname matches the IP (A or AAAA record),
+       Nmap's  output  always  returns    IP  addresses  and  only if there's a PTR DNS record available a hostname. As it is not checked by nmap whether the hostname matches the IP (A or AAAA record),
        testssl does this automatically for you. If the A record of the hostname matches the IP address, the hostname is used and not the IP address. Please keep in mind that checks against an IP  ad‐
        dress might not hit the vhost you maybe were aiming at and thus it may lead to different results.
 
        A typical internal conversion to testssl file format from nmap's grep(p)able format could look like:
 
-       10.10.12.16:443	10.10.12.16:1443  -t smtp host.example.com:25 host.example.com:443 host.example.com:631 -t ftp 10.10.12.11:21 10.10.12.11:8443 Please note that fname has to be in Unix format.
+       10.10.12.16:443    10.10.12.16:1443  -t smtp host.example.com:25 host.example.com:443 host.example.com:631 -t ftp 10.10.12.11:21 10.10.12.11:8443 Please note that fname has to be in Unix format.
        DOS carriage returns won't be accepted. Instead of the command line switch the environment variable FNAME will be honored too.
 
        --mode <serial|parallel>. Mass testing to be done serial (default) or parallel (--parallel is shortcut for the latter, --serial is the opposite option). Per default mass testing is  being  run
        in serial mode, i.e. one line after the other is processed and invoked. The variable MASS_TESTING_MODE can be defined to be either equal serial or parallel.
 
-       --warnings  <batch|off>.	 The  warnings	parameter determines how testssl will deal with situations where user input normally will be necessary. There are two options. batch doesn't wait for a
-       confirming keypress when a client- or server-side problem is encountered. As of 3.0 it just then terminates the particular scan. This is automatically chosen for  mass	testing	 (--file).  off
+       --warnings  <batch|off>.     The  warnings    parameter determines how testssl will deal with situations where user input normally will be necessary. There are two options. batch doesn't wait for a
+       confirming keypress when a client- or server-side problem is encountered. As of 3.0 it just then terminates the particular scan. This is automatically chosen for  mass    testing     (--file).  off
        just  skips  the warning, the confirmation but continues the scan, independent whether it makes sense or not. Please note that there are conflicts where testssl will still ask for confirmation
        which are the ones which otherwise would have a drastic impact on the results. Almost any other decision will be made in the future as a best guess by testssl. The same can be achieved by set‐
        ting the environment variable WARNINGS.
@@ -158,7 +158,7 @@ OPTIONS AND PARAMETERS
        --basicauth <user:pass> This can be set to provide HTTP basic auth credentials which are used during checks for security headers. BASICAUTH is the ENV variable you can use instead.
 
    SPECIAL INVOCATIONS
-       -t  <protocol>,	--starttls  <protocol>	does  a	 default run against a STARTTLS enabled protocol. protocol must be one of ftp, smtp, pop3, imap, xmpp, telnet, ldap, irc, lmtp, nntp, postgres,
+       -t  <protocol>,    --starttls  <protocol>    does  a     default run against a STARTTLS enabled protocol. protocol must be one of ftp, smtp, pop3, imap, xmpp, telnet, ldap, irc, lmtp, nntp, postgres,
        mysql. For the latter four you need e.g. the supplied OpenSSL or OpenSSL version 1.1.1. Please note: MongoDB doesn't offer a STARTTLS connection, LDAP currently only works  with  --ssl-native.
        telnet and irc is WIP.
 
@@ -186,14 +186,14 @@ OPTIONS AND PARAMETERS
        protocols and cipher provided by your openssl binary.
 
        --openssl <path_to_openssl> testssl tries very hard to find automagically the binary supplied (where the tree of testssl resides, from the directory where testssl has been started from, etc.).
-       If  all	that  doesn't  work  it falls back to openssl supplied from the OS ($PATH). With this option you can point testssl to your binary of choice and override any internal magic to find the
+       If  all    that  doesn't  work  it falls back to openssl supplied from the OS ($PATH). With this option you can point testssl to your binary of choice and override any internal magic to find the
        openssl binary. (Environment preset via OPENSSL=<path_to_openssl>).
 
    TUNING OPTIONS
-       --bugs does some workarounds for buggy servers like padding for old F5 devices. The option is passed as -bug to openssl when needed, see s_client(1), environment preset	 via  BUGS="-bugs"  (1x
+       --bugs does some workarounds for buggy servers like padding for old F5 devices. The option is passed as -bug to openssl when needed, see s_client(1), environment preset     via  BUGS="-bugs"  (1x
        dash). For the socket part testssl has always workarounds in place to cope with broken server implementations.
 
-       --assuming-http	testssl	 normally does upfront an application protocol detection. In cases where HTTP cannot be automatically detected you may want to use this option. It enforces testssl not
+       --assuming-http    testssl     normally does upfront an application protocol detection. In cases where HTTP cannot be automatically detected you may want to use this option. It enforces testssl not
        to skip HTTP specific tests (HTTP header) and to run a browser based client simulation. Please note that sometimes also the severity depends on the application protocol, e.g. SHA1 signed  cer‐
        tificates, the lack of any SAN matches and some vulnerabilities will be punished harder when checking a web server as opposed to a mail server.
 
@@ -213,7 +213,7 @@ OPTIONS AND PARAMETERS
        switch you acknowledge that the check might have privacy issues, a download of several megabytes (CRL file) may happen and there may be network connectivity problems while contacting the  end‐
        point which testssl doesn't handle. PHONE_OUT is the environment variable for this which needs to be set to true if you want this.
 
-       --add-ca	 <cafile>  enables  you to add your own CA(s) for trust chain checks. cafile can be a single path or multiple paths as a comma separated list of root CA files. Internally they will be
+       --add-ca     <cafile>  enables  you to add your own CA(s) for trust chain checks. cafile can be a single path or multiple paths as a comma separated list of root CA files. Internally they will be
        added during runtime to all CA stores. This is (only) useful for internal hosts whose certificates is issued by internal CAs. Alternatively ADDITIONAL_CA_FILES is the environment variable  for
        this.
 
@@ -223,10 +223,10 @@ OPTIONS AND PARAMETERS
 
        -e, --each-cipher checks each of the (currently configured) 370 ciphers via openssl + sockets remotely on the server and reports back the result in wide mode. If you want to display  each  ci‐
        pher  tested  you  need to add --show-each. Per default it lists the following parameters: hexcode, OpenSSL cipher suite name, key exchange, encryption bits, IANA/RFC cipher suite name. Please
-       note the --mapping parameter changes what cipher suite names you will see here and at which position. Also please note that the bit length for the encryption is	 shown	and  not  the  security
+       note the --mapping parameter changes what cipher suite names you will see here and at which position. Also please note that the bit length for the encryption is     shown    and  not  the  security
        length, albeit it'll be sorted by the latter. For 3DES due to the Meet-in-the-Middle problem the bit size of 168 bits is equivalent to the security size of 112 bits.
 
-       -E,  --cipher-per-proto	is similar to -e, --each-cipher. It checks each of the possible ciphers, here: per protocol. If you want to display each cipher tested you need to add --show-each. The
+       -E,  --cipher-per-proto    is similar to -e, --each-cipher. It checks each of the possible ciphers, here: per protocol. If you want to display each cipher tested you need to add --show-each. The
        output is sorted by security strength, it lists the encryption bits though.
 
        -s, --std, --standard tests certain lists of cipher suites / cipher categories by strength. Those lists are (openssl ciphers $LIST, $LIST from below:)
@@ -285,18 +285,18 @@ OPTIONS AND PARAMETERS
 
        ○   validity: start + end time, how many days to go (warning for certificate lifetime >=5 years)
 
-       ○   revocation info (CRL, OCSP, OCSP stapling + must staple). When --phone-out supplied it checks against the certificate issuer whether the host certificate  has  been	 revoked  (plain  OCSP,
-	   CRL).
+       ○   revocation info (CRL, OCSP, OCSP stapling + must staple). When --phone-out supplied it checks against the certificate issuer whether the host certificate  has  been     revoked  (plain  OCSP,
+       CRL).
 
        ○   displaying DNS Certification Authority Authorization resource record
 
        ○   Certificate Transparency info (if provided by server).
 
-       For  the	 trust	chain check 5 certificate stores are provided. If the test against one of the trust stores failed, the one is being identified and the reason for the failure is displayed - in
+       For  the     trust    chain check 5 certificate stores are provided. If the test against one of the trust stores failed, the one is being identified and the reason for the failure is displayed - in
        addition the ones which succeeded are displayed too. You can configure your own CA via ADDITIONAL_CA_FILES, see section FILES below. If the server provides no matching record in Subject Alter‐
-       native  Name  (SAN)  but	 in Common Name (CN), it will be indicated as this is deprecated. Also for multiple server certificates are being checked for as well as for the certificate reply to a
+       native  Name  (SAN)  but     in Common Name (CN), it will be indicated as this is deprecated. Also for multiple server certificates are being checked for as well as for the certificate reply to a
        non-SNI (Server Name Indication) client hello to the IP address. Regarding the TLS clock skew: it displays the time difference to the client. Only a few TLS stacks nowadays still support  this
-       and  return  the	 local	clock gmt_unix_time, e.g. IIS, openssl < 1.0.1f. In addition to the HTTP date you could e.g. derive that there are different hosts where your TLS and your HTTP request
+       and  return  the     local    clock gmt_unix_time, e.g. IIS, openssl < 1.0.1f. In addition to the HTTP date you could e.g. derive that there are different hosts where your TLS and your HTTP request
        ended -- if the time deltas differ significantly.
 
        -x <pattern>, --single-cipher <pattern> tests matched pattern of ciphers against a server. Patterns are similar to -V pattern , --local pattern, see above about matching.
@@ -327,7 +327,7 @@ OPTIONS AND PARAMETERS
 
        ○   Security headers (X-Frame-Options, X-XSS-Protection, Expect-CT,... , CSP headers). Nonsense is not yet detected here.
 
-       -c, --client-simulation This simulates a handshake with a number of standard clients so that you can figure out which client cannot or can connect to your site. For the latter case the	 proto‐
+       -c, --client-simulation This simulates a handshake with a number of standard clients so that you can figure out which client cannot or can connect to your site. For the latter case the     proto‐
        col,  cipher  and  curve is displayed, also if there's Forward Secrecy. testssl uses a handselected set of clients which are retrieved by the SSLlabs API. The output is aligned in columns when
        combined with the --wide option. If you want the full nine yards of clients displayed use the environment variable ALL_CLIENTS.
 
@@ -350,7 +350,7 @@ OPTIONS AND PARAMETERS
 
        -BB, --robot Checks for vulnerability to ROBOT / (Return Of Bleichenbacher's Oracle Threat) attack.
 
-       -R, --renegotiation Tests renegotiation vulnerabilities. Currently there's a check for Secure Renegotiation and for Secure Client-Initiated  Renegotiation.  Please  be	aware  that  vulnerable
+       -R, --renegotiation Tests renegotiation vulnerabilities. Currently there's a check for Secure Renegotiation and for Secure Client-Initiated  Renegotiation.  Please  be    aware  that  vulnerable
        servers to the latter can likely be DoSed very easily (HTTP). A check for Insecure Client-Initiated Renegotiation is not yet implemented.
 
        -C, --compression, --crime Checks for CRIME (Compression Ratio Info-leak Made Easy) vulnerability in TLS. CRIME in SPDY is not yet being checked for.
@@ -360,7 +360,7 @@ OPTIONS AND PARAMETERS
 
        -O, --poodle Tests for SSL POODLE (Padding Oracle On Downgraded Legacy Encryption) vulnerability. It basically checks for the existence of CBC ciphers in SSLv3.
 
-       -Z, --tls-fallback Checks TLS_FALLBACK_SCSV mitigation. TLS_FALLBACK_SCSV is basically a ciphersuite appended to the Client Hello trying to prevent protocol downgrade attacks by a Man	in  the
+       -Z, --tls-fallback Checks TLS_FALLBACK_SCSV mitigation. TLS_FALLBACK_SCSV is basically a ciphersuite appended to the Client Hello trying to prevent protocol downgrade attacks by a Man    in  the
        Middle.
 
        -W, --sweet32 Checks for vulnerability to SWEET32 by testing 64 bit block ciphers (3DES, RC2 and IDEA).
@@ -399,15 +399,15 @@ OPTIONS AND PARAMETERS
 
        Please note that in testssl 3,0 you can still use rfc instead of iana and no-rfc instead of no-iana but it'll disappear after 3.0.
 
-       --show-each This is an option for all wide modes only: it displays all ciphers tested -- not only succeeded ones. SHOW_EACH_C is your friend if you prefer to set this via  the	shell  environ‐
+       --show-each This is an option for all wide modes only: it displays all ciphers tested -- not only succeeded ones. SHOW_EACH_C is your friend if you prefer to set this via  the    shell  environ‐
        ment.
 
-       --color	<0|1|2|3>  determines  the  use	 of colors on the screen and in the log file: 2 is the default and makes use of ANSI and termcap escape codes on your terminal. 1 just uses non-colored
-       mark-up like bold, italics, underline, reverse. 0 means no mark-up at all = no escape codes. This is also what you want when you want a log file without any escape codes. 3 will color	ciphers
+       --color    <0|1|2|3>  determines  the  use     of colors on the screen and in the log file: 2 is the default and makes use of ANSI and termcap escape codes on your terminal. 1 just uses non-colored
+       mark-up like bold, italics, underline, reverse. 0 means no mark-up at all = no escape codes. This is also what you want when you want a log file without any escape codes. 3 will color    ciphers
        and EC according to an internal (not yet perfect) rating. Setting the environment variable COLOR to the value achieves the same result. Please not that OpenBSD and early FreeBSD do not support
        italics.
 
-       --colorblind Swaps green and blue colors in the output, so that this percentage of folks (up to 8% of males, see https://en.wikipedia.org/wiki/Color_blindness) can distinguish	those  findings
+       --colorblind Swaps green and blue colors in the output, so that this percentage of folks (up to 8% of males, see https://en.wikipedia.org/wiki/Color_blindness) can distinguish    those  findings
        better. COLORBLIND is the according variable if you want to set this in the environment.
 
        --debug <0-6> This gives you additional output on the screen (2-6), only useful for debugging. DEBUG is the according environment variable which you can use. There are six levels (0 is the de‐
@@ -431,12 +431,12 @@ OPTIONS AND PARAMETERS
        a banner with the almost the same information as on the screen. In addition it shows the command line of the testssl instance. Please note that the resulting log file is formatted according to
        the width of your screen while running testssl. You can override the width with the environment variable TERM_WIDTH.
 
-       --logfile  <logfile>  or	 -oL <logfile> Instead of the previous option you may want to use this one if you want to log into a directory or if you rather want to specify the log file name your‐
+       --logfile  <logfile>  or     -oL <logfile> Instead of the previous option you may want to use this one if you want to log into a directory or if you rather want to specify the log file name your‐
        self. If logfile is a directory the output will put into logfile/${NODE}-p${port}${YYYYMMDD-HHMM}.log. If logfile is a file it will use that file name, an absolute path is also permitted here.
-       LOGFILE	is  the	 variable you need to set if you prefer to work environment variables instead. Please note that the resulting log file is formatted according to the width of your screen while
+       LOGFILE    is  the     variable you need to set if you prefer to work environment variables instead. Please note that the resulting log file is formatted according to the width of your screen while
        running testssl. You can override the width with the environment variable TERM_WIDTH.
 
-       --json Logs additionally to JSON file ${NODE}-p${port}${YYYYMMDD-HHMM}.json in the current working directory of the shell. The resulting JSON file is opposed to	 --json-pretty	flat  --  which
+       --json Logs additionally to JSON file ${NODE}-p${port}${YYYYMMDD-HHMM}.json in the current working directory of the shell. The resulting JSON file is opposed to     --json-pretty    flat  --  which
        means  each section is self contained and has an identifier for each single check, the hostname/IP address, the port, severity and the finding. For vulnerabilities it may contain a CVE and CWE
        entry too. The output doesn't contain a banner or a footer.
 
@@ -465,14 +465,14 @@ OPTIONS AND PARAMETERS
        ther explanation see --jsonfile or --logfile.
 
        -oA <filename> / --outFile <filename> Similar to nmap it does a file output to all available file formats: LOG, JSON pretty, CSV, HTML. If the filename supplied is equal auto the  filename  is
-       automatically   generated   using   '${NODE}-p${port}${YYYYMMDD-HHMM}.${EXT}'   with   the   according	extension.  If	a  directory  is  provided  all	 output	 files	will  put  into	 <file‐
+       automatically   generated   using   '${NODE}-p${port}${YYYYMMDD-HHMM}.${EXT}'   with   the   according    extension.  If    a  directory  is  provided  all     output     files    will  put  into     <file‐
        name>/${NODE}-p${port}${YYYYMMDD-HHMM}.{log,json,csv,html}.
 
        -oa <filename> / --outfile <filename> Does the same as the previous option but uses flat JSON instead.
 
        --hints This option is not in use yet. This option is meant to give hints how to fix a finding or at least a help to improve something. GIVE_HINTS is the environment variable for this.
 
-       --severity <severity> For CSV and both JSON outputs this will only add findings to the output file  if  a  severity  is	equal  or  higher  than	 the  severity	value  specified.  Allowed  are
+       --severity <severity> For CSV and both JSON outputs this will only add findings to the output file  if  a  severity  is    equal  or  higher  than     the  severity    value  specified.  Allowed  are
        <LOW|MEDIUM|HIGH|CRITICAL>. WARN is another level which translates to a client-side scanning error or problem. Thus you will always see them in a file if they occur.
 
        --append Normally, if an output file already exists and it has a file size greater zero, testssl will prompt you to manually remove the file exit with an error. --append however will append to
@@ -480,7 +480,7 @@ OPTIONS AND PARAMETERS
        design.
 
        --outprefix  <fname_prefix>  Prepend  output  filename prefix fname_prefix before ${NODE}-. You can use as well the environment variable FNAME_PREFIX. Using this any output files will be named
-       <fname_prefix>-${NODE}-p${port}${YYYYMMDD-HHMM}.<format> when no file name of the respective output option was specified. If you do not like  the  separator  '-'  you  can  as	well  supply  a
+       <fname_prefix>-${NODE}-p${port}${YYYYMMDD-HHMM}.<format> when no file name of the respective output option was specified. If you do not like  the  separator  '-'  you  can  as    well  supply  a
        <fname_prefix> ending in '.', '_' or ','. In this case or if you already supplied '-' no additional '-' will be appended to <fname_prefix>.
 
        A few file output options can also be preset via environment variables.
@@ -525,13 +525,13 @@ OPTIONS AND PARAMETERS
        There should be no reason to change them unless you use testssl under special conditions.
 
        ○   TERM_WIDTH is a variable which overrides the auto-determined terminal width size. Setting this variable normally only makes sense if you log the output to a file using the --log, --logfile
-	   or -oL option.
+       or -oL option.
 
        ○   DEBUG_ALLINONE  / SETX: when setting one of those to true testssl falls back to the standard bash behavior, i.e. calling bash -x testssl it displays the bash debugging output not in an ex‐
-	   ternal file /tmp/testssl-<XX>.log
+       ternal file /tmp/testssl-<XX>.log
 
        ○   DEBUGTIME: Profiling option. When using bash's debug mode and when this is set to true, it generates a separate text file with epoch times in /tmp/testssl-<XX>.time. They need to  be  con‐
-	   catenated by paste /tmp/testssl-<XX>.{time,log} <!--
+       catenated by paste /tmp/testssl-<XX>.{time,log} <!--
 
        ○   FAST_SOCKET
 
@@ -546,18 +546,18 @@ OPTIONS AND PARAMETERS
        ○   UNBRACKTD_IPV6: needs to be set to true for some old versions of OpenSSL (like from Gentoo) which don't support [bracketed] IPv6 addresses
 
        ○   NO_ENGINE: if you have problems with garbled output containing the word 'engine' you might want to set this to true. It forces testssl not try to configure openssl's engine or a non exist‐
-	   ing one from libressl
+       ing one from libressl
 
        ○   HEADER_MAXSLEEP: To wait how long before killing the process to retrieve a service banner / HTTP header
 
        ○   MAX_WAITSOCK: It instructs testssl to wait until the specified time before declaring a socket connection dead. Don't change this unless you're absolutely sure what you're doing.  Value  is
-	   in seconds.
+       in seconds.
 
        ○   CCS_MAX_WAITSOCK Is the similar to above but applies only to the CCS handshakes, for both of the two the two CCS payload. Don't change this unless you're absolutely sure what you're doing.
-	   Value is in seconds.
+       Value is in seconds.
 
        ○   HEARTBLEED_MAX_WAITSOCK Is the similar to MAX_WAITSOCK but applies only to the ServerHello after sending the Heartbleed payload. Don't change this unless you're absolutely sure what you're
-	   doing. Value is in seconds.
+       doing. Value is in seconds.
 
        ○   MEASURE_TIME_FILE For seldom cases when you don't want the scan time to be included in the output you can set this to false.
 
@@ -582,44 +582,44 @@ OPTIONS AND PARAMETERS
        ○   TESTSSL_INSTALL_DIR is the derived installation directory of testssl. Relatively to that the bin and mandatory etc directory will be looked for.
 
        ○   CA_BUNDLES_PATH:  If you have an own set of CA bundles or you want to point testssl to a specific location of a CA bundle, you can use this variable to set the directory which testssl will
-	   use. Please note that it overrides completely the builtin path of testssl which means that you will only test against the bundles you point to. Also you  might  want  to  use  ~/utils/cre‐
-	   ate_ca_hashes.sh to create the hashes for HPKP.
+       use. Please note that it overrides completely the builtin path of testssl which means that you will only test against the bundles you point to. Also you  might  want  to  use  ~/utils/cre‐
+       ate_ca_hashes.sh to create the hashes for HPKP.
 
        ○   MAX_SOCKET_FAIL: A number which tells testssl how often a TCP socket connection may fail before the program gives up and terminates. The default is 2. You can increase it to a higher value
-	   if you frequently see a message like Fatal error: repeated openssl s_client connect problem, doesn't make sense to continue.
+       if you frequently see a message like Fatal error: repeated openssl s_client connect problem, doesn't make sense to continue.
 
-       ○   MAX_OSSL_FAIL: A number which tells testssl how often an OpenSSL s_client connect may fail before the program gives up and terminates. The default is 2. You can increase  it  to  a	 higher
-	   value if you frequently see a message like Fatal error: repeated TCP connect problems, giving up.
+       ○   MAX_OSSL_FAIL: A number which tells testssl how often an OpenSSL s_client connect may fail before the program gives up and terminates. The default is 2. You can increase  it  to  a     higher
+       value if you frequently see a message like Fatal error: repeated TCP connect problems, giving up.
 
        ○   MAX_HEADER_FAIL: A number which tells testssl how often a HTTP GET request over OpenSSL may return an empty file before the program gives up and terminates. The default is 3. Also here you
-	   can increase the threshold when you spot messages like Fatal error: repeated HTTP header connect problems, doesn't make sense to continue.
+       can increase the threshold when you spot messages like Fatal error: repeated HTTP header connect problems, doesn't make sense to continue.
 
 EXAMPLES
-	 testssl testssl
+     testssl testssl
 
        does a default run on https://testssl (protocols, standard cipher lists, PFS, server preferences, server defaults, vulnerabilities, testing all known 370 ciphers, client simulation.
 
-	     testssl testssl.net:443
+         testssl testssl.net:443
 
        does the same default run as above with the subtle difference that testssl.net has two IPv4 addresses. Both are tested.
 
-	     testssl --ip=one --wide https://testssl.net:443
+         testssl --ip=one --wide https://testssl.net:443
 
        does the same checks as above, with the difference that one IP address is being picked randomly. Displayed is everything where possible in wide format.
 
-	     testssl -6 https://testssl.net
+         testssl -6 https://testssl.net
 
        As opposed to the first example it also tests the IPv6 part -- supposed you have an IPv6 network and your openssl supports IPv6 (see above).
 
-	     testssl -t smtp smtp.gmail.com:25
+         testssl -t smtp smtp.gmail.com:25
 
        Checks are done via a STARTTLS handshake on the plain text port 25. It checks every IP on smtp.gmail.com.
 
-	       testssl --starttls=imap imap.gmx.net:143
+           testssl --starttls=imap imap.gmx.net:143
 
        does the same on the plain text IMAP port.
 
-       Please note that for plain TLS-encrypted ports you must not specify the protocol option when no STARTTLS handshake is offered: testssl smtp.gmail.com:465 just  checks  the  encryption	on  the
+       Please note that for plain TLS-encrypted ports you must not specify the protocol option when no STARTTLS handshake is offered: testssl smtp.gmail.com:465 just  checks  the  encryption    on  the
        SMTPS port, testssl imap.gmx.net:993 on the IMAPS port. Also MongoDB which provides TLS support without STARTTLS can be tested directly.
 
 RFCs and other standards
@@ -735,7 +735,7 @@ AUTHORS
 COPYRIGHT
        Copyright © 2012 Dirk Wetter. License GPLv2: Free Software Foundation, Inc. This is free software: you are free to change and redistribute it under the terms of the license, see LICENSE.
 
-       Attribution  is	important  for the future of this project - also in the internet. Thus if you're offering a scanner based on testssl.sh as a public and/or paid service in the internet you are
+       Attribution  is    important  for the future of this project - also in the internet. Thus if you're offering a scanner based on testssl.sh as a public and/or paid service in the internet you are
        strongly encouraged to mention to your audience that you're using this program and where to get this program from. That helps us to get bugfixes, other feedback and more contributions.
 
        Usage WITHOUT ANY WARRANTY. USE at your OWN RISK!
@@ -749,5 +749,5 @@ BUGS
 SEE ALSO
        ciphers(1), openssl(1), s_client(1), x509(1), verify(1), ocsp(1), crl(1), bash(1) and the websites https://testssl.sh/ and https://github.com/drwetter/testssl.sh/ .
 
-											      August 2022										     TESTSSL(1)
-```
+                                                  August 2022                                             TESTSSL(1)
+```bash

@@ -14,7 +14,7 @@ weight: 999
 toc: true
 ---
 
-# Crypt-fu with C language
+-fu with C language
 
 I never really liked C or C++, but we'll focus on C. This article is about how big trouble is to get things done when you have limited resources available on the web, and only one friend - `ChatGPT`.
 
@@ -43,6 +43,7 @@ I love you 👩‍❤️‍👨
 Unfortunately, `Rust` can't be installed on my developer machine, so I have to use something different. I never used `C`... Let's go with that! This is only starting Linux environment with "Development Tools" or build-essentials installed.
 
 ### Knock... knock...
+
 This is **OpenAI**, we have a _friend_ for you, so you might ask him what's your trouble and he will give you answers to all your questions (as long as they are in the non rush hours). He is not very precise, but he is very well thaught in the english language and is a fair companion for semi-creative (aka lazy) ppl who like to bites own tail in a whirlwind of chat sequences. That's it - it's **free** - no hug ;)
 
 ## Ask first, punch later
@@ -68,7 +69,7 @@ include basic c libraries
 
 ### OpenSSL fields for key and block size
 
-define some fields that will be used in deriving key and in 
+define some fields that will be used in deriving key and in
 buffer manipulation
 
 ```c
@@ -91,6 +92,7 @@ int encrypt_it(const char *input_file, const char *output_file, const char *pass
 ### Open files for input and output
 
 Open input and output files
+
 ```c
 // rb stands for read binary mode
 FILE *f = fopen(input_file, "rb");
@@ -127,7 +129,7 @@ fwrite(iv, 1, AES_BLOCK_SIZE, of);
     // salt to decrypt function, or simply to derive a key
     // you could attach it to password or something like that
     // RAND_bytes(salt, SALT_SIZE);
-    // strcpy(salt, (unsigned char)"stranger"); 
+    // strcpy(salt, (unsigned char)"stranger");
 
     // Derive the key from the password
     unsigned char key[HASH_SIZE];
@@ -251,12 +253,12 @@ int decrypt_it(const char *input_file, const char *output_file, const char *pass
     }
 
   // take buffer length
-	int buffer_length = strlen((char *)buffer);
+    int buffer_length = strlen((char *)buffer);
 
     // Create a command to run the Perl script and pass the buffer as input
     char command[100];
     snprintf(command, sizeof(command), "perl truncate_buffer.pl < %s", buffer);
-    
+
     // Execute the command and redirect the output to a variable
     char truncated_buffer[buffer_length];
     FILE* fp = popen(command, "r");
@@ -267,7 +269,7 @@ int decrypt_it(const char *input_file, const char *output_file, const char *pass
     // printf("Truncated buffer: %s\n", truncated_buffer);
 
   // event this does not help
-	fwrite("\n\0", sizeof(char), 2, of);
+    fwrite("\n\0", sizeof(char), 2, of);
 
     // Finalize the decryption
     // moved from before perl script invocation,
@@ -295,19 +297,19 @@ So I thought that it would be smart, if nothing else works... To use _Perl_. But
 ```perl
 #!/usr/bin/env perl
 
-# Get the buffer from standard input
+ the buffer from standard input
 $buffer = <STDIN>;
 
-# Get the last byte of the buffer
+ the last byte of the buffer
 $last_byte = substr($buffer, -1, 1);
 
-# Convert the last byte to an integer
+ the last byte to an integer
 $truncate_length = ord($last_byte);
 
-# Truncate the buffer
+ the buffer
 $truncated_buffer = substr($buffer, 0, length($buffer) - $truncate_length);
 
-# Print the truncated buffer to standard output
+ the truncated buffer to standard output
 print $truncated_buffer;
 ```
 
@@ -484,7 +486,7 @@ int main(int argc, char *argv[])
 
 // simple function to print some help when needed with
 // name of the command line calling program set as the
-// beginning of output 
+// beginning of output
 void print_help(char *argv) {
     printf("Usage:\n");
     printf("%s [-e(ncrypt) / -d(ecrypt)] [file in] [file out]\n", argv);
@@ -544,14 +546,14 @@ DEBUG = -g
 all: nutek-ccrypt
 
 nutek-ccrypt: $(OBJECTS)
-	clang $(CFLAGS) $(DEBUG) $(OBJECTS) -o nutek-ccrypt
-	# rm nutek-ccrypt.o
+    clang $(CFLAGS) $(DEBUG) $(OBJECTS) -o nutek-ccrypt
+    # rm nutek-ccrypt.o
 
 %.o: %.c
-	clang $(DEBUG) -c $< -o $@
+    clang $(DEBUG) -c $< -o $@
 
 clean:
-	rm -f nutek-ccrypt $(OBJECTS)
+    rm -f nutek-ccrypt $(OBJECTS)
 ```
 
 Here I learned how to create simple build script than can clean after itself
@@ -561,7 +563,7 @@ already hate them, just like _JavaScript_ **Promise**.
 
 ## Example poem
 
-```
+```text
 Man and woman, two halves of a whole,
 Together they stand, strong and bold.
 

@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# fping
+
 
 ## Description
 
@@ -21,40 +21,20 @@ fping is a program to send ICMP echo requests to network hosts and to measure th
 
 ## install
 
-```
+```bash
 brew install fping
 ```
 
 ## sample usage
 
-```
+```bash
 fping -q -a -g 192.168.0.0/24
 ```
 
-## package info
+## help
 
-```
-Name         : fping
-Version      : 5.1
-Release      : 2.fc37
-Architecture : x86_64
-Size         : 64 k
-Source       : fping-5.1-2.fc37.src.rpm
-Repository   : @System
-From repo    : fedora
-Summary      : Scriptable, parallelized ping-like utility
-URL          : http://www.fping.org/
-License      : BSD with advertising
-Description  : fping is a ping-like program which can determine the accessibility of
-             : multiple hosts using ICMP echo requests. fping is designed for parallelized
-             : monitoring of large numbers of systems, and is developed with ease of
-             : use in scripting in mind.
-```
-
-## man page
-
-```
-FPING(8)																						       FPING(8)
+```text
+FPING(8)                                                                                               FPING(8)
 
 NAME
        fping - send ICMP ECHO_REQUEST packets to network hosts
@@ -72,142 +52,142 @@ DESCRIPTION
 
 OPTIONS
        -4, --ipv4
-	    Restrict name resolution and IPs to IPv4 addresses.
+        Restrict name resolution and IPs to IPv4 addresses.
 
        -6, --ipv6
-	    Restrict name resolution and IPs to IPv6 addresses.
+        Restrict name resolution and IPs to IPv6 addresses.
 
        -a, --alive
-	    Show systems that are alive.
+        Show systems that are alive.
 
        -A, --addr
-	    Display targets by address rather than DNS name. Combined with -d, the output will be both the ip and (if available) the hostname.
+        Display targets by address rather than DNS name. Combined with -d, the output will be both the ip and (if available) the hostname.
 
        -b, --size=BYTES
-	    Number of bytes of ping data to send.  The minimum size (normally 12) allows room for the data that fping needs to do its work (sequence number, timestamp).  The reported received data
-	    size includes the IP header (normally 20 bytes) and ICMP header (8 bytes), so the minimum total size is 40 bytes.  Default is 56, as in ping. Maximum is the theoretical maximum IP
-	    datagram size (64K), though most systems limit this to a smaller, system-dependent number.
+        Number of bytes of ping data to send.  The minimum size (normally 12) allows room for the data that fping needs to do its work (sequence number, timestamp).  The reported received data
+        size includes the IP header (normally 20 bytes) and ICMP header (8 bytes), so the minimum total size is 40 bytes.  Default is 56, as in ping. Maximum is the theoretical maximum IP
+        datagram size (64K), though most systems limit this to a smaller, system-dependent number.
 
        -B, --backoff=N
-	    Backoff factor. In the default mode, fping sends several requests to a target before giving up, waiting longer for a reply on each successive request.  This parameter is the value by
-	    which the wait time (-t) is multiplied on each successive request; it must be entered as a floating-point number (x.y). The default is 1.5.
+        Backoff factor. In the default mode, fping sends several requests to a target before giving up, waiting longer for a reply on each successive request.  This parameter is the value by
+        which the wait time (-t) is multiplied on each successive request; it must be entered as a floating-point number (x.y). The default is 1.5.
 
        -c, --count=N
-	    Number of request packets to send to each target.  In this mode, a line is displayed for each received response (this can suppressed with -q or -Q).  Also, statistics about responses for
-	    each target are displayed when all requests have been sent (or when interrupted).
+        Number of request packets to send to each target.  In this mode, a line is displayed for each received response (this can suppressed with -q or -Q).  Also, statistics about responses for
+        each target are displayed when all requests have been sent (or when interrupted).
 
        -C, --vcount=N
-	    Similar to -c, but the per-target statistics are displayed in a format designed for automated response-time statistics gathering. For example:
+        Similar to -c, but the per-target statistics are displayed in a format designed for automated response-time statistics gathering. For example:
 
-	     $ fping -C 5 -q somehost
-	     somehost : 91.7 37.0 29.2 - 36.8
+         $ fping -C 5 -q somehost
+         somehost : 91.7 37.0 29.2 - 36.8
 
-	    shows the response time in milliseconds for each of the five requests, with the "-" indicating that no response was received to the fourth request.
+        shows the response time in milliseconds for each of the five requests, with the "-" indicating that no response was received to the fourth request.
 
        -d, --rdns
-	    Use DNS to lookup address of ping target. This allows you to give fping a list of IP addresses as input and print hostnames in the output. This is similar to option -n/--name, but will
-	    force a reverse-DNS lookup even if you give hostnames as target (NAME->IP->NAME).
+        Use DNS to lookup address of ping target. This allows you to give fping a list of IP addresses as input and print hostnames in the output. This is similar to option -n/--name, but will
+        force a reverse-DNS lookup even if you give hostnames as target (NAME->IP->NAME).
 
        -D, --timestamp
-	    Add Unix timestamps in front of output lines generated with in looping or counting modes (-l, -c, or -C).
+        Add Unix timestamps in front of output lines generated with in looping or counting modes (-l, -c, or -C).
 
        -e, --elapsed
-	    Show elapsed (round-trip) time of packets.
+        Show elapsed (round-trip) time of packets.
 
        -f, --file
-	    Read list of targets from a file.  This option can only be used by the root user. Regular users should pipe in the file via stdin:
+        Read list of targets from a file.  This option can only be used by the root user. Regular users should pipe in the file via stdin:
 
-	     $ fping < targets_file
+         $ fping < targets_file
 
        -g, --generate addr/mask
-	    Generate a target list from a supplied IP netmask, or a starting and ending IP.  Specify the netmask or start/end in the targets portion of the command line. If a network with netmask is
-	    given, the network and broadcast addresses will be excluded. ex. To ping the network 192.168.1.0/24, the specified command line could look like either:
+        Generate a target list from a supplied IP netmask, or a starting and ending IP.  Specify the netmask or start/end in the targets portion of the command line. If a network with netmask is
+        given, the network and broadcast addresses will be excluded. ex. To ping the network 192.168.1.0/24, the specified command line could look like either:
 
-	     $ fping -g 192.168.1.0/24
+         $ fping -g 192.168.1.0/24
 
-	    or
+        or
 
-	     $ fping -g 192.168.1.1 192.168.1.254
+         $ fping -g 192.168.1.1 192.168.1.254
 
        -h, --help
-	    Print usage message.
+        Print usage message.
 
        -H, --ttl=N
-	    Set the IP TTL field (time to live hops).
+        Set the IP TTL field (time to live hops).
 
        -i, --interval=MSEC
-	    The minimum amount of time (in milliseconds) between sending a ping packet to any target (default is 10, minimum is 1).
+        The minimum amount of time (in milliseconds) between sending a ping packet to any target (default is 10, minimum is 1).
 
        -I, --iface=IFACE
-	    Set the interface (requires SO_BINDTODEVICE support).
+        Set the interface (requires SO_BINDTODEVICE support).
 
        -l, --loop
-	    Loop sending packets to each target indefinitely. Can be interrupted with Ctrl-C; statistics about responses for each target are then displayed.
+        Loop sending packets to each target indefinitely. Can be interrupted with Ctrl-C; statistics about responses for each target are then displayed.
 
        -m, --all
-	    Send pings to each of a target host's multiple IP addresses (use of option '-A' is recommended).
+        Send pings to each of a target host's multiple IP addresses (use of option '-A' is recommended).
 
        -M, --dontfrag
-	    Set the "Don't Fragment" bit in the IP header (used to determine/test the MTU).
+        Set the "Don't Fragment" bit in the IP header (used to determine/test the MTU).
 
        -n, --name
-	    If targets are specified as IP addresses, do a reverse-DNS lookup on them to print hostnames in the output.
+        If targets are specified as IP addresses, do a reverse-DNS lookup on them to print hostnames in the output.
 
        -N, --netdata
-	    Format output for netdata (-l -Q are required). See: <http://my-netdata.io/>
+        Format output for netdata (-l -Q are required). See: <http://my-netdata.io/>
 
        -o, --outage
-	    Calculate "outage time" based on the number of lost pings and the interval used (useful for network convergence tests).
+        Calculate "outage time" based on the number of lost pings and the interval used (useful for network convergence tests).
 
        -O, --tos=N
-	    Set the typ of service flag (TOS). N can be either decimal or hexadecimal (0xh) format.
+        Set the typ of service flag (TOS). N can be either decimal or hexadecimal (0xh) format.
 
        -p, --period=MSEC
-	    In looping or counting modes (-l, -c, or -C), this parameter sets the time in milliseconds that fping waits between successive packets to an individual target. Default is 1000 and minimum
-	    is 10.
+        In looping or counting modes (-l, -c, or -C), this parameter sets the time in milliseconds that fping waits between successive packets to an individual target. Default is 1000 and minimum
+        is 10.
 
        -q, --quiet
-	    Quiet. Don't show per-probe results, but only the final summary. Also don't show ICMP error messages.
+        Quiet. Don't show per-probe results, but only the final summary. Also don't show ICMP error messages.
 
        -Q, --squiet=SECS
-	    Like -q, but additionally show interval summary results every SECS seconds.
+        Like -q, but additionally show interval summary results every SECS seconds.
 
        -r, --retry=N
-	    Retry limit (default 3). This is the number of times an attempt at pinging a target will be made, not including the first try.
+        Retry limit (default 3). This is the number of times an attempt at pinging a target will be made, not including the first try.
 
        -R, --random
-	    Instead of using all-zeros as the packet data, generate random bytes.  Use to defeat, e.g., link data compression.
+        Instead of using all-zeros as the packet data, generate random bytes.  Use to defeat, e.g., link data compression.
 
        -s, --stats
-	    Print cumulative statistics upon exit.
+        Print cumulative statistics upon exit.
 
        -S, --src=addr
-	    Set source address.
+        Set source address.
 
        -t, --timeout=MSEC
-	    Initial target timeout in milliseconds. In the default, non-loop mode, the default timeout is 500ms, and it represents the amount of time that fping waits for a response to its first
-	    request. Successive timeouts are multiplied by the backoff factor specified with -B.
+        Initial target timeout in milliseconds. In the default, non-loop mode, the default timeout is 500ms, and it represents the amount of time that fping waits for a response to its first
+        request. Successive timeouts are multiplied by the backoff factor specified with -B.
 
-	    In loop/count mode, the default timeout is automatically adjusted to match the "period" value (but not more than 2000ms). You can still adjust the timeout value with this option, if you
-	    wish to, but note that setting a value larger than "period" produces inconsistent results, because the timeout value can be respected only for the last ping.
+        In loop/count mode, the default timeout is automatically adjusted to match the "period" value (but not more than 2000ms). You can still adjust the timeout value with this option, if you
+        wish to, but note that setting a value larger than "period" produces inconsistent results, because the timeout value can be respected only for the last ping.
 
-	    Also note that any received replies that are larger than the timeout value, will be discarded.
+        Also note that any received replies that are larger than the timeout value, will be discarded.
 
        -T n Ignored (for compatibility with fping 2.4).
 
        -u, --unreach
-	    Show targets that are unreachable.
+        Show targets that are unreachable.
 
        -v, --version
-	    Print fping version information.
+        Print fping version information.
 
        -x, --reachable=N
-	    Given a list of hosts, this mode checks if number of reachable hosts is >= N and exits true in that case.
+        Given a list of hosts, this mode checks if number of reachable hosts is >= N and exits true in that case.
 
 EXAMPLES
        Generate 20 pings to two hosts in ca. 1 second (i.e. one ping every 50 ms to each host), and report every ping RTT at the end:
 
-	$ fping --quiet --interval=1 --vcount=20 --period=50 127.0.0.1 127.0.0.2
+    $ fping --quiet --interval=1 --vcount=20 --period=50 127.0.0.1 127.0.0.2
 
 AUTHORS
        •   Roland J. Schemers III, Stanford University, concept and versions 1.x
@@ -233,5 +213,5 @@ RESTRICTIONS
 SEE ALSO
        ping(8)
 
-fping											       2022-02-06										       FPING(8)
-```
+fping                                                   2022-02-06                                               FPING(8)
+```bash

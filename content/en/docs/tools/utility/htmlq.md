@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# htmlq
+
 
 ## Description
 
@@ -51,7 +51,7 @@ curl bing.com | htmlq a
 
 ## help
 
-```bash
+```text
 htmlq 0.4.0
 Michael Maclean <michael@mgdm.net>
 Runs CSS selectors on HTML
@@ -78,4 +78,5 @@ OPTIONS:
 
 ARGS:
     <selector>...    The CSS expression to select [default: html]
+```bash
 ```

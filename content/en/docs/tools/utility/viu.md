@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# viu
+
 
 ## Description
 
@@ -50,7 +50,7 @@ viu image.png
 
 ## help
 
-```bash
+```text
 viu 1.4.0
 Atanas Yankov <atanas.yankov98@gmail.com>
 View images right from the terminal.

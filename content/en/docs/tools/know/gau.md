@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# gau
+
 
 ## Description
 
@@ -37,7 +37,7 @@ gau example.com
 
 ## help
 
-```bash
+```text
 Usage of gau:
       --blacklist strings   list of extensions to skip
       --fc strings          list of status codes to filter
@@ -57,4 +57,4 @@ Usage of gau:
       --to string           fetch urls to date (format: YYYYMM)
       --verbose             show verbose output
       --version             show gau version
-```
+```bash

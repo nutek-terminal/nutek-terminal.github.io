@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# httpx
+
 
 ## Description
 
@@ -47,7 +47,7 @@ echo 173.0.84.0/24 | httpx -silent
 
 ## help
 
-```bash
+```text
 Usage:
   ./httpx [flags]
 
@@ -180,4 +180,4 @@ OPTIMIZATIONS:
    -delay duration                    duration between each http request (eg: 200ms, 1s) (default -1ns)
    -rsts, -response-size-to-save int  max response size to save in bytes (default 2147483647)
    -rstr, -response-size-to-read int  max response size to read in bytes (default 2147483647)
-```
+```bash

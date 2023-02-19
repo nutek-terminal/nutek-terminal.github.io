@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# ouch
+
 
 ## Description
 
@@ -49,7 +49,7 @@ ouch d foo.tar.gz
 
 ## help
 
-```bash
+```text
 A command-line utility for easily compressing and decompressing files and directories.
 
 Supported formats: tar, zip, bz/bz2, gz, lz4, xz/lz/lzma, zst.

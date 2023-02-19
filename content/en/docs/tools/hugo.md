@@ -35,26 +35,26 @@ Nutek has to offer;
 ### Basic scaffolding
 
 ```shell
-# start your Nutek and type this into terminal to install Hugo
+ your Nutek and type this into terminal to install Hugo
 apt update && apt install hugo
-# if for any reason you don't use Nutek yet but you have Docker,
-# start Docker and then in your 'other' terminal run this to install
-# Hugo - static website generator:
+ for any reason you don't use Nutek yet but you have Docker,
+ Docker and then in your 'other' terminal run this to install
+ - static website generator:
 docker pull klakegg/hugo
 
-# if you're on Windows (Powershell) copy and paste #1 otherwise #2,
-# but you also may run it outside docker, then #3
+ you're on Windows (Powershell) copy and paste #1 otherwise #2,
+ you also may run it outside docker, then #3
 #1, or
 docker run --rm -it -v ${PWD}:/src klakegg/hugo new site my-website
 #2, or
 docker run --rm -it -v $(pwd):/src klakegg/hugo new site my-website
 #3 - if you already installed Hugo using any other way
 hugo new site my-website
-# now you have a website, let's get into it's folder
+ you have a website, let's get into it's folder
 cd my-website
-# initialize git repository
+ git repository
 git init
-# add simple theme to start with
+ simple theme to start with
 git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke themes/ananke
 echo "theme = 'ananke'" >> config.toml
 ```
@@ -74,9 +74,9 @@ or if you're following with *Docker* Hugo build:
 
 `docker run --rm -it -v $(pwd):/src klakegg/hugo new posts/my-2023-resolutions.md` - Linux and MacOS
 
-If everything goes well on the machine side, you should have a blank 
+If everything goes well on the machine side, you should have a blank
 page, where you could tell everyone who's caring enough about you (or
-simply curious enough), what your resolutions are... Maybe you have 
+simply curious enough), what your resolutions are... Maybe you have
 just one, like not giving up on you hobbies, or remember about buying
 those yoga pants, because pandemic is long gone, but your shape is not
 in the right tuning... Whatever the details, put them here using *[Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)* syntax. I will give you the basics.
@@ -111,20 +111,20 @@ Start with you goals list:
     - because humans are friendly
     - karma goes both ways
 2. Learn just to learn
-    * I don't need a collage degree to play guitar
+    - I don't need a collage degree to play guitar
 3. Redesign my desk, because I look for peace (little bonzai might help)
 ![Example image](https://web.archive.org/web/20010629034653im_/http://republika.pl/szymonbla/squirtle.gif)
 
 Then fantasize a little bit with paragraphs, emphasis and a link:
 
 ```markdown
-Write an [email](mailto:santa@kremlin.ru) to **Santa**, where I ask to 
+Write an [email](mailto:santa@kremlin.ru) to **Santa**, where I ask to
 have the best experience human can get - *love*
 
 Then maybe divorce on 14th February...
 ```
 
-Write an [email](mailto:santa@kremlin.ru) to **Santa**, where I ask to 
+Write an [email](mailto:santa@kremlin.ru) to **Santa**, where I ask to
 have the best experience human can get - *love*
 
 Then maybe divorce on 14th February...
@@ -147,22 +147,22 @@ Buld a table with your party budget:
 
 And voilà!
 
-#### Local development server
+### Local development server
 
 Spin-up your local server with drafts rendered:
 
 ```shell
-# Docker on Windows
+ on Windows
 docker run --rm -it -v ${PWD}:/src klakegg/hugo server --buildDrafts
 ```
 
 ```shell
-# Docker on Linux and MacOS
+ on Linux and MacOS
 docker run --rm -it -v $(pwd):/src klakegg/hugo server --buildDrafts
 ```
 
 ```shell
-# plain Hugo
+ Hugo
 hugo server --buildDrafts
 ```
 
@@ -176,11 +176,11 @@ to `draft: false`
 #### Immidietly make production version
 
 ```shell
-# Docker on Windows
+ on Windows
 docker run --rm -it -v ${PWD}:/src klakegg/hugo
-# Docker on Linux, MacOS
+ on Linux, MacOS
 docker run --rm -it -v $(pwd):/src klakegg/hugo
-# vanilla Hugo
+ Hugo
 hugo
 ```
 
@@ -188,7 +188,7 @@ hugo
 
 Go to [GitHub](https://github.com), login, or sign up if you don't
 have an account already - it's free, and it's home to many of other free or open source projects. Don't be afraid, it's just good idea
-to have such an account, but you can deploy your website to many other places. [Here](https://gohugo.io/hosting-and-deployment/) is how to do so. 
+to have such an account, but you can deploy your website to many other places. [Here](https://gohugo.io/hosting-and-deployment/) is how to do so.
 
 If you're following this guide, as you should be ;) look on the GitHub's
 site about creating a [GitHub Page](https://pages.github.com/) using
@@ -196,12 +196,12 @@ other tools like **[Jekyll](https://jekyllrb.com/)**. In case you're
 unsure what *you* should use, try to Google this phrase 'jekyll vs hugo'
 
 ...Thank you, for following my guide, now please create a repository
-according to [GitHub Page](https://pages.github.com/) address you want 
+according to [GitHub Page](https://pages.github.com/) address you want
 to have. If you're opting-in for custom domain, I will show you to get
 this done too. Nevertheless you need any GitHub address to start with.
 
 1. create new repository `The GitHub Page Way`
-2. add remote to your local git repository with 
+2. add remote to your local git repository with
 `git remote add origin xxx.git` (replace xxx with your repository
 address).
 3. when you're done with your resolutions post, commit all your
@@ -211,9 +211,9 @@ work:
 git status
 git add *
 git status
-# if there are some files left, manually add them with:
+ there are some files left, manually add them with:
 git add path/to/file1 path/to/file2 path/to/file3
-# or flip the slashes for Windows
+ flip the slashes for Windows
 git add path\to\file1 path\to\file2 path\to\file3
 ```
 
@@ -257,7 +257,7 @@ and
 
 Create `.github/workflows/gh-pages.yml` file with this specific content:
 
-```
+```yaml
 name: github pages
 
 on:
@@ -303,18 +303,18 @@ you can't the desired result.
 
 BTW GitHub actions are capable of many more and cmplex things. They
 can build your whole application and prepare it to run on clients
-machines without you needeing to build all the binaries on your 
+machines without you needeing to build all the binaries on your
 hardware.
 
 [Check this out](https://github.com/features/actions)
 
 #### Excerpt from Hugo website
 
-##### GitHub pages setting 
+##### GitHub pages setting
 
 By default, the GitHub action pushes the generated content to the
 gh-pages branch. This means GitHub has to serve your `gh-pages`
-branch as a GitHub Pages branch. You can change this setting by 
+branch as a GitHub Pages branch. You can change this setting by
 going to `Settings` > `Pages`, and change the source branch to
 `gh-pages`.
 
@@ -332,25 +332,27 @@ Refer to the [official documentation](https://docs.github.com/en/pages/configuri
 
 #### Subdomain
 
-Go to your domain's DNS provider, and add `CNAME` record for page.your.doman pointing to your GitHub Pages address, for example 
+Go to your domain's DNS provider, and add `CNAME` record for page.your.doman pointing to your GitHub Pages address, for example
 `phoenix-journey.github.io.`. The actual process vary from provider, to
 provider. In the core it's just it.
 
 #### Example.com
 
-If you want to host your GitHub Page using your domain.com address, then create 
+If you want to host your GitHub Page using your domain.com address, then create
 
 `A` record with this ip addresses:
-* 185.199.108.153
-* 185.199.109.153
-* 185.199.110.153
-* 185.199.111.153
+
+- 185.199.108.153
+- 185.199.109.153
+- 185.199.110.153
+- 185.199.111.153
 
 Maybe then `AAAA` record with this ip addresses:
-* 2606:50c0:8000::153
-* 2606:50c0:8001::153
-* 2606:50c0:8002::153
-* 2606:50c0:8003::153
+
+- 2606:50c0:8000::153
+- 2606:50c0:8001::153
+- 2606:50c0:8002::153
+- 2606:50c0:8003::153
 
 #### WWW
 
@@ -363,5 +365,5 @@ You might want to create `CNAME` with `www.your-domain.com`
 
 ### Inspiration
 
-For inspiration, take a look at Phoenix Journey's repository for 
+For inspiration, take a look at Phoenix Journey's repository for
 [this website](https://github.com/phoenix-journey/phoenix-journey.github.io) written using the same tools, that's been thaught here.

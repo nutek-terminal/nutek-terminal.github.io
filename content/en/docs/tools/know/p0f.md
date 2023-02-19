@@ -13,9 +13,10 @@ menu:
 weight: 999
 toc: true
 ---
-# p0f
+
 
 ## Description
+
 What's this?
 P0f is a tool that utilizes an array of sophisticated, purely passive traffic fingerprinting mechanisms to identify the players behind any incidental TCP/IP communications (often as little as a single normal SYN) without interfering in any way. Version 3 is a complete rewrite of the original codebase, incorporating a significant number of improvements to network-level fingerprinting, and introducing the ability to reason about application-level payloads (e.g., HTTP).
 
@@ -39,13 +40,13 @@ Fun fact: The idea for p0f dates back to June 10, 2000. Today, almost all applic
 
 ## install
 
-```
+```bash
 brew install p0f
 ```
 
 ## package info
 
-```
+```bash
 Name         : p0f
 Version      : 3.09b
 Release      : 14.fc37
@@ -65,13 +66,13 @@ Description  : P0f is a versatile passive OS fingerprinting tool. P0f can identi
 
 ## sample usage
 
-```
+```bash
 sudo p0f -i eth0
 ```
 
 ## readme
 
-```
+```text
 Usage: p0f [ ...options... ] [ 'filter rule' ]
 
 Network interface options:
@@ -99,4 +100,4 @@ Optional filter expressions (man tcpdump) can be specified in the command
 line to prevent p0f from looking at incidental network traffic.
 
 Problems? You can reach the author at <lcamtuf@coredump.cx>.
-```
+```bash

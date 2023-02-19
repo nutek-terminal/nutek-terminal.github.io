@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# adns
+
 
 ## Description
 
@@ -39,5 +39,5 @@ brew install adns
 
 ## help
 
-```bash
+```text
 ```

@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# rustscan
+
 
 ## Description
 
@@ -21,13 +21,13 @@ RustScan is a modern port scanner written in Rust. It is designed to be fast and
 
 ## install
 
-```
+```bash
 brew install rustscan
 ```
 
 ## Usage
 
-```
+```bash
 rustscan -
 ```
 
@@ -44,7 +44,7 @@ rustscan -
 
 ## help
 
-```
+```text
 rustscan 2.1.1
 Fast Port Scanner built in Rust. WARNING Do not use this program against sensitive infrastructure since the specified
 server may not be able to handle this many socket connections at once. - Discord https://discord.gg/GFrQsGy - GitHub
@@ -85,4 +85,4 @@ ARGS:
                     'rustscan -T 1500 -a 127.0.0.1 -- -A -sC'. This command adds -Pn -vvv -p $PORTS automatically to
                     nmap. For things like --script '(safe and vuln)' enclose it in quotations marks \"'(safe and
                     vuln)'\"")
-```
+```bash

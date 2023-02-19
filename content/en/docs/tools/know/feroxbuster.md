@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# feroxbuster
+
 
 ## Description
 
@@ -37,7 +37,7 @@ feroxbuster -u https://example.com
 
 ## help
 
-```bash
+```text
 A fast, simple, recursive content discovery tool.
 
 Usage: feroxbuster [OPTIONS]
@@ -268,4 +268,4 @@ EXAMPLES:
         
     Examples and demonstrations of all features
         https://epi052.github.io/feroxbuster-docs/docs/examples/
-```
+```bash

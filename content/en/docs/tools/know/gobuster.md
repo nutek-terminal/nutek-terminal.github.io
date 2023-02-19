@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# gobuster
+
 
 ## Description
 
@@ -37,7 +37,7 @@ gobuster dir -u https://example.com -w /usr/share/wordlists/dirb/common.txt
 
 ## help
 
-```bash
+```text
 Usage:
   gobuster [command]
 
@@ -62,9 +62,9 @@ Flags:
   -t, --threads int       Number of concurrent threads (default 10)
   -v, --verbose           Verbose output (errors)
   -w, --wordlist string   Path to the wordlist
-```
+```bash
 
-# Manual
+
 
 ## Available Modes
 
@@ -90,7 +90,7 @@ If you have a [Go](https://golang.org/) environment ready to go (at least go 1.1
 
 ```bash
 go install github.com/OJ/gobuster/v3@latest
-```
+```bash
 
 PS: You need at least go 1.19 to compile gobuster.
 
@@ -104,13 +104,13 @@ Since this tool is written in [Go](https://golang.org/) you need to install the 
 
 ```bash
 go get && go build
-```
+```bash
 
 This will create a `gobuster` binary for you. If you want to install it in the `$GOPATH/bin` folder you can run:
 
 ```bash
 go install
-```
+```bash
 
 ## Modes
 
@@ -123,7 +123,7 @@ Help is built-in!
 
 ### Options
 
-```text
+```bashtext
 Uses DNS subdomain enumeration mode
 
 Usage:
@@ -149,18 +149,18 @@ Global Flags:
   -t, --threads int       Number of concurrent threads (default 10)
   -v, --verbose           Verbose output (errors)
   -w, --wordlist string   Path to the wordlist
-```
+```bash
 
 ### Examples
 
 
-```text
+```bashtext
 gobuster dns -d mysite.com -t 50 -w common-names.txt
-```
+```bash
 
 Normal sample run goes like this:
 
-```text
+```bashtext
 gobuster dns -d google.com -w ~/wordlists/subdomains.txt
 
 ===============================================================
@@ -195,11 +195,11 @@ Found: blog.google.com
 ===============================================================
 2019/06/21 11:54:20 Finished
 ===============================================================
-```
+```bash
 
 Show IP sample run goes like this:
 
-```text
+```bashtext
 gobuster dns -d google.com -w ~/wordlists/subdomains.txt -i
 
 ===============================================================
@@ -234,11 +234,11 @@ Found: mail.google.com [172.217.25.37, 2404:6800:4006:802::2005]
 ===============================================================
 2019/06/21 11:54:55 Finished
 ===============================================================
-```
+```bash
 
 Base domain validation warning when the base domain fails to resolve. This is a warning rather than a failure in case the user fat-fingers while typing the domain.
 
-```text
+```bashtext
 gobuster dns -d yp.to -w ~/wordlists/subdomains.txt -i
 
 ===============================================================
@@ -257,11 +257,11 @@ Found: cr.yp.to [131.193.32.108, 131.193.32.109]
 ===============================================================
 2019/06/21 11:56:53 Finished
 ===============================================================
-```
+```bash
 
 Wildcard DNS is also detected properly:
 
-```text
+```bashtext
 gobuster dns -d 0.0.1.xip.io -w ~/wordlists/subdomains.txt
 
 ===============================================================
@@ -280,11 +280,11 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 ===============================================================
 2019/06/21 12:13:48 Finished
 ===============================================================
-```
+```bash
 
 If the user wants to force processing of a domain that has wildcard entries, use `--wildcard`:
 
-```text
+```bashtext
 gobuster dns -d 0.0.1.xip.io -w ~/wordlists/subdomains.txt --wildcard
 
 ===============================================================
@@ -304,13 +304,13 @@ Found: test.127.0.0.1.xip.io
 ===============================================================
 2019/06/21 12:13:53 Finished
 ===============================================================
-```
+```bash
 
 ## `dir` Mode
 
 ### Options
 
-```text
+```bashtext
 Uses directory/file enumeration mode
 
 Usage:
@@ -353,17 +353,17 @@ Global Flags:
   -t, --threads int       Number of concurrent threads (default 10)
   -v, --verbose           Verbose output (errors)
   -w, --wordlist string   Path to the wordlist
-```
+```bash
 
 ### Examples
 
-```text
+```bashtext
 gobuster dir -u https://mysite.com/path/to/folder -c 'session=123456' -t 50 -w common-files.txt -x .php,.html
-```
+```bash
 
 Default options looks like this:
 
-```text
+```bashtext
 gobuster dir -u https://buffered.io -w ~/wordlists/shortlist.txt
 
 ===============================================================
@@ -387,11 +387,11 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 ===============================================================
 2019/06/21 11:49:44 Finished
 ===============================================================
-```
+```bash
 
 Default options with status codes disabled looks like this:
 
-```text
+```bashtext
 gobuster dir -u https://buffered.io -w ~/wordlists/shortlist.txt -n
 
 ===============================================================
@@ -416,11 +416,11 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 ===============================================================
 2019/06/21 11:50:18 Finished
 ===============================================================
-```
+```bash
 
 Verbose output looks like this:
 
-```text
+```bashtext
 gobuster dir -u https://buffered.io -w ~/wordlists/shortlist.txt -v
 
 ===============================================================
@@ -447,11 +447,11 @@ Found: /contact (Status: 301)
 ===============================================================
 2019/06/21 11:50:51 Finished
 ===============================================================
-```
+```bash
 
 Example showing content length:
 
-```text
+```bashtext
 gobuster dir -u https://buffered.io -w ~/wordlists/shortlist.txt -l
 
 ===============================================================
@@ -476,23 +476,23 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 ===============================================================
 2019/06/21 11:51:17 Finished
 ===============================================================
-```
+```bash
 
 Quiet output, with status disabled and expanded mode looks like this ("grep mode"):
 
-```text
+```bashtext
 gobuster dir -u https://buffered.io -w ~/wordlists/shortlist.txt -q -n -e
 https://buffered.io/index
 https://buffered.io/contact
 https://buffered.io/posts
 https://buffered.io/categories
-```
+```bash
 
 ## `vhost` Mode
 
 ### Options
 
-```text
+```bashtext
 Uses VHOST enumeration mode (you most probably want to use the IP address as the URL parameter)
 
 Usage:
@@ -529,18 +529,18 @@ Global Flags:
   -t, --threads int       Number of concurrent threads (default 10)
   -v, --verbose           Verbose output (errors)
   -w, --wordlist string   Path to the wordlist
-```
+```bash
 
 ### Examples
 
 
-```text
+```bashtext
 gobuster vhost -u https://mysite.com -w common-vhosts.txt
-```
+```bash
 
 Normal sample run goes like this:
 
-```text
+```bashtext
 gobuster vhost -u https://mysite.com -w common-vhosts.txt
 
 ===============================================================
@@ -561,13 +561,13 @@ Found: mail.mysite.com
 ===============================================================
 2019/06/21 08:36:05 Finished
 ===============================================================
-```
+```bash
 
 ## `fuzz` Mode
 
 ### Options
 
-```text
+```bashtext
 Uses fuzzing mode
 
 Usage:
@@ -603,19 +603,19 @@ Global Flags:
   -t, --threads int       Number of concurrent threads (default 10)
   -v, --verbose           Verbose output (errors)
   -w, --wordlist string   Path to the wordlist
-```
+```bash
 
 ### Examples
 
-```text
+```bashtext
 gobuster fuzz -u https://example.com?FUZZ=test -w parameter-names.txt
-```
+```bash
 
 ## `s3` Mode
 
 ### Options
 
-```text
+```bashtext
 Uses aws bucket enumeration mode
 
 Usage:
@@ -643,19 +643,19 @@ Global Flags:
   -t, --threads int       Number of concurrent threads (default 10)
   -v, --verbose           Verbose output (errors)
   -w, --wordlist string   Path to the wordlist
-```
+```bash
 
 ### Examples
 
-```text
+```bashtext
 gobuster s3 -w bucket-names.txt
-```
+```bash
 
 ## `gcs` Mode
 
 ### Options
 
-```text
+```bashtext
 Uses gcs bucket enumeration mode
 
 Usage:
@@ -683,19 +683,19 @@ Global Flags:
   -t, --threads int       Number of concurrent threads (default 10)
   -v, --verbose           Verbose output (errors)
   -w, --wordlist string   Path to the wordlist
-```
+```bash
 
 ### Examples
 
-```text
+```bashtext
 gobuster gcs -w bucket-names.txt
-```
+```bash
 
 ## `tftp` Mode
 
 ### Options
 
-```text
+```bashtext
 Uses TFTP enumeration mode
 
 Usage:
@@ -717,13 +717,13 @@ Global Flags:
   -t, --threads int       Number of concurrent threads (default 10)
   -v, --verbose           Verbose output (errors)
   -w, --wordlist string   Path to the wordlist
-```
+```bash
 
 ### Examples
 
-```text
+```bashtext
 gobuster tftp -s tftp.example.com -w common-filenames.txt
-```
+```bash
 
 
 ## Wordlists via STDIN
@@ -732,7 +732,7 @@ Wordlists can be piped into `gobuster` via stdin by providing a `-` to the `-w` 
 
 ```bash
 hashcat -a 3 --stdout ?l | gobuster dir -u https://mysite.com -w -
-```
+```bash
 
 Note: If the `-w` option is specified at the same time as piping from STDIN, an error will be shown and the program will terminate.
 
@@ -746,13 +746,13 @@ This feature is also handy in s3 mode to pre- or postfix certain patterns.
 
 ### Example file
 
-```text
+```bashtext
 {GOBUSTER}Partial
 {GOBUSTER}Service
 PRE{GOBUSTER}POST
 {GOBUSTER}-prod
 {GOBUSTER}-dev
-```
+```bash
 
 #### Use case in combination with patterns
 
@@ -761,17 +761,17 @@ PRE{GOBUSTER}POST
 
 ```bash
 curl -s --output - https://raw.githubusercontent.com/eth0izzle/bucket-stream/master/permutations/extended.txt | sed -s 's/%s/{GOBUSTER}/' > patterns.txt
-```
+```bash
 
 - Run gobuster with the custom input. Be sure to turn verbose mode on to see the bucket details
 
-```text
+```bashtext
 gobuster s3 --wordlist my.custom.wordlist -p patterns.txt -v
-```
+```bash
 
 Normal sample run goes like this:
 
-```text
+```bashtext
 PS C:\Users\firefart\Documents\code\gobuster> .\gobuster.exe s3 --wordlist .\wordlist.txt
 ===============================================================
 Gobuster v3.2.0
@@ -796,11 +796,11 @@ localhost
 ===============================================================
 2019/08/12 21:48:17 Finished
 ===============================================================
-```
+```bash
 
 Verbose and sample run
 
-```text
+```bashtext
 PS C:\Users\firefart\Documents\code\gobuster> .\gobuster.exe s3 --wordlist .\wordlist.txt -v
 ===============================================================
 Gobuster v3.2.0
@@ -826,11 +826,11 @@ localhost [Error: Access Denied (AccessDenied)]
 ===============================================================
 2019/08/12 21:49:01 Finished
 ===============================================================
-```
+```bash
 
 Extended sample run
 
-```text
+```bashtext
 PS C:\Users\firefart\Documents\code\gobuster> .\gobuster.exe s3 --wordlist .\wordlist.txt -e
 ===============================================================
 Gobuster v3.2.0
@@ -856,4 +856,4 @@ http://localhost.s3.amazonaws.com/
 ===============================================================
 2019/08/12 21:48:38 Finished
 ===============================================================
-```
+```bash

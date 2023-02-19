@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# gitleaks
+
 
 ## Description
 
@@ -38,7 +38,7 @@ gitleaks --repo-path /path/to/repo
 
 ## help
 
-```bash
+```text
 Gitleaks scans code, past or present, for secrets
 
 Usage:
@@ -71,4 +71,4 @@ Flags:
   -v, --verbose                    show verbose output from scan
 
 Use "gitleaks [command] --help" for more information about a command.
-```
+```bash

@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# nuclei
+
 
 ## Description
 
@@ -40,7 +40,7 @@ nuclei -u https://example.com
 
 ## help
 
-```bash
+```text
 Nuclei is a fast, template based vulnerability scanner focusing
 on extensive configurability, massive extensibility and ease of use.
 
@@ -205,4 +205,4 @@ STATISTICS:
    -si, -stats-interval int  number of seconds to wait between showing a statistics update (default 5)
    -m, -metrics              expose nuclei metrics on a port
    -mp, -metrics-port int    port to expose nuclei metrics on (default 9092)
-```
+```bash

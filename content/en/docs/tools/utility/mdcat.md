@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# mdcat
+
 
 ## Description
 
@@ -37,7 +37,7 @@ mdcat README.md
 
 ## help
 
-```bash
+```text
 cat for markdown: Show markdown documents in terminals
 
 Usage: mdcat [OPTIONS] [FILENAMES]...

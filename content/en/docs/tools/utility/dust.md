@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# dust
+
 
 ## Description
 
@@ -37,7 +37,7 @@ dust
 
 ## help
 
-```bash
+```text
 Like du but more intuitive
 
 USAGE:

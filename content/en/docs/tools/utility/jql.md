@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# jql
+
 
 ## Description
 
@@ -39,38 +39,19 @@ jql '.' example.json
     }
 ```
 
-```
+```bash
 jql '"some"."property"' example.json
 ```
 
 ### sample output
     
-```
+```json
 value
-```
-
-## packege info
-
-```
-Name         : jql
-Version      : 5.1.6
-Release      : 1.el9
-Architecture : x86_64
-Size         : 1.1 M
-Source       : jql-5.1.6-1.el9.src.rpm
-Repository   : @System
-From repo    : @commandline
-Summary      : A JSON Query Language CLI tool
-URL          : https://crates.io/crates/jql
-License      : MIT
-Description  : jql is a command line tool for querying JSON data.
-             : It is inspired by jq. This tool has absolutely no plan
-             : to be on par with jq and such other similar CLI.
 ```
 
 ## help
 
-```
+```text
 A JSON query language CLI tool
 
 Usage: jql [OPTIONS] [selectors] [JSON]

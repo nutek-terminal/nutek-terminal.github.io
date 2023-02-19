@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# mitmproxy
+
 
 ## Description
 
@@ -39,7 +39,7 @@ mitmproxy
 
 ## help
 
-```bash
+```text
 usage: mitmproxy [options]
 
 options:
@@ -236,4 +236,4 @@ Filters:
 
   --intercept FILTER    Intercept filter expression.
   --view-filter FILTER  Limit the view to matching flows.
-```
+```bash

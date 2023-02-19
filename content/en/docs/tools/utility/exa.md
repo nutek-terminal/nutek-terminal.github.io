@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# exa
+
 
 ## Description
 
@@ -38,7 +38,7 @@ exa
 
 ## help
 
-```bash
+```text
 Usage:
   exa [options] [files...]
 

@@ -7,17 +7,21 @@ draft: false
 images: []
 ---
 
-# Szymon Bronisław Błaszczyński
+## Szymon Bronisław Błaszczyński
 
 Contact:
+
 * {{< email user="museyoucoulduse" domain="gmail.com" >}}
 * [@museyoucoulduse](https://twitter.com/museyoucoulduse)
 * irc.neosb.net
+* [Discord](https://discord.gg/eXK56QPgTe)
 
 Github:
+
 * [buahaha](https://github.com/buahaha)
 * [Phoenix Journey](https://github.com/phoenix-journey)
+* [Nutek Terminal](https://github.com/nutek-terminal)
 
 Webpages:
-* [Neosb's music office](https://office.neosb.net)
 
+* [Neosb's music office](https://office.neosb.net)

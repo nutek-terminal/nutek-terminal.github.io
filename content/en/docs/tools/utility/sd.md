@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# sd
+
 
 ## Description
 
@@ -42,7 +42,7 @@ sd 'foo' 'bar' input.txt
 
 ## help
 
-```bash
+```text
 sd 0.7.6
 
 USAGE:

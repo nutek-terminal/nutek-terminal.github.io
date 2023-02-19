@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# john
+
 
 ## Description
 
@@ -39,7 +39,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt --format=raw-md5 hash.txt
 
 [https://www.openwall.com/john/doc/](https://www.openwall.com/john/doc/)
 
-```bash
+```text
 John the Ripper password cracker, version 1.8.0
 Copyright (c) 1996-2013 by Solar Designer
 Homepage: http://www.openwall.com/john/
@@ -66,4 +66,4 @@ Usage: john [OPTIONS] [PASSWORD-FILES]
 --fork=N                   fork N processes
 --format=NAME              force hash type NAME: descrypt/bsdicrypt/md5crypt/
                            bcrypt/LM/AFS/tripcode/dummy/crypt
-```
+```bash

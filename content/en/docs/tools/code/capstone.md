@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# capstone
+
 
 ## Description
 
@@ -88,7 +88,7 @@ fn main() {
 
 ## Output
 
-```bash
+```text
 Found 4 instructions
 
 0x1000: pushq %rbp

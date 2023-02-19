@@ -13,7 +13,6 @@ menu:
 weight: 999
 toc: true
 ---
-# ffuf
 
 ## Description
 
@@ -37,7 +36,7 @@ ffuf -w /usr/share/wordlists/dirb/common.txt -u http://example.com/FUZZ
 
 ## help
 
-```bash
+```text
 Fuzz Faster U Fool - v1.0.2
 
 HTTP OPTIONS:
@@ -114,4 +113,4 @@ EXAMPLE USAGE:
     ffuf -w params.txt:PARAM -w values.txt:VAL -u https://example.org/?PARAM=VAL -mr "VAL" -c
 
   More information and examples: https://github.com/ffuf/ffuf
-```
+```bash

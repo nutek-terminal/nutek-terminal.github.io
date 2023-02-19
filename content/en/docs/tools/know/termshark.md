@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# termshark
+
 
 ## Description
 
@@ -28,12 +28,14 @@ brew install termshark
 ## Usage
 
 Capture ping packets on interface eth0:
+
 ```bash
 termshark -i en0
 ```
 
 Inspect a local pcap:
-```
+
+```bash
 termshark -r test.pcap
 ```
 
@@ -43,7 +45,7 @@ termshark -r test.pcap
 
 ## help
 
-```bash
+```text
 termshark v2.4.0
 
 A wireshark-inspired terminal user interface for tshark. Analyze network traffic interactively from your terminal.
@@ -77,4 +79,4 @@ tshark-specific flags and they will be passed through to tshark (-n, -d, -T,
 etc). For example:
 
 $ termshark -r file.pcap -T psml -n | less
-```
+```bash

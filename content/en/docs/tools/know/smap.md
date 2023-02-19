@@ -13,7 +13,6 @@ menu:
 weight: 999
 toc: true
 ---
-# smap
 
 ## Description
 
@@ -27,13 +26,13 @@ brew install smap
 
 ## sample usage
 
-```
+```bash
 smap 69.52.32.195
 ```
 
 ### sample output
 
-```
+```text
 Starting Nmap 9.99 ( https://nmap.org ) at 2023-02-14 23:28 CET
 Nmap scan report for filetransfer.blackrock.com (69.52.32.195)
 Host is up.
@@ -53,7 +52,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.45 seconds
 
 ## help
 
-```
+```text
 Smap 0.1.12
 Usage: smap <targets here>
 TARGET SPECIFICATION:
@@ -70,4 +69,4 @@ OUTPUT:
   -oJ JSON
   -oS Smap format
   -oP ip:port pairs
-```
+```bash

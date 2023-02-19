@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# sqlmap
+
 
 ## Description
 
@@ -39,7 +39,7 @@ sqlmap -u "http://example.com/vuln.php?id=1" --dbs
 
 ## help
 
-```bash
+```text
        ___
        __H__
  ___ ___["]_____ ___ ___  {1.7.2.3#dev}
@@ -327,4 +327,4 @@ Options:
     --unstable          Adjust options for unstable connections
     --update            Update sqlmap
     --wizard            Simple wizard interface for beginner users
-```
+```bash

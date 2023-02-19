@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# monolith
+
 
 ## Description
 
@@ -37,7 +37,7 @@ monolith https://example.com
 
 ## help
 
-```bash
+```text
 monolith 2.7.0
 
 Sunshine <sunshine@uberspace.net>

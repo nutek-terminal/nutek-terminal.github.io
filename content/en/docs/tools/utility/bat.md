@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# bat
+
 
 ## Description
 
@@ -37,7 +37,7 @@ bat file --language rust
 
 ## help
 
-```bash
+```text
 bat 0.22.1
 A cat(1) clone with syntax highlighting and Git integration.
 

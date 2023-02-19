@@ -12,7 +12,7 @@ weight: 130
 toc: true
 ---
 
-# Fuel ⛽️ for our rocket 🚀
+ ⛽️ for our rocket 🚀
 
 ## Ground-up
 
@@ -33,7 +33,7 @@ nvim round_globe.py
 
 ## Nvim
 
-Then please feel free to skip to the [next section](#python-class) 
+Then please feel free to skip to the [next section](#python-class)
 if you already feel comfortable with `nvim`. I want to elaborate a
 little bit on the subject.
 
@@ -66,7 +66,7 @@ you the tab option here.
 :tabedit i_swear_i_rockyou.py
 " switch to previous tab
 :tabprevious
-" then to close a tab and all it's windows (you know you can 
+" then to close a tab and all it's windows (you know you can
 " use <tab> key to autocomplete?)
 :tabclose
 ```
@@ -86,7 +86,7 @@ in your terminal.
 
 ```shell
 w3m https://devhints.io/vim
-# or
+
 w3m https://vim.rtorr.com/
 ```
 
@@ -98,7 +98,7 @@ I will teach you more about `w3m` later on, but to quit it - simply
 If you can't stand the pace, or my attitude, or simply want to
 explore... Here's an email from [freecCodeCamp](https://freecodecamp.org) where the subject is **JavaScript**.
 
-```
+```text
 Quincy Larson <quincy@freecodecamp.org>
 6:11 AM (9 hours ago)
 to me
@@ -116,16 +116,16 @@ Here are this week's five links that are worth your time:
 
 It's not that you're my student. It's just object oriented
 programming concept. Most, if not all, python types are object
-and you can create your own types, classes, too. Create your 
+and you can create your own types, classes, too. Create your
 environment and I show you how to call from Houston to space.
 
 ```shell
-# in case you forgot how to prepare your environment, here's how
+ case you forgot how to prepare your environment, here's how
 python3 -m venv space_station
 source space_station/bin/activate
-# do you see now?
+ you see now?
 (space_station)% python -m pip install requests
-# omit the (space_station)% part, as it is only for reference
+ the (space_station)% part, as it is only for reference
 ```
 
 ### Import
@@ -136,7 +136,7 @@ environment). Starting simple, `import` statements. We will use
 `json` and `requests` libraries. Put them in separate lines.
 
 ```python
-# import statemnts. What we will use.
+ statemnts. What we will use.
 import requests
 import json
 ```
@@ -156,8 +156,8 @@ Then I make two methods `get_lat` and `get_lon` which return the stored
 latitude and longitude ISS position variables. You can see here that
 accessing instance variables, as well as functions must be prepended
 with `self.`, but you are not limited to creating only such objects.
-In `__init__` we can observe use of local variable `response` and 
-`status_code` which _dies_ out when out of scope and you can no 
+In `__init__` we can observe use of local variable `response` and
+`status_code` which _dies_ out when out of scope and you can no
 longer access them from other parts of code.
 
 The last bit of information is `__str__(self)` method that when used
@@ -170,7 +170,7 @@ Otherwise you might spend much more time debugging your application
 than you should.
 
 ```python
-# ISS class definition
+ class definition
 class ISS():
     # Class to represent the International Space Station
     # initialize the class
@@ -208,7 +208,7 @@ initialization attributes latitude and longitude. The concept
 stays the same.
 
 ```python
-# PositionRelativeToEarth class definition
+ class definition
 class PositionRelativeToEarth():
     # Initialize the class
     def __init__(self, latitude, longitude):
@@ -242,8 +242,8 @@ gets our heroes, astronauts in space and when the method is invoked
 will print out this data to console.
 
 ```python
-# requests.get("http://api.open-notify.org/astros.json")
-# who is in space?
+.get("http://api.open-notify.org/astros.json")
+ is in space?
 def astros():
     # make the request
     response = requests.get("http://api.open-notify.org/astros.json")
@@ -276,7 +276,7 @@ position relative to our globe, and at last I initilize
 variable.
 
 ```python
-# main function
+ function
 def main():
     astros()
     iss = ISS()
@@ -291,7 +291,7 @@ The last part of code tells the `Python` interpreter to call `main`
 function when file is run with `python` or `python3`.
 
 ```python
-# call main function only if this file is executed
+ main function only if this file is executed
 if __name__ == '__main__':
     main()
 ```

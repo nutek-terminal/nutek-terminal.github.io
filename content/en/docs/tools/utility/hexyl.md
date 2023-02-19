@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# hexyl
+
 
 ## Description
 
@@ -37,7 +37,7 @@ hexyl file
 
 ## help
 
-```bash
+```text
 hexyl 0.10.0
 A command-line hex viewer
 

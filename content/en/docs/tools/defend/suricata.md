@@ -13,7 +13,7 @@ menu:
 weight: 999
 toc: true
 ---
-# suricata
+
 
 ## Description
 
@@ -21,17 +21,16 @@ Suricata is a network IDS, IPS and NSM engine. It can perform real-time intrusio
 
 ## Install
 
-```
+```bash
 brew install suricata
-```
+```bash
 
 ## Sample Usage
 
-```
+```bash
 suricata -c /usr/local/etc/suricata/suricata.yaml -i en0
-```
+```bash
 
 ## website
 
 [https://suricata.io](https://suricata.io)
-
