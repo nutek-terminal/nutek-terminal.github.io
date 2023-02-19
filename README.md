@@ -1,3 +1,12 @@
+# Nutek Terminal
+
+[![GitHub Pages](https://github.com/nutek-terminal/nutek-terminal.github.io/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/nutek-terminal/nutek-terminal.github.io/actions/workflows/gh-pages.yml)
+
+Nutek Terminal website made with help from Hugo and Doks
+
+Visit [>> here <<](https://nutek.neosb.net)
+___
+
 <p align="center">
   <a href="https://getdoks.org/">
     <img alt="Doks" src="https://doks.netlify.app/doks.svg" width="60">
