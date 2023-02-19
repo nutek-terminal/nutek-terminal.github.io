@@ -31,19 +31,19 @@ brew install w3m
 w3m https://www.bing.com
 ```
 
-Key	Action
-* `o`, `m`:	Open Options Menu, Open Navigation Menu
-* `<tab>`, `<shift><tab>`:	Next link, previous link
+Key Action
+
+* `o`,`m`: Open Options Menu, Open Navigation Menu
+* `<tab>`, `<shift><tab>`: Next link, previous link
 * `H`: Show Current Keybindings
 * `U`: Go to URL
 * `I`: Open Image in External Program
 * `Ctrl–H`: Show History Page
 
-
 ## Resources
 
-- [w3m](http://w3m.sourceforge.net/)
-- [w3m on Sourceforge](https://sourceforge.net/projects/w3m/)
+* [w3m](http://w3m.sourceforge.net/)
+* [w3m on Sourceforge](https://sourceforge.net/projects/w3m/)
 
 ## help
 

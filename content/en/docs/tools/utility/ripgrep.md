@@ -48,7 +48,6 @@ Use -h for short descriptions and --help for more details.
 
 Project home page: https://github.com/BurntSushi/ripgrep
 
-
 ## User Guide
 
 This guide is intended to give an elementary description of ripgrep and an
@@ -58,21 +57,19 @@ and that readers have passing familiarity with using command line tools. This
 also assumes a Unix-like system, although most commands are probably easily
 translatable to any command line shell environment.
 
-
 ### Table of Contents
 
-* [Basics](#basics)
-* [Recursive search](#recursive-search)
-* [Automatic filtering](#automatic-filtering)
-* [Manual filtering: globs](#manual-filtering-globs)
-* [Manual filtering: file types](#manual-filtering-file-types)
-* [Replacements](#replacements)
-* [Configuration file](#configuration-file)
-* [File encoding](#file-encoding)
-* [Binary data](#binary-data)
-* [Preprocessor](#preprocessor)
-* [Common options](#common-options)
-
+- [Basics](#basics)
+- [Recursive search](#recursive-search)
+- [Automatic filtering](#automatic-filtering)
+- [Manual filtering: globs](#manual-filtering-globs)
+- [Manual filtering: file types](#manual-filtering-file-types)
+- [Replacements](#replacements)
+- [Configuration file](#configuration-file)
+- [File encoding](#file-encoding)
+- [Binary data](#binary-data)
+- [Preprocessor](#preprocessor)
+- [Common options](#common-options)
 
 ### Basics
 
@@ -87,11 +84,11 @@ grab a ripgrep source archive from
 https://github.com/BurntSushi/ripgrep/archive/0.7.1.zip
 and extract it:
 
-```
-$ curl -LO https://github.com/BurntSushi/ripgrep/archive/0.7.1.zip
-$ unzip 0.7.1.zip
-$ cd ripgrep-0.7.1
-$ ls
+```text
+curl -LO https://github.com/BurntSushi/ripgrep/archive/0.7.1.zip
+unzip 0.7.1.zip
+cd ripgrep-0.7.1
+ls
 benchsuite  grep       tests         Cargo.toml       LICENSE-MIT
 ci          ignore     wincolor      CHANGELOG.md     README.md
 complete    pkg        appveyor.yml  compile          snapcraft.yaml
@@ -102,8 +99,8 @@ globset     termcolor  Cargo.lock    HomebrewFormula
 Let's try our first search by looking for all occurrences of the word `fast`
 in `README.md`:
 
-```
-$ rg fast README.md
+```text
+rg fast README.md
 75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
 88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast while
 119:### Is it really faster than everything else?
@@ -129,8 +126,8 @@ expressions](https://en.wikipedia.org/wiki/Regular_expression). As an example,
 what if we wanted to find all lines have a word that contains `fast` followed
 by some number of other letters?
 
-```
-$ rg 'fast\w+' README.md
+```text
+rg 'fast\w+' README.md
 75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
 119:### Is it really faster than everything else?
 ```
@@ -138,15 +135,15 @@ $ rg 'fast\w+' README.md
 In this example, we used the pattern `fast\w+`. This pattern tells ripgrep to
 look for any lines containing the letters `fast` followed by *one or more*
 word-like characters. Namely, `\w` matches characters that compose words (like
-`a` and `L` but unlike `.` and ` `). The `+` after the `\w` means, "match the
+`a` and `L` but unlike `.` and `" "` [remove the quotes]). The `+` after the `\w` means, "match the
 previous pattern one or more times." This means that the word `fast` won't
 match because there are no word characters following the final `t`. But a word
 like `faster` will. `faste` would also match!
 
 Here's a different variation on this same theme:
 
-```
-$ rg 'fast\w*' README.md
+```text
+rg 'fast\w*' README.md
 75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
 88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast while
 119:### Is it really faster than everything else?
@@ -164,7 +161,6 @@ It is beyond the scope of this guide to provide a full tutorial on regular
 expressions, but ripgrep's specific syntax is documented here:
 https://docs.rs/regex/1.7.1/regex/#syntax
 
-
 ### Recursive search
 
 In the previous section, we showed how to use ripgrep to search a single file.
@@ -176,8 +172,8 @@ simple.
 Using our unzipped archive of ripgrep source code, here's how to find all
 function definitions whose name is `write`:
 
-```
-$ rg 'fn write\('
+```text
+rg 'fn write\('
 src/printer.rs
 469:    fn write(&mut self, buf: &[u8]) {
 
@@ -211,8 +207,8 @@ is a dependency of ripgrep (and is used by other tools). What if we only wanted
 to search core ripgrep code? Well, that's easy, just specify the directory you
 want:
 
-```
-$ rg 'fn write\(' src
+```text
+rg 'fn write\(' src
 src/printer.rs
 469:    fn write(&mut self, buf: &[u8]) {
 ```
@@ -220,7 +216,6 @@ src/printer.rs
 Here, ripgrep limited its search to the `src` directory. Another way of doing
 this search would be to `cd` into the `src` directory and simply use `rg 'fn
 write\('` again.
-
 
 ### Automatic filtering
 
@@ -241,7 +236,7 @@ the following:
 All of these things can be toggled using various flags provided by ripgrep:
 
 1. You can disable all ignore-related filtering with the `--no-ignore` flag.
-2. Hidden files and directories can be searched with the `--hidden` (`-.` for 
+2. Hidden files and directories can be searched with the `--hidden` (`-.` for
 short) flag.
 3. Binary files can be searched via the `--text` (`-a` for short) flag.
    Be careful with this flag! Binary files may emit control characters to your
@@ -270,7 +265,7 @@ possible to specify additional ignore rules or overrides in a `.ignore`
 
 For example, let's say you have a `.gitignore` file that looks like this:
 
-```
+```text
 log/
 ```
 
@@ -280,7 +275,7 @@ searches, but you still don't want to track it in `git`. You can achieve this
 by creating a `.ignore` file in the same directory as the `.gitignore` file
 with the following contents:
 
-```
+```text
 !log/
 ```
 
@@ -301,7 +296,6 @@ with a significant performance penalty, and is therefore disabled by default.
 For a more in depth description of how glob patterns in a `.gitignore` file
 are interpreted, please see `man gitignore`.
 
-
 ### Manual filtering: globs
 
 In the previous section, we talked about ripgrep's filtering that it does by
@@ -320,8 +314,8 @@ on `clap`, our argument parser.
 
 We could do this:
 
-```
-$ rg clap
+```text
+rg clap
 [lots of results]
 ```
 
@@ -329,8 +323,8 @@ But this shows us many things, and we're only interested in where we wrote
 `clap` as a dependency. Instead, we could limit ourselves to TOML files, which
 is how dependencies are communicated to Rust's build tool, Cargo:
 
-```
-$ rg clap -g '*.toml'
+```text
+rg clap -g '*.toml'
 Cargo.toml
 35:clap = "2.26"
 51:clap = "2.26"
@@ -342,8 +336,8 @@ shell from expanding the `*`.
 
 If we wanted, we could tell ripgrep to search anything *but* `*.toml` files:
 
-```
-$ rg clap -g '!*.toml'
+```text
+rg clap -g '!*.toml'
 [lots of results]
 ```
 
@@ -358,8 +352,8 @@ Globs are interpreted in exactly the same way as `.gitignore` patterns. That
 is, later globs will override earlier globs. For example, the following command
 will search only `*.toml` files:
 
-```
-$ rg clap -g '!*.toml' -g '*.toml'
+```text
+rg clap -g '!*.toml' -g '*.toml'
 ```
 
 Interestingly, reversing the order of the globs in this case will match
@@ -368,28 +362,27 @@ requirement that every file searched must match at least one glob. In this
 case, the blacklist glob takes precedence over the previous glob and prevents
 any file from being searched at all!
 
-
 ### Manual filtering: file types
 
 Over time, you might notice that you use the same glob patterns over and over.
 For example, you might find yourself doing a lot of searches where you only
 want to see results for Rust files:
 
-```
-$ rg 'fn run' -g '*.rs'
+```text
+rg 'fn run' -g '*.rs'
 ```
 
 Instead of writing out the glob every time, you can use ripgrep's support for
 file types:
 
-```
-$ rg 'fn run' --type rust
+```text
+rg 'fn run' --type rust
 ```
 
 or, more succinctly,
 
-```
-$ rg 'fn run' -trust
+```text
+rg 'fn run' -trust
 ```
 
 The way the `--type` flag functions is simple. It acts as a name that is
@@ -398,26 +391,26 @@ write a single type that might encompass a broad range of file extensions. For
 example, if you wanted to search C files, you'd have to check both C source
 files and C header files:
 
-```
-$ rg 'int main' -g '*.{c,h}'
+```text
+rg 'int main' -g '*.{c,h}'
 ```
 
 or you could just use the C file type:
 
-```
-$ rg 'int main' -tc
+```text
+rg 'int main' -tc
 ```
 
 Just as you can write blacklist globs, you can blacklist file types too:
 
-```
-$ rg clap --type-not rust
+```text
+rg clap --type-not rust
 ```
 
 or, more succinctly,
 
-```
-$ rg clap -Trust
+```text
+rg clap -Trust
 ```
 
 That is, `-t` means "include files of this type" where as `-T` means "exclude
@@ -425,8 +418,8 @@ files of this type."
 
 To see the globs that make up a type, run `rg --type-list`:
 
-```
-$ rg --type-list | rg '^make:'
+```text
+rg --type-list | rg '^make:'
 make: *.mak, *.mk, GNUmakefile, Gnumakefile, Makefile, gnumakefile, makefile
 ```
 
@@ -435,22 +428,22 @@ types correspond to well known public formats. But you can define your own
 types as well. For example, perhaps you frequently search "web" files, which
 consist of JavaScript, HTML and CSS:
 
-```
-$ rg --type-add 'web:*.html' --type-add 'web:*.css' --type-add 'web:*.js' -tweb title
+```text
+rg --type-add 'web:*.html' --type-add 'web:*.css' --type-add 'web:*.js' -tweb title
 ```
 
 or, more succinctly,
 
-```
-$ rg --type-add 'web:*.{html,css,js}' -tweb title
+```text
+rg --type-add 'web:*.{html,css,js}' -tweb title
 ```
 
 The above command defines a new type, `web`, corresponding to the glob
 `*.{html,css,js}`. It then applies the new filter with `-tweb` and searches for
 the pattern `title`. If you ran
 
-```
-$ rg --type-add 'web:*.{html,css,js}' --type-list
+```text
+rg --type-add 'web:*.{html,css,js}' --type-list
 ```
 
 Then you would see your `web` type show up in the list, even though it is not
@@ -461,7 +454,7 @@ current command. It does not add a new file type and save it somewhere in a
 persistent form. If you want a type to be available in every ripgrep command,
 then you should either create a shell alias:
 
-```
+```text
 alias rg="rg --type-add 'web:*.{html,css,js}'"
 ```
 
@@ -490,8 +483,8 @@ ripgrep provides a limited ability to modify its output by replacing matched
 text with some other text. This is easiest to explain with an example. Remember
 when we searched for the word `fast` in ripgrep's README?
 
-```
-$ rg fast README.md
+```text
+rg fast README.md
 75:  faster than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
 88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast while
 119:### Is it really faster than everything else?
@@ -502,8 +495,8 @@ $ rg fast README.md
 What if we wanted to *replace* all occurrences of `fast` with `FAST`? That's
 easy with ripgrep's `--replace` flag:
 
-```
-$ rg fast README.md --replace FAST
+```text
+rg fast README.md --replace FAST
 75:  FASTer than both. (N.B. It is not, strictly speaking, a "drop-in" replacement
 88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays FAST while
 119:### Is it really FASTer than everything else?
@@ -513,8 +506,8 @@ $ rg fast README.md --replace FAST
 
 or, more succinctly,
 
-```
-$ rg fast README.md -r FAST
+```text
+rg fast README.md -r FAST
 [snip]
 ```
 
@@ -522,8 +515,8 @@ In essence, the `--replace` flag applies *only* to the matching portion of text
 in the output. If you instead wanted to replace an entire line of text, then
 you need to include the entire line in your match. For example:
 
-```
-$ rg '^.*fast.*$' README.md -r FAST
+```text
+rg '^.*fast.*$' README.md -r FAST
 75:FAST
 88:FAST
 119:FAST
@@ -534,8 +527,8 @@ $ rg '^.*fast.*$' README.md -r FAST
 Alternatively, you can combine the `--only-matching` (or `-o` for short) with
 the `--replace` flag to achieve the same result:
 
-```
-$ rg fast README.md --only-matching --replace FAST
+```text
+rg fast README.md --only-matching --replace FAST
 75:FAST
 88:FAST
 119:FAST
@@ -545,8 +538,8 @@ $ rg fast README.md --only-matching --replace FAST
 
 or, more succinctly,
 
-```
-$ rg fast README.md -or FAST
+```text
+rg fast README.md -or FAST
 [snip]
 ```
 
@@ -558,8 +551,8 @@ followed by any number of "word" characters. We put the `\w+` in a "capturing
 group" (indicated by parentheses) so that we can reference it later in our
 replacement string. For example:
 
-```
-$ rg 'fast\s+(\w+)' README.md -r 'fast-$1'
+```text
+rg 'fast\s+(\w+)' README.md -r 'fast-$1'
 88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast-while
 124:Summarizing, `ripgrep` is fast-because:
 ```
@@ -574,8 +567,8 @@ Capturing groups can also be named, which is sometimes more convenient than
 using the indices. For example, the following command is equivalent to the
 above command:
 
-```
-$ rg 'fast\s+(?P<word>\w+)' README.md -r 'fast-$word'
+```text
+rg 'fast\s+(?P<word>\w+)' README.md -r 'fast-$word'
 88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast-while
 124:Summarizing, `ripgrep` is fast-because:
 ```
@@ -583,7 +576,6 @@ $ rg 'fast\s+(?P<word>\w+)' README.md -r 'fast-$word'
 It is important to note that ripgrep **will never modify your files**. The
 `--replace` flag only controls ripgrep's output. (And there is no flag to let
 you do a replacement in a file.)
-
 
 ### Configuration file
 
@@ -608,8 +600,8 @@ command line argument verbatim.
 Here's an example of a configuration file, which demonstrates some of the
 formatting peculiarities:
 
-```
-$ cat $HOME/.ripgreprc
+```text
+cat $HOME/.ripgreprc
 # Don't let ripgrep vomit really long lines to my terminal, and show a preview.
 --max-columns=150
 --max-columns-preview
@@ -668,34 +660,33 @@ prevent ripgrep from reading extraneous configuration from the environment,
 regardless of what other methods of configuration are added to ripgrep in the
 future.
 
-
 ### File encoding
 
 [Text encoding](https://en.wikipedia.org/wiki/Character_encoding) is a complex
 topic, but we can try to summarize its relevancy to ripgrep:
 
-* Files are generally just a bundle of bytes. There is no reliable way to know
+- Files are generally just a bundle of bytes. There is no reliable way to know
   their encoding.
-* Either the encoding of the pattern must match the encoding of the files being
+- Either the encoding of the pattern must match the encoding of the files being
   searched, or a form of transcoding must be performed that converts either the
   pattern or the file to the same encoding as the other.
-* ripgrep tends to work best on plain text files, and among plain text files,
+- ripgrep tends to work best on plain text files, and among plain text files,
   the most popular encodings likely consist of ASCII, latin1 or UTF-8. As
   a special exception, UTF-16 is prevalent in Windows environments
 
 In light of the above, here is how ripgrep behaves when `--encoding auto` is
 given, which is the default:
 
-* All input is assumed to be ASCII compatible (which means every byte that
+- All input is assumed to be ASCII compatible (which means every byte that
   corresponds to an ASCII codepoint actually is an ASCII codepoint). This
   includes ASCII itself, latin1 and UTF-8.
-* ripgrep works best with UTF-8. For example, ripgrep's regular expression
+- ripgrep works best with UTF-8. For example, ripgrep's regular expression
   engine supports Unicode features. Namely, character classes like `\w` will
   match all word characters by Unicode's definition and `.` will match any
   Unicode codepoint instead of any byte. These constructions assume UTF-8,
   so they simply won't match when they come across bytes in a file that aren't
   UTF-8.
-* To handle the UTF-16 case, ripgrep will do something called "BOM sniffing"
+- To handle the UTF-16 case, ripgrep will do something called "BOM sniffing"
   by default. That is, the first three bytes of a file will be read, and if
   they correspond to a UTF-16 BOM, then ripgrep will transcode the contents of
   the file from UTF-16 to UTF-8, and then execute the search on the transcoded
@@ -703,7 +694,7 @@ given, which is the default:
   is needed in addition to regex searching.) If the file contains invalid
   UTF-16, then the Unicode replacement codepoint is substituted in place of
   invalid code units.
-* To handle other cases, ripgrep provides a `-E/--encoding` flag, which permits
+- To handle other cases, ripgrep provides a `-E/--encoding` flag, which permits
   you to specify an encoding from the
   [Encoding Standard](https://encoding.spec.whatwg.org/#concept-encoding-get).
   ripgrep will assume *all* files searched are the encoding specified (unless
@@ -724,15 +715,15 @@ When `-E/--encoding` is set to `none`, ripgrep will search the raw bytes of
 the underlying file with no transcoding step. For example, here's how you might
 search the raw UTF-16 encoding of the string `Шерлок`:
 
-```
-$ rg '(?-u)\(\x045\x04@\x04;\x04>\x04:\x04' -E none -a some-utf16-file
+```text
+rg '(?-u)\(\x045\x04@\x04;\x04>\x04:\x04' -E none -a some-utf16-file
 ```
 
 Of course, that's just an example meant to show how one can drop down into
 raw bytes. Namely, the simpler command works as you might expect automatically:
 
-```
-$ rg 'Шерлок' some-utf16-file
+```text
+rg 'Шерлок' some-utf16-file
 ```
 
 Finally, it is possible to disable ripgrep's Unicode support from within the
@@ -741,18 +732,17 @@ rather than any Unicode codepoint. (You might want this while searching a
 binary file, since `.` by default will not match invalid UTF-8.) You could do
 this by disabling Unicode via a regular expression flag:
 
-```
-$ rg '(?-u:.)'
+```text
+rg '(?-u:.)'
 ```
 
 This works for any part of the pattern. For example, the following will find
 any Unicode word character followed by any ASCII word character followed by
 another Unicode word character:
 
+```text
+rg '\w(?-u:\w)\w'
 ```
-$ rg '\w(?-u:\w)\w'
-```
-
 
 ### Binary data
 
@@ -812,9 +802,9 @@ Unfortunately, there is one additional complexity in ripgrep that can make it
 difficult to reason about binary files. That is, the way binary detection works
 depends on the way that ripgrep searches your files. Specifically:
 
-* When ripgrep uses memory maps, then binary detection is only performed on the
+- When ripgrep uses memory maps, then binary detection is only performed on the
   first few kilobytes of the file in addition to every matching line.
-* When ripgrep doesn't use memory maps, then binary detection is performed on
+- When ripgrep doesn't use memory maps, then binary detection is performed on
   all bytes searched.
 
 This means that whether a file is detected as binary or not can change based
@@ -822,7 +812,6 @@ on the internal search strategy used by ripgrep. If you prefer to keep
 ripgrep's binary file detection consistent, then you can disable memory maps
 via the `--no-mmap` flag. (The cost will be a small performance regression when
 searching very large files on some platforms.)
-
 
 ### Preprocessor
 
@@ -838,8 +827,8 @@ dissertation,
 [Taxonomies and Toolkits of Regular Language Algorithms](https://burntsushi.net/stuff/1995-watson.pdf).
 After downloading it, let's try searching it:
 
-```
-$ rg 'The Commentz-Walter algorithm' 1995-watson.pdf
+```text
+rg 'The Commentz-Walter algorithm' 1995-watson.pdf
 $
 ```
 
@@ -854,9 +843,9 @@ well for all PDFs, but does great in a lot of cases. (Note that the tool we
 use, `pdftotext`, is part of the [poppler](https://poppler.freedesktop.org)
 PDF rendering library.)
 
-```
-$ pdftotext 1995-watson.pdf > 1995-watson.txt
-$ rg 'The Commentz-Walter algorithm' 1995-watson.txt
+```text
+pdftotext 1995-watson.pdf > 1995-watson.txt
+rg 'The Commentz-Walter algorithm' 1995-watson.txt
 316:The Commentz-Walter algorithms : : : : : : : : : : : : : : :
 7165:4.4 The Commentz-Walter algorithms
 10062:in input string S , we obtain the Boyer-Moore algorithm. The Commentz-Walter algorithm
@@ -873,8 +862,8 @@ ripgrep passes the file path as the first and only argument to the command and
 also sends the contents of the file to stdin. So let's write a simple shell
 script that wraps `pdftotext` in a way that conforms to this interface:
 
-```
-$ cat preprocess
+```text
+cat preprocess
 #!/bin/sh
 
 exec pdftotext - -
@@ -883,8 +872,8 @@ exec pdftotext - -
 With `preprocess` in the same directory as `1995-watson.pdf`, we can now use it
 to search the PDF:
 
-```
-$ rg --pre ./preprocess 'The Commentz-Walter algorithm' 1995-watson.pdf
+```text
+rg --pre ./preprocess 'The Commentz-Walter algorithm' 1995-watson.pdf
 316:The Commentz-Walter algorithms : : : : : : : : : : : : : : :
 7165:4.4 The Commentz-Walter algorithms
 10062:in input string S , we obtain the Boyer-Moore algorithm. The Commentz-Walter algorithm
@@ -900,8 +889,8 @@ that is in your `PATH` (or equivalent), or otherwise use an absolute path.
 As a bonus, this turns out to be quite a bit faster than other specialized PDF
 grepping tools:
 
-```
-$ time rg --pre ./preprocess 'The Commentz-Walter algorithm' 1995-watson.pdf -c
+```text
+time rg --pre ./preprocess 'The Commentz-Walter algorithm' 1995-watson.pdf -c
 6
 
 real    0.697
@@ -910,7 +899,7 @@ sys     0.007
 maxmem  16 MB
 faults  0
 
-$ time pdfgrep 'The Commentz-Walter algorithm' 1995-watson.pdf -c
+time pdfgrep 'The Commentz-Walter algorithm' 1995-watson.pdf -c
 6
 
 real    1.336
@@ -928,9 +917,9 @@ make the speed difference even greater.
 One of the problems with the aforementioned preprocessor is that it will fail
 if you try to search a file that isn't a PDF:
 
-```
-$ echo foo > not-a-pdf
-$ rg --pre ./preprocess 'The Commentz-Walter algorithm' not-a-pdf
+```text
+echo foo > not-a-pdf
+rg --pre ./preprocess 'The Commentz-Walter algorithm' not-a-pdf
 not-a-pdf: preprocessor command failed: '"./preprocess" "not-a-pdf"':
 -------------------------------------------------------------------------------
 Syntax Warning: May not be a PDF file (continuing anyway)
@@ -942,8 +931,8 @@ Syntax Error: Couldn't read xref table
 To fix this, we can make our preprocessor script a bit more robust by only
 running `pdftotext` when we think the input is a non-empty PDF:
 
-```
-$ cat preprocessor
+```text
+cat preprocessor
 #!/bin/sh
 
 case "$1" in
@@ -965,8 +954,8 @@ We can even extend our preprocessor to search other kinds of files. Sometimes
 we don't always know the file type from the file name, so we can use the `file`
 utility to "sniff" the type of the file based on its contents:
 
-```
-$ cat processor
+```text
+cat processor
 #!/bin/sh
 
 case "$1" in
@@ -1001,8 +990,8 @@ can avoid this by telling ripgrep to only invoke the preprocessor when the file
 path matches a glob. For example, consider the performance difference even when
 searching a repository as small as ripgrep's:
 
-```
-$ time rg --pre pre-rg 'fn is_empty' -c
+```text
+time rg --pre pre-rg 'fn is_empty' -c
 crates/globset/src/lib.rs:1
 crates/matcher/src/lib.rs:2
 crates/ignore/src/overrides.rs:1
@@ -1015,7 +1004,7 @@ sys     0.209
 maxmem  7 MB
 faults  0
 
-$ time rg --pre pre-rg --pre-glob '*.pdf' 'fn is_empty' -c
+time rg --pre pre-rg --pre-glob '*.pdf' 'fn is_empty' -c
 crates/globset/src/lib.rs:1
 crates/ignore/src/types.rs:1
 crates/ignore/src/gitignore.rs:1
@@ -1029,39 +1018,38 @@ maxmem  7 MB
 faults  0
 ```
 
-
 ### Common options
 
 ripgrep has a lot of flags. Too many to keep in your head at once. This section
 is intended to give you a sampling of some of the most important and frequently
 used options that will likely impact how you use ripgrep on a regular basis.
 
-* `-h`: Show ripgrep's condensed help output.
-* `--help`: Show ripgrep's longer form help output. (Nearly what you'd find in
+- `-h`: Show ripgrep's condensed help output.
+- `--help`: Show ripgrep's longer form help output. (Nearly what you'd find in
   ripgrep's help, so pipe it into a pager!)
-* `-i/--ignore-case`: When searching for a pattern, ignore case differences.
+- `-i/--ignore-case`: When searching for a pattern, ignore case differences.
   That is `rg -i fast` matches `fast`, `fASt`, `FAST`, etc.
-* `-S/--smart-case`: This is similar to `--ignore-case`, but disables itself
+- `-S/--smart-case`: This is similar to `--ignore-case`, but disables itself
   if the pattern contains any uppercase letters. Usually this flag is put into
   alias or a config file.
-* `-F/--fixed-strings`: Disable regular expression matching and treat the pattern
-   as a literal string. 
-* `-w/--word-regexp`: Require that all matches of the pattern be surrounded
+- `-F/--fixed-strings`: Disable regular expression matching and treat the pattern
+   as a literal string.
+- `-w/--word-regexp`: Require that all matches of the pattern be surrounded
   by word boundaries. That is, given `pattern`, the `--word-regexp` flag will
   cause ripgrep to behave as if `pattern` were actually `\b(?:pattern)\b`.
-* `-c/--count`: Report a count of total matched lines.
-* `--files`: Print the files that ripgrep *would* search, but don't actually
+- `-c/--count`: Report a count of total matched lines.
+- `--files`: Print the files that ripgrep *would* search, but don't actually
   search them.
-* `-a/--text`: Search binary files as if they were plain text.
-* `-U/--multiline`: Permit matches to span multiple lines.
-* `-z/--search-zip`: Search compressed files (gzip, bzip2, lzma, xz, lz4,
+- `-a/--text`: Search binary files as if they were plain text.
+- `-U/--multiline`: Permit matches to span multiple lines.
+- `-z/--search-zip`: Search compressed files (gzip, bzip2, lzma, xz, lz4,
   brotli, zstd). This is disabled by default.
-* `-C/--context`: Show the lines surrounding a match.
-* `--sort path`: Force ripgrep to sort its output by file name. (This disables
+- `-C/--context`: Show the lines surrounding a match.
+- `--sort path`: Force ripgrep to sort its output by file name. (This disables
   parallelism, so it might be slower.)
-* `-L/--follow`: Follow symbolic links while recursively searching.
-* `-M/--max-columns`: Limit the length of lines printed by ripgrep.
-* `--debug`: Shows ripgrep's debug output. This is useful for understanding
+- `-L/--follow`: Follow symbolic links while recursively searching.
+- `-M/--max-columns`: Limit the length of lines printed by ripgrep.
+- `--debug`: Shows ripgrep's debug output. This is useful for understanding
   why a particular file might be ignored from search, or what kinds of
   configuration ripgrep is loading from the environment.
 

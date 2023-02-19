@@ -36,7 +36,6 @@ brew install adns
 - [adns User Guide](http://www.chiark.greenend.org.uk/~ian/adns/)
 - [adns API](https://github.com/Arachni/arachni/wiki/Command-line-user-interface)
 
-
 ## help
 
 ```text

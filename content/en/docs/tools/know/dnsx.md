@@ -25,7 +25,6 @@ dnsx is a fast and multi-purpose DNS toolkit designed for running various probes
 brew install dnsx
 ```
 
-
 ## sample usage
 
 ```bash

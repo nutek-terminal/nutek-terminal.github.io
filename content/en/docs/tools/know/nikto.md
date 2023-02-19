@@ -66,7 +66,6 @@ brew install nikto
 nikto -h https://nutek.neosb.net -p 443 -o nikto.txt -Format txt -Tuning 123bde -ask no -C all -Display 1234 -evasion 1 -F html
 ```
 
-
 ## links
 
 * [Nikto](https://cirt.net/nikto2)

@@ -28,7 +28,6 @@ brew install zmap
 sudo zmap -p 22 69.52.0.0/16 -o output.app
 ```
 
-
 ### sample output
 
 ```text
@@ -48,6 +47,7 @@ sudo zmap -p 21 69.52.0.0/16 -o output.app
 ```
 
 ### conclusion
+
 This might be a firewall, the same ip behind multiple ports, or a honeypot.
 
 ## help

@@ -35,7 +35,6 @@ dos2unix input.txt
 
 - [dos2unix](https://waterlan.home.xs4all.nl/dos2unix.html)
 
-
 ## help
 
 ```text

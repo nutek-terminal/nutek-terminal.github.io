@@ -33,8 +33,8 @@ nmap -sP 192.168.0.1/24
 
 ## References
 
-  * [Nmap](https://nmap.org/)
-  * [Nmap - Wikipedia](https://en.wikipedia.org/wiki/Nmap)
+* [Nmap](https://nmap.org/)
+* [Nmap - Wikipedia](https://en.wikipedia.org/wiki/Nmap)
 
 ## help
 

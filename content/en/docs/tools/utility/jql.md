@@ -44,7 +44,7 @@ jql '"some"."property"' example.json
 ```
 
 ### sample output
-    
+
 ```json
 value
 ```

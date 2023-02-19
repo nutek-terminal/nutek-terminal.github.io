@@ -57,7 +57,7 @@ There is a rather large IRC network catering to free and open-source software an
 
 After (compiling and) installing Irssi, to start it, open a shell (Terminal) and type:
 
-```
+```bash
 irssi
 ```
 
@@ -67,7 +67,7 @@ If you're confused about what you are seeing on the Irssi screen, you can find a
 
 If you want, you can pick a nick name (handle) that will be shown to others reading your messages now, by typing
 
-```
+```text
 /set nick whatyouwant
 ```
 
@@ -81,7 +81,7 @@ Type `/quit` to get out of Irssi.
 
 Irssi comes with some predefined networks. You can see the current list of networks by typing
 
-```
+```text
 /network
 ```
 
@@ -89,7 +89,7 @@ Irssi comes with some predefined networks. You can see the current list of netwo
 
 To connect to one of the networks in the list, type `/connect networkname`, for example:
 
-```
+```text
 /connect liberachat
 ```
 
@@ -101,7 +101,7 @@ Irssi version 1.2 or older may be lacking the liberachat network entry. See http
 
 #### Nickname registration
 
-Many IRC networks (but not all) offer a way to register a user account. Sometimes (but not on all networks) the account registration also includes reserving a nick for you. *How* to register also differs by network. Some _channels_ only allow users with registered accounts to join them, so it may be very important for you to register a user account.
+Many IRC networks (but not all) offer a way to register a user account. Sometimes (but not on all networks) the account registration also includes reserving a nick for you. *How* to register also differs by network. Some *channels* only allow users with registered accounts to join them, so it may be very important for you to register a user account.
 
 User accounts are always specific to a network.
 
@@ -111,7 +111,7 @@ For the Libera Chat network, you can find instructions how to register and set u
 
 Once you are connected to a network, you can join channels by typing `/join #channelname`, for example:
 
-```
+```text
 /join #irssi
 ```
 
@@ -125,13 +125,13 @@ You can change between windows using the `Ctrl`+`n` or `Ctrl`+`p` keys, or--if y
 
 By default, Irssi shows when someone joins or leaves a channel. These messages can waste a lot of lines and obscure the actual chat. To hide them, type
 
-```
+```text
 /window hidelevel +joins +parts +quits
 ```
 
 To get them back
 
-```
+```text
 /window hidelevel -joins -parts -quits
 ```
 
@@ -141,14 +141,14 @@ If you want to hide them by default, `/set window_default_hidelevel hidden joins
 
 If you want to join a network that is not there, you first need to find at least one server of that network. Let's say you have found the room [#hackint](https://netsplit.de/channels/details.php?room=%23hackint&net=hackint) on netsplit.de and want to join it. Then you can find that the [server](https://netsplit.de/servers/?net=hackint) is irc.hackint.org, port 6697, SSL (TLS) on. To add it to Irssi, use the commands:
 
-```
+```text
 /network add hackint
 /server add -tls -network hackint irc.hackint.org 6697
 ```
 
 Then, you can connect to the newly added network with
 
-```
+```text
 /connect hackint
 ```
 
@@ -160,7 +160,7 @@ If you are connected to multiple networks, you can change which one you are "tal
 
 Most /commands have a help page, you can read it with
 
-```
+```text
 /help commandname
 ```
 
@@ -173,4 +173,3 @@ The settings that can be changed with /SET are described on [](/documentation/se
 You can enhance your Irssi by installing scripts. Many Perl scripts written by other Irssi users can be found on https://scripts.irssi.org/
 
 Most of them should be compatible with Irssi 1.4 (but some may not, also see the Full Change log for some incompatible ones)
-

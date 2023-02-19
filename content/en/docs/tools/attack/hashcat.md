@@ -33,10 +33,8 @@ hashcat -m 0 -a 0 hash.txt /usr/share/wordlists/rockyou.txt
 
 ## Resources
 
-
 * [hashcat](https://hashcat.net/hashcat/)
 * [hashcat on GitHub](https://github.com/hashcat/hashcat)
-
 
 ## See Also
 
