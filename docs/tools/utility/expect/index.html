@@ -1,0 +1,1112 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=https://nutek.neosb.net/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://nutek.neosb.net/fonts/vendor/jost/jost-v4-latin-500.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://nutek.neosb.net/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script><script>(()=>{Object.keys(localStorage).forEach(function(e){/^global-alert-/.test(e)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script><link rel=stylesheet href=https://nutek.neosb.net/main.870a72aafaf033a74d28a04462c3b527108bb8a69d569608f9dff502faea670875130874b56edfaf6335639cca181eeaa0f4735d8400d9608139380cacc6f97e.css integrity="sha512-hwpyqvrwM6dNKKBEYsO1JxCLuKadVpYI+d/1AvrqZwh1Ewh0tW7fr2M1Y5zKGB7qoPRzXYQA2WCBOTgMrMb5fg==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>Expect - Nutek Terminal</title><meta name=description content="Description # expect is a tool for automating interactive applications such as telnet, ftp, passwd, fsck, rlogin, tip, etc.
+Installation # brew install expect Usage # expect -c 'spawn telnet &amp;lt;host&amp;gt; &amp;lt;port&amp;gt;; expect &amp;quot;login:&amp;quot;; send &amp;quot;&amp;lt;username&amp;gt;\r&amp;quot;; expect &amp;quot;Password:&amp;quot;; send &amp;quot;&amp;lt;password&amp;gt;\r&amp;quot;; interact' Resources # expect Similar # tcl help # EXPECT(1) General Commands Manual EXPECT(1) NAME expect - programmed dialogue with interactive programs, Version 5 SYNOPSIS expect [ -dDhinNv ] [ -c cmds ] [ [ -[f|b] ] cmdfile ] [ args ] INTRODUCTION Expect is a program that &amp;quot;talks&amp;quot; to other interactive programs according to a script."><link rel=canonical href=https://nutek.neosb.net/docs/tools/utility/expect/><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="Expect"><meta property="og:description" content="Description # expect is a tool for automating interactive applications such as telnet, ftp, passwd, fsck, rlogin, tip, etc.
+Installation # brew install expect Usage # expect -c 'spawn telnet <host> <port>; expect &#34;login:&#34;; send &#34;<username>\r&#34;; expect &#34;Password:&#34;; send &#34;<password>\r&#34;; interact' Resources # expect Similar # tcl help # EXPECT(1) General Commands Manual EXPECT(1) NAME expect - programmed dialogue with interactive programs, Version 5 SYNOPSIS expect [ -dDhinNv ] [ -c cmds ] [ [ -[f|b] ] cmdfile ] [ args ] INTRODUCTION Expect is a program that &#34;talks&#34; to other interactive programs according to a script."><meta property="og:url" content="https://nutek.neosb.net/docs/tools/utility/expect/"><meta property="og:site_name" content="Nutek Terminal"><meta property="article:published_time" content="2023-02-16T08:49:32+01:00"><meta property="article:modified_time" content="2023-02-16T08:49:32+01:00"><meta property="og:image" content="https://nutek.neosb.net/doks.png"><meta property="og:image:alt" content="Nutek Terminal"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@museyoucoulduse"><meta name=twitter:creator content="@museyoucoulduse"><meta name=twitter:title content="Expect"><meta name=twitter:description content><meta name=twitter:image content="https://nutek.neosb.net/doks.png"><meta name=twitter:image:alt content="Expect"><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://nutek.neosb.net/#/schema/organization/1","name":"Nutek","url":"https://nutek.neosb.net/","sameAs":["https://twitter.com/museyoucoulduse","https://github.com/nutek-terminal/"],"logo":{"@type":"ImageObject","@id":"https://nutek.neosb.net/#/schema/image/1","url":"https://nutek.neosb.net/logo-nutek.png","width":512,"height":512,"caption":"Nutek"},"image":{"@id":"https://nutek.neosb.net/#/schema/image/1"}},{"@type":"WebSite","@id":"https://nutek.neosb.net/#/schema/website/1","url":"https://nutek.neosb.net/","name":"Nutek Terminal","description":"Nutek Terminal is a system for building secure apps and assessing security of already working apps. Cybersecurity first class!","publisher":{"@id":"https://nutek.neosb.net/#/schema/organization/1"}},{"@type":"WebPage","@id":"https://nutek.neosb.net/docs/tools/utility/expect/","url":"https://nutek.neosb.net/docs/tools/utility/expect/","name":"Expect","description":"","isPartOf":{"@id":"https://nutek.neosb.net/#/schema/website/1"},"about":{"@id":"https://nutek.neosb.net/#/schema/organization/1"},"datePublished":"2023-02-16T08:49:32CET","dateModified":"2023-02-16T08:49:32CET","breadcrumb":{"@id":"https://nutek.neosb.net/docs/tools/utility/expect/#/schema/breadcrumb/1"},"primaryImageOfPage":{"@id":"https://nutek.neosb.net/docs/tools/utility/expect/#/schema/image/2"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://nutek.neosb.net/docs/tools/utility/expect/"]}]},{"@type":"BreadcrumbList","@id":"https://nutek.neosb.net/docs/tools/utility/expect/#/schema/breadcrumb/1","name":"Breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://nutek.neosb.net/","url":"https://nutek.neosb.net/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://nutek.neosb.net/docs/","url":"https://nutek.neosb.net/docs/","name":"Docs"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://nutek.neosb.net/docs/tools/","url":"https://nutek.neosb.net/docs/tools/","name":"Tools"}},{"@type":"ListItem","position":4,"item":{"@type":"WebPage","@id":"https://nutek.neosb.net/docs/tools/utility/","url":"https://nutek.neosb.net/docs/tools/utility/","name":"Utility"}},{"@type":"ListItem","position":5,"item":{"@id":"https://nutek.neosb.net/docs/tools/utility/expect/"}}]},{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://nutek.neosb.net/#/schema/article/1","headline":"Expect","description":"","isPartOf":{"@id":"https://nutek.neosb.net/docs/tools/utility/expect/"},"mainEntityOfPage":{"@id":"https://nutek.neosb.net/docs/tools/utility/expect/"},"datePublished":"2023-02-16T08:49:32CET","dateModified":"2023-02-16T08:49:32CET","author":{"@id":"https://nutek.neosb.net/#/schema/person/2"},"publisher":{"@id":"https://nutek.neosb.net/#/schema/organization/1"},"image":{"@id":"https://nutek.neosb.net/docs/tools/utility/expect/#/schema/image/2"}}]},{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://nutek.neosb.net/#/schema/person/2","name":"Szymon Błaszczyński","sameAs":["https://twitter.com/museyoucoulduse","https://github.com/buahaha"]}]},{"@context":"https://schema.org","@graph":[{"@type":"ImageObject","@id":"https://nutek.neosb.net/docs/tools/utility/expect/#/schema/image/2","url":"https://nutek.neosb.net/doks.png","contentUrl":"https://nutek.neosb.net/doks.png","caption":"Expect"}]}]}</script><meta name=theme-color content="#fff"><link rel=icon href=https://nutek.neosb.net/favicon.ico sizes=any><link rel=icon type=image/svg+xml href=https://nutek.neosb.net/favicon.svg><link rel=apple-touch-icon sizes=180x180 href=https://nutek.neosb.net/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://nutek.neosb.net/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://nutek.neosb.net/favicon-16x16.png><link rel=manifest crossorigin=use-credentials href=https://nutek.neosb.net/site.webmanifest></head><body class="docs single"><div id=announcement data-id=global-alert-b57ba685a53596026347db8f33b67ed7 class="alert alert-primary alert-dismissible fade show text-lg-center" role=alert>Introducing the nutek-cent, Nutek Terminal flavor that is aimed at learning the basics...<br><a class="alert-link stretched-link" href=https://hub.docker.com/r/neosb/nutek-cent>Check out Docker Hub</a>.<br/> If you're an expert already, stay tuned for nutek-fedsec!
+<button type=button class=btn-close data-bs-dismiss=alert aria-label=Close></button></div><div class=sticky-top><div class=header-bar></div><header class="navbar navbar-expand-lg navbar-light doks-navbar"><nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation"><a class="navbar-brand order-0" href=/ aria-label="Nutek Terminal">Nutek Terminal</a>
+<button class="btn btn-link order-0 ms-auto d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasExample aria-controls=offcanvasExample><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button><div class="offcanvas offcanvas-start d-lg-none" tabindex=-1 id=offcanvasExample aria-labelledby=offcanvasExampleLabel><div class=header-bar></div><div class=offcanvas-header><h5 class=offcanvas-title id=offcanvasExampleLabel>Browse docs</h5><button type=button class=btn-close data-bs-dismiss=offcanvas aria-label=Close></button></div><div class=offcanvas-body><aside class="doks-sidebar mt-n3"><nav id=doks-docs-nav aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-5f2cae171c6192fa410df4385f7218aa aria-expanded=false>
+Prologue</button><div class=collapse id=section-5f2cae171c6192fa410df4385f7218aa><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/introduction/>Introduction</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/quick-start/>Quick Start</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-368fe771261fcb18f7988833c9294a20 aria-expanded=false>
+Tutorial</button><div class=collapse id=section-368fe771261fcb18f7988833c9294a20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-8625e1de7be14c39b1d14dc03d822497 aria-expanded=true>
+Tools</button><div class="collapse show" id=section-8625e1de7be14c39b1d14dc03d822497><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python-neovim/>Python & Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python3/>Python3. Filling the Tank</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/hugo/>Hugo. My First Website</a></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-dcfafcb4323b102c7e204555d313ba0a aria-expanded=false>
+Attack</button><div class=collapse id=section-dcfafcb4323b102c7e204555d313ba0a><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/sqlmap/>Sqlmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/xh/>Xh</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ettercap/>Ettercap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hashcat/>Hashcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hydra/>Hydra</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/john/>John</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/metasploit/>Metasploit</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/mitmproxy/>Mitmproxy</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ncrack/>Ncrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/socat/>Socat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/bettercap/>Bettercap</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-ca0dbad92a874b2f69b549293387925e aria-expanded=false>
+Code</button><div class=collapse id=section-ca0dbad92a874b2f69b549293387925e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/radare2/>Radare2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/rats/>Rats</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/zzuf/>Zzuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cppcheck/>Cppcheck</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/fmt/>Fmt</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/gitleaks/>Gitleaks</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/grpc/>Grpc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/hyperscan/>Hyperscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/jansson/>Jansson</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/adns/>Adns</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/bvi/>Bvi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/capstone/>Capstone</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cflow/>Cflow</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-4aec8c62cef82bc80bd3192973dc8609 aria-expanded=false>
+Defend</button><div class=collapse id=section-4aec8c62cef82bc80bd3192973dc8609><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/fwknop/>Fwknop</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/gnupg/>Gnupg</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/suricata/>Suricata</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-1e984dbe12c8a779526c498701b8bc73 aria-expanded=false>
+Knowledge</button><div class=collapse id=section-1e984dbe12c8a779526c498701b8bc73><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/testssl/>Testssl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/zmap/>Zmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/smap/>Smap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpdump/>Tcpdump</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpflow/>Tcpflow</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/termshark/>Termshark</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nmap/>Nmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nuclei/>Nuclei</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/p0f/>P0f</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/rustscan/>Rustscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/masscan/>Masscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/mtr/>Mtr</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nethogs/>Nethogs</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ngrep/>Ngrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nikto/>Nikto</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/fping/>Fping</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gau/>Gau</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gobuster/>Gobuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httpx/>Httpx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httrack/>Httrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/arp-scan/>Arp Scan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/bmon/>Bmon</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/dnsx/>Dnsx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/feroxbuster/>Feroxbuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ffuf/>Ffuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/amass/>Amass</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-94df2a6972ca1fa79411645fe9b42339 aria-expanded=true>
+Utility</button><div class="collapse show" id=section-94df2a6972ca1fa79411645fe9b42339><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/w3m/>W3m</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/whatmask/>Whatmask</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/viu/>Viu</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/tmux/>Tmux</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ripgrep/>Ripgrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/sd/>Sd</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/podman/>Podman</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/pandoc/>Pandoc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/openvpn/>Openvpn</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ouch/>Ouch</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/neovim/>Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/mdcat/>Mdcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/monolith/>Monolith</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/macchina/>Macchina</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jq/>Jq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jql/>Jql</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/htmlq/>Htmlq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ipcalc/>Ipcalc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/irssi/>Irssi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/exa/>Exa</a></li><li><a class="docs-link rounded active" href=https://nutek.neosb.net/docs/tools/utility/expect/>Expect</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/hexyl/>Hexyl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dos2unix/>Dos2unix</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dust/>Dust</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bat/>Bat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bottom/>Bottom</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/discount/>Discount</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/argon2/>Argon2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/atuin/>Atuin</a></li></ul></div></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/bing-search/>Bing Search</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-6a26f548831e6a8c26bfbbd9f6ec61e0 aria-expanded=false>
+Help</button><div class=collapse id=section-6a26f548831e6a8c26bfbbd9f6ec61e0><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/how-to-update/>How to Update</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/troubleshooting/>Troubleshooting</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/faq/>FAQ</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/nutek-versions/>Nutek Versions</a></li></ul></div></li></ul></nav></aside></div></div><button class="btn btn-menu order-2 d-block d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasDoks aria-controls=offcanvasDoks aria-label="Open main menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex=-1 id=offcanvasDoks data-bs-backdrop=true aria-labelledby=offcanvasDoksLabel><div class="header-bar d-lg-none"></div><div class="offcanvas-header d-lg-none"><h2 class="h5 offcanvas-title ps-2" id=offcanvasDoksLabel><a class=text-dark href=/>Nutek Terminal</a></h2><button type=button class="btn-close text-reset me-2" data-bs-dismiss=offcanvas aria-label="Close main menu"></button></div><div class="offcanvas-body p-4 p-lg-0"><ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto"><li class=nav-item><a class="nav-link ps-0 py-1 active" href=/docs/prologue/introduction/>Docs</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/blog/>Blog</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>Get Started
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/docs/prologue/quick-start/>Quick Start</a></li><li><a class=dropdown-item href=/docs/tutorial/>Tutorial</a></li><li><a class=dropdown-item href=/docs/tools>Tools</a></li></ul></li></ul><hr class="text-black-50 my-4 d-lg-none"><form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2"><input id=search class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded d-none"></div></form><hr class="text-black-50 my-4 d-lg-none"><ul class="nav flex-column flex-lg-row"><li class=nav-item><a class="nav-link social-link" href=https://github.com/nutek-terminal><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg><small class="ms-2 d-lg-none">GitHub</small></a></li><li class=nav-item><a class="nav-link social-link" href="https://open.spotify.com/artist/420HxhBO1pJTMyQR6oMua4?si=eyExY0VMRM6z1OkpP2jPBA"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 496 512"><path fill="#1ed760" d="M248 8C111.1 8 0 119.1.0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8z"/><path d="M406.6 231.1c-5.2.0-8.4-1.3-12.9-3.9-71.2-42.5-198.5-52.7-280.9-29.7-3.6 1-8.1 2.6-12.9 2.6-13.2.0-23.3-10.3-23.3-23.6.0-13.6 8.4-21.3 17.4-23.9 35.2-10.3 74.6-15.2 117.5-15.2 73 0 149.5 15.2 205.4 47.8 7.8 4.5 12.9 10.7 12.9 22.6.0 13.6-11 23.3-23.2 23.3zm-31 76.2c-5.2.0-8.7-2.3-12.3-4.2-62.5-37-155.7-51.9-238.6-29.4-4.8 1.3-7.4 2.6-11.9 2.6-10.7.0-19.4-8.7-19.4-19.4s5.2-17.8 15.5-20.7c27.8-7.8 56.2-13.6 97.8-13.6 64.9.0 127.6 16.1 177 45.5 8.1 4.8 11.3 11 11.3 19.7-.1 10.8-8.5 19.5-19.4 19.5zm-26.9 65.6c-4.2.0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7.0-15.8-7.7-15.8-15.8.0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4z"/></svg><small class="ms-2 d-lg-none">Spotify</small></a></li><li class=nav-item><a class="nav-link social-link" href=https://twitter.com/museyoucoulduse><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg><small class="ms-2 d-lg-none">Twitter</small></a></li></ul><hr class="text-black-50 my-4 d-lg-none"><button id=mode class="btn btn-link" type=button aria-label="Toggle user interface mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button></div></div></nav></header></div><div class=container-xxl><aside class=doks-sidebar><nav id=doks-docs-nav class="collapse d-lg-none" aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-5f2cae171c6192fa410df4385f7218aa aria-expanded=false>
+Prologue</button><div class=collapse id=section-5f2cae171c6192fa410df4385f7218aa><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/introduction/>Introduction</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/quick-start/>Quick Start</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-368fe771261fcb18f7988833c9294a20 aria-expanded=false>
+Tutorial</button><div class=collapse id=section-368fe771261fcb18f7988833c9294a20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-8625e1de7be14c39b1d14dc03d822497 aria-expanded=true>
+Tools</button><div class="collapse show" id=section-8625e1de7be14c39b1d14dc03d822497><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python-neovim/>Python & Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python3/>Python3. Filling the Tank</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/hugo/>Hugo. My First Website</a></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-dcfafcb4323b102c7e204555d313ba0a aria-expanded=false>
+Attack</button><div class=collapse id=section-dcfafcb4323b102c7e204555d313ba0a><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/sqlmap/>Sqlmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/xh/>Xh</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ettercap/>Ettercap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hashcat/>Hashcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hydra/>Hydra</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/john/>John</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/metasploit/>Metasploit</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/mitmproxy/>Mitmproxy</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ncrack/>Ncrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/socat/>Socat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/bettercap/>Bettercap</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-ca0dbad92a874b2f69b549293387925e aria-expanded=false>
+Code</button><div class=collapse id=section-ca0dbad92a874b2f69b549293387925e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/radare2/>Radare2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/rats/>Rats</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/zzuf/>Zzuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cppcheck/>Cppcheck</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/fmt/>Fmt</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/gitleaks/>Gitleaks</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/grpc/>Grpc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/hyperscan/>Hyperscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/jansson/>Jansson</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/adns/>Adns</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/bvi/>Bvi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/capstone/>Capstone</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cflow/>Cflow</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-4aec8c62cef82bc80bd3192973dc8609 aria-expanded=false>
+Defend</button><div class=collapse id=section-4aec8c62cef82bc80bd3192973dc8609><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/fwknop/>Fwknop</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/gnupg/>Gnupg</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/suricata/>Suricata</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-1e984dbe12c8a779526c498701b8bc73 aria-expanded=false>
+Knowledge</button><div class=collapse id=section-1e984dbe12c8a779526c498701b8bc73><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/testssl/>Testssl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/zmap/>Zmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/smap/>Smap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpdump/>Tcpdump</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpflow/>Tcpflow</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/termshark/>Termshark</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nmap/>Nmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nuclei/>Nuclei</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/p0f/>P0f</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/rustscan/>Rustscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/masscan/>Masscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/mtr/>Mtr</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nethogs/>Nethogs</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ngrep/>Ngrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nikto/>Nikto</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/fping/>Fping</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gau/>Gau</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gobuster/>Gobuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httpx/>Httpx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httrack/>Httrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/arp-scan/>Arp Scan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/bmon/>Bmon</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/dnsx/>Dnsx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/feroxbuster/>Feroxbuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ffuf/>Ffuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/amass/>Amass</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-94df2a6972ca1fa79411645fe9b42339 aria-expanded=true>
+Utility</button><div class="collapse show" id=section-94df2a6972ca1fa79411645fe9b42339><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/w3m/>W3m</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/whatmask/>Whatmask</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/viu/>Viu</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/tmux/>Tmux</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ripgrep/>Ripgrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/sd/>Sd</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/podman/>Podman</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/pandoc/>Pandoc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/openvpn/>Openvpn</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ouch/>Ouch</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/neovim/>Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/mdcat/>Mdcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/monolith/>Monolith</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/macchina/>Macchina</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jq/>Jq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jql/>Jql</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/htmlq/>Htmlq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ipcalc/>Ipcalc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/irssi/>Irssi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/exa/>Exa</a></li><li><a class="docs-link rounded active" href=https://nutek.neosb.net/docs/tools/utility/expect/>Expect</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/hexyl/>Hexyl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dos2unix/>Dos2unix</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dust/>Dust</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bat/>Bat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bottom/>Bottom</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/discount/>Discount</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/argon2/>Argon2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/atuin/>Atuin</a></li></ul></div></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/bing-search/>Bing Search</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-6a26f548831e6a8c26bfbbd9f6ec61e0 aria-expanded=false>
+Help</button><div class=collapse id=section-6a26f548831e6a8c26bfbbd9f6ec61e0><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/how-to-update/>How to Update</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/troubleshooting/>Troubleshooting</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/faq/>FAQ</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/nutek-versions/>Nutek Versions</a></li></ul></div></li></ul></nav></aside></div><div class="wrap container-xxl" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class=docs-links aria-label="Main navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-5f2cae171c6192fa410df4385f7218aa aria-expanded=false>
+Prologue</button><div class=collapse id=section-5f2cae171c6192fa410df4385f7218aa><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/introduction/>Introduction</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/quick-start/>Quick Start</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-368fe771261fcb18f7988833c9294a20 aria-expanded=false>
+Tutorial</button><div class=collapse id=section-368fe771261fcb18f7988833c9294a20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-8625e1de7be14c39b1d14dc03d822497 aria-expanded=true>
+Tools</button><div class="collapse show" id=section-8625e1de7be14c39b1d14dc03d822497><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python-neovim/>Python & Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python3/>Python3. Filling the Tank</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/hugo/>Hugo. My First Website</a></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-dcfafcb4323b102c7e204555d313ba0a aria-expanded=false>
+Attack</button><div class=collapse id=section-dcfafcb4323b102c7e204555d313ba0a><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/sqlmap/>Sqlmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/xh/>Xh</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ettercap/>Ettercap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hashcat/>Hashcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hydra/>Hydra</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/john/>John</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/metasploit/>Metasploit</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/mitmproxy/>Mitmproxy</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ncrack/>Ncrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/socat/>Socat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/bettercap/>Bettercap</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-ca0dbad92a874b2f69b549293387925e aria-expanded=false>
+Code</button><div class=collapse id=section-ca0dbad92a874b2f69b549293387925e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/radare2/>Radare2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/rats/>Rats</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/zzuf/>Zzuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cppcheck/>Cppcheck</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/fmt/>Fmt</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/gitleaks/>Gitleaks</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/grpc/>Grpc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/hyperscan/>Hyperscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/jansson/>Jansson</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/adns/>Adns</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/bvi/>Bvi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/capstone/>Capstone</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cflow/>Cflow</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-4aec8c62cef82bc80bd3192973dc8609 aria-expanded=false>
+Defend</button><div class=collapse id=section-4aec8c62cef82bc80bd3192973dc8609><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/fwknop/>Fwknop</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/gnupg/>Gnupg</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/suricata/>Suricata</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-1e984dbe12c8a779526c498701b8bc73 aria-expanded=false>
+Knowledge</button><div class=collapse id=section-1e984dbe12c8a779526c498701b8bc73><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/testssl/>Testssl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/zmap/>Zmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/smap/>Smap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpdump/>Tcpdump</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpflow/>Tcpflow</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/termshark/>Termshark</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nmap/>Nmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nuclei/>Nuclei</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/p0f/>P0f</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/rustscan/>Rustscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/masscan/>Masscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/mtr/>Mtr</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nethogs/>Nethogs</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ngrep/>Ngrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nikto/>Nikto</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/fping/>Fping</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gau/>Gau</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gobuster/>Gobuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httpx/>Httpx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httrack/>Httrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/arp-scan/>Arp Scan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/bmon/>Bmon</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/dnsx/>Dnsx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/feroxbuster/>Feroxbuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ffuf/>Ffuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/amass/>Amass</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-94df2a6972ca1fa79411645fe9b42339 aria-expanded=true>
+Utility</button><div class="collapse show" id=section-94df2a6972ca1fa79411645fe9b42339><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/w3m/>W3m</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/whatmask/>Whatmask</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/viu/>Viu</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/tmux/>Tmux</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ripgrep/>Ripgrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/sd/>Sd</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/podman/>Podman</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/pandoc/>Pandoc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/openvpn/>Openvpn</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ouch/>Ouch</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/neovim/>Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/mdcat/>Mdcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/monolith/>Monolith</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/macchina/>Macchina</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jq/>Jq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jql/>Jql</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/htmlq/>Htmlq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ipcalc/>Ipcalc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/irssi/>Irssi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/exa/>Exa</a></li><li><a class="docs-link rounded active" href=https://nutek.neosb.net/docs/tools/utility/expect/>Expect</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/hexyl/>Hexyl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dos2unix/>Dos2unix</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dust/>Dust</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bat/>Bat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bottom/>Bottom</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/discount/>Discount</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/argon2/>Argon2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/atuin/>Atuin</a></li></ul></div></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/bing-search/>Bing Search</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-6a26f548831e6a8c26bfbbd9f6ec61e0 aria-expanded=false>
+Help</button><div class=collapse id=section-6a26f548831e6a8c26bfbbd9f6ec61e0><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/how-to-update/>How to Update</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/troubleshooting/>Troubleshooting</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/faq/>FAQ</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/nutek-versions/>Nutek Versions</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#installation>Installation</a></li><li><a href=#usage>Usage</a></li><li><a href=#resources>Resources</a></li><li><a href=#similar>Similar</a></li><li><a href=#help>help</a></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#installation>Installation</a></li><li><a href=#usage>Usage</a></li><li><a href=#resources>Resources</a></li><li><a href=#similar>Similar</a></li><li><a href=#help>help</a></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl-9"><h1>Expect</h1><p class=lead></p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#installation>Installation</a></li><li><a href=#usage>Usage</a></li><li><a href=#resources>Resources</a></li><li><a href=#similar>Similar</a></li><li><a href=#help>help</a></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#installation>Installation</a></li><li><a href=#usage>Usage</a></li><li><a href=#resources>Resources</a></li><li><a href=#similar>Similar</a></li><li><a href=#help>help</a></li></ul></nav></div></nav><h2 id=description>Description <a href=#description class=anchor aria-hidden=true>#</a></h2><p>expect is a tool for automating interactive applications such as telnet, ftp, passwd, fsck, rlogin, tip, etc.</p><h2 id=installation>Installation <a href=#installation class=anchor aria-hidden=true>#</a></h2><pre><code class=language-bash>brew install expect
+</code></pre><h2 id=usage>Usage <a href=#usage class=anchor aria-hidden=true>#</a></h2><pre><code class=language-bash>expect -c 'spawn telnet &lt;host&gt; &lt;port&gt;; expect &quot;login:&quot;; send &quot;&lt;username&gt;\r&quot;; expect &quot;Password:&quot;; send &quot;&lt;password&gt;\r&quot;; interact'
+</code></pre><h2 id=resources>Resources <a href=#resources class=anchor aria-hidden=true>#</a></h2><ul><li><a href=https://core.tcl-lang.org/expect/index>expect</a></li></ul><h2 id=similar>Similar <a href=#similar class=anchor aria-hidden=true>#</a></h2><ul><li>tcl</li></ul><h2 id=help>help <a href=#help class=anchor aria-hidden=true>#</a></h2><pre><code class=language-text>EXPECT(1)                                        General Commands Manual                                              EXPECT(1)
+
+NAME
+       expect - programmed dialogue with interactive programs, Version 5
+
+SYNOPSIS
+       expect [ -dDhinNv ] [ -c cmds ] [ [ -[f|b] ] cmdfile ] [ args ]
+
+INTRODUCTION
+       Expect  is  a  program  that  &quot;talks&quot; to other interactive programs according to a script.  Following the script, Expect knows what can be expected from a program and what the correct response
+       should be.  An interpreted language provides branching and high-level control structures to direct the dialogue.     In addition, the user can take control and interact directly when desired, af‐
+       terward returning control to the script.
+
+       Expectk is a mixture of Expect and Tk.  It behaves just like Expect and Tk's wish.  Expect can also be used directly in C or C++ (that is, without Tcl).     See libexpect(3).
+
+       The  name  &quot;Expect&quot; comes from the idea of send/expect sequences popularized by uucp, kermit and other modem control programs.  However unlike uucp, Expect is generalized so that it can be run
+       as a user-level command with any program and task in mind.  Expect can actually talk to several programs at the same time.
+
+       For example, here are some things Expect can do:
+
+          •      Cause your computer to dial you back, so that you can login without paying for the call.
+
+          •      Start a game (e.g., rogue) and if the optimal configuration doesn't appear, restart it (again and again) until it does, then hand over control to you.
+
+          •      Run fsck, and in response to its questions, answer &quot;yes&quot;, &quot;no&quot; or give control back to you, based on predetermined criteria.
+
+          •      Connect to another network or BBS (e.g., MCI Mail, CompuServe) and automatically retrieve your mail so that it appears as if it was originally sent to your local system.
+
+          •      Carry environment variables, current directory, or any kind of information across rlogin, telnet, tip, su, chgrp, etc.
+
+       There are a variety of reasons why the shell cannot perform these tasks.     (Try, you'll see.)  All are possible with Expect.
+
+       In general, Expect is useful for running any program which requires interaction between the program and the user.  All that is necessary is that the interaction can be    characterized  program‐
+       matically.  Expect can also give the user back control (without halting the program being controlled) if desired.  Similarly, the user can return control to the script at any time.
+
+USAGE
+       Expect  reads  cmdfile for a list of commands to execute.  Expect may also be invoked implicitly on systems which support the #! notation by marking the script executable, and making the first
+       line in your script:
+
+       #!/usr/local/bin/expect -f
+
+       Of course, the path must accurately describe where Expect lives.     /usr/local/bin is just an example.
+
+       The -c flag prefaces a command to be executed before any in the script.    The command should be quoted to prevent being broken up by the shell.  This option may be used multiple times.     Multi‐
+       ple commands may be executed with a single -c by separating them with semicolons.  Commands are executed in the order they appear.  (When using Expectk, this option is specified as -command.)
+
+       The  -d flag enables some diagnostic output, which primarily reports internal activity of commands such as expect and interact.    This flag has the same effect as &quot;exp_internal 1&quot; at the begin‐
+       ning of an Expect script, plus the version of Expect is printed.     (The strace command is useful for tracing statements, and the trace command  is  useful  for  tracing    variable  assignments.)
+       (When using Expectk, this option is specified as -diag.)
+
+       The -D flag enables an interactive debugger.  An integer value should follow.  The debugger will take control before the next Tcl procedure if the value is non-zero or if a ^C is pressed (or a
+       breakpoint is hit, or other appropriate debugger command appears in the script).     See the README file or SEE ALSO (below) for more information on the debugger.    (When using Expectk,  this  op‐
+       tion is specified as -Debug.)
+
+       The  -f flag prefaces a file from which to read commands from.  The flag itself is optional as it is only useful when using the #! notation (see above), so that other arguments may be supplied
+       on the command line.  (When using Expectk, this option is specified as -file.)
+
+       By default, the command file is read into memory and executed in its entirety.  It is occasionally desirable to read files one line at a time.  For example, stdin is read this way.   In  order
+       to  force  arbitrary  files  to    be  handled this way, use the -b flag.    (When using Expectk, this option is specified as -buffer.)  Note that stdio-buffering may still take place however this
+       shouldn't cause problems when reading from a fifo or stdin.
+
+       If the string &quot;-&quot; is supplied as a filename, standard input is read instead.  (Use &quot;./-&quot; to read from a file actually named &quot;-&quot;.)
+
+       -h causes Expect to print its usage message and exit.
+
+       The -i flag causes Expect to interactively prompt for commands instead of reading them from a file.  Prompting is terminated via the exit command or upon EOF.  See interpreter (below) for more
+       information.  -i is assumed if neither a command file nor -c is used.  (When using Expectk, this option is specified as -interactive.)
+
+       --  may    be  used  to  delimit  the end of the options.    This is useful if you want to pass an option-like argument to your script without it being interpreted by Expect.  This can usefully be
+       placed in the #! line to prevent any flag-like interpretation by Expect.     For example, the following will leave the original arguments (including the script name) in the variable argv.
+
+       #!/usr/local/bin/expect --
+
+       Note that the usual getopt(3) and execve(2) conventions must be observed when adding arguments to the #! line.
+
+       The file $exp_library/expect.rc is sourced automatically if present, unless the -N flag is used.     (When using Expectk, this option is specified as -NORC.)  Immediately    after  this,  the  file
+       ~/.expect.rc  is sourced automatically, unless the -n flag is used.  If the environment variable DOTDIR is defined, it is treated as a directory and .expect.rc is read from there.  (When using
+       Expectk, this option is specified as -norc.)  This sourcing occurs only after executing any -c flags.
+
+       -v causes Expect to print its version number and exit.  (The corresponding flag in Expectk, which uses long flag names, is -version.)
+
+       Optional args are constructed into a list and stored in the variable named argv.     argc is initialized to the length of argv.
+
+       argv0 is defined to be the name of the script (or binary if no script is used).    For example, the following prints out the name of the script and the first three arguments:
+
+       send_user &quot;$argv0 [lrange $argv 0 2]\n&quot;
+
+COMMANDS
+       Expect uses Tcl (Tool Command Language).     Tcl provides control flow (e.g., if, for, break), expression evaluation and several other features such as recursion, procedure definition, etc.  Com‐
+       mands  used  here  but  not defined (e.g., set, if, exec) are Tcl commands (see tcl(3)).     Expect supports additional commands, described below.    Unless otherwise specified, commands return the
+       empty string.
+
+       Commands are listed alphabetically so that they can be quickly located.    However, new users may find it easier to start by reading the descriptions of spawn, send,  expect,  and  interact,  in
+       that order.
+
+       Note that the best introduction to the language (both Expect and Tcl) is provided in the book &quot;Exploring Expect&quot; (see SEE ALSO below).  Examples are included in this help but they are very
+       limited since this help is meant primarily as reference material.
+
+       Note that in the text of this help, &quot;Expect&quot; with an uppercase &quot;E&quot; refers to the Expect program while &quot;expect&quot; with a lower-case &quot;e&quot; refers to the expect command  within  the  Expect  pro‐
+       gram.)
+
+       close [-slave] [-onexec 0|1] [-i spawn_id]
+         closes  the  connection  to the current process.  Most interactive programs will detect EOF on their stdin and exit; thus close usually suffices to kill the process as well.  The -i flag
+         declares the process to close corresponding to the named spawn_id.
+
+         Both expect and interact will detect when the current process exits and implicitly do a close.  But if you kill the process by, say, &quot;exec kill $pid&quot;, you will need  to  explicitly  call
+         close.
+
+         The -onexec flag determines whether the spawn id will be closed in any new spawned processes or if the process is overlayed.  To leave a spawn id open, use the value 0.  A non-zero inte‐
+         ger value will force the spawn closed (the default) in any new processes.
+
+         The -slave flag closes the slave associated with the spawn id.  (See &quot;spawn -pty&quot;.)  When the connection is closed, the slave is automatically closed as well if still open.
+
+         No matter whether the connection is closed implicitly or explicitly, you should call wait to clear up the corresponding kernel process slot.  close does not call wait since there     is  no
+         guarantee that closing a process connection will cause it to exit.     See wait below for more info.
+
+       debug [[-now] 0|1]
+         controls a Tcl debugger allowing you to step through statements, set breakpoints, etc.
+
+         With no arguments, a 1 is returned if the debugger is not running, otherwise a 0 is returned.
+
+         With  a 1 argument, the debugger is started.  With a 0 argument, the debugger is stopped.    If a 1 argument is preceded by the -now flag, the debugger is started immediately (i.e., in the
+         middle of the debug command itself).  Otherwise, the debugger is started with the next Tcl statement.
+
+         The debug command does not change any traps.  Compare this to starting Expect with the -D flag (see above).
+
+         See the README file or SEE ALSO (below) for more information on the debugger.
+
+       disconnect
+         disconnects a forked process from the terminal.  It continues running in the background.  The process is given its own process  group  (if     possible).   Standard    I/O  is     redirected  to
+         /dev/null.
+
+         The following fragment uses disconnect to continue running the script in the background.
+
+         if {[fork]!=0} exit
+         disconnect
+         . . .
+
+         The  following script reads a password, and then runs a program every hour that demands a password each time it is run.  The script supplies the password so that you only have to type it
+         once.  (See the stty command which demonstrates how to turn off password echoing.)
+
+         send_user &quot;password?\ &quot;
+         expect_user -re &quot;(.*)\n&quot;
+         for {} 1 {} {
+             if {[fork]!=0} {sleep 3600;continue}
+             disconnect
+             spawn priv_prog
+             expect Password:
+             send &quot;$expect_out(1,string)\r&quot;
+             . . .
+             exit
+         }
+
+         An advantage to using disconnect over the shell asynchronous process feature (&amp;) is that Expect can save the terminal parameters prior to disconnection, and then later apply them to  new
+         ptys.  With &amp;, Expect does not have a chance to read the terminal's parameters since the terminal is already disconnected by the time Expect receives control.
+
+       exit [-opts] [status]
+         causes Expect to exit or otherwise prepare to do so.
+
+         The -onexit flag causes the next argument to be used as an exit handler.  Without an argument, the current exit handler is returned.
+
+         The  -noexit flag causes Expect to prepare to exit but stop short of actually returning control to the operating system.  The user-defined exit handler is run as well as Expect's own in‐
+         ternal handlers.  No further Expect commands should be executed.  This is useful if you are running Expect with other Tcl extensions.  The current interpreter (and main window if in  the
+         Tk environment) remain so that other Tcl extensions can clean up.    If Expect's exit is called again (however this might occur), the handlers are not rerun.
+
+         Upon exiting, all connections to spawned processes are closed.  Closure will be detected as an EOF by spawned processes.  exit takes no other actions beyond what the normal _exit(2) pro‐
+         cedure does.  Thus, spawned processes that do not check for EOF may continue to run.  (A variety of conditions are important to determining, for example, what signals a  spawned    process
+         will be sent, but these are system-dependent, typically documented under exit(3).)     Spawned processes that continue to run will be inherited by init.
+
+         status (or 0 if not specified) is returned as the exit status of Expect.  exit is implicitly executed if the end of the script is reached.
+
+       exp_continue [-continue_timer]
+         The command exp_continue allows expect itself to continue executing rather than returning as it normally would. By default exp_continue resets the timeout timer. The -continue_timer flag
+         prevents timer from being restarted. (See expect for more information.)
+
+       exp_internal [-f file] value
+         causes further commands to send diagnostic information internal to Expect to stderr if value is non-zero.    This output is disabled if value is 0.    The diagnostic information includes ev‐
+         ery character received, and every attempt made to match the current output against the patterns.
+
+         If the optional file is supplied, all normal and debugging output is written to that file (regardless of the value of value).  Any previous diagnostic output file is closed.
+
+         The -info flag causes exp_internal to return a description of the most recent non-info arguments given.
+
+       exp_open [args] [-i spawn_id]
+         returns a Tcl file identifier that corresponds to the original spawn id.  The file identifier can then be used as if it were opened by Tcl's open command.     (The spawn id should no longer
+         be used.  A wait should not be executed.
+
+         The -leaveopen flag leaves the spawn id open for access through Expect commands.  A wait must be executed on the spawn id.
+
+       exp_pid [-i spawn_id]
+         returns the process id corresponding to the currently spawned process.  If the -i flag is used, the pid returned corresponds to that of the given spawn id.
+
+       exp_send
+         is an alias for send.
+
+       exp_send_error
+         is an alias for send_error.
+
+       exp_send_log
+         is an alias for send_log.
+
+       exp_send_tty
+         is an alias for send_tty.
+
+       exp_send_user
+         is an alias for send_user.
+
+       exp_version [[-exit] version]
+         is useful for assuring that the script is compatible with the current version of Expect.
+
+         With no arguments, the current version of Expect is returned.  This version may then be encoded in your script.  If you actually know that you are not using features of recent  versions,
+         you can specify an earlier version.
+
+         Versions  consist    of  three  numbers separated by dots.  First is the major number.  Scripts written for versions of Expect with a different major number will almost certainly not work.
+         exp_version returns an error if the major numbers do not match.
+
+         Second is the minor number.  Scripts written for a version with a greater minor number than the current version may depend upon some new feature and might not run.   exp_version    returns
+         an error if the major numbers match, but the script minor number is greater than that of the running Expect.
+
+         Third  is a number that plays no part in the version comparison.  However, it is incremented when the Expect software distribution is changed in any way, such as by additional documenta‐
+         tion or optimization.  It is reset to 0 upon each new minor version.
+
+         With the -exit flag, Expect prints an error and exits if the version is out of date.
+
+       expect [[-opts] pat1 body1] ... [-opts] patn [bodyn]
+         waits until one of the patterns matches the output of a spawned process, a specified time period has passed, or an end-of-file is seen.  If the final body is empty, it may be omitted.
+
+         Patterns from the most recent expect_before command are implicitly used before any other patterns.     Patterns from the most recent expect_after command are implicitly used after any other
+         patterns.
+
+         If the arguments to the entire expect statement require more than one line, all the arguments may be &quot;braced&quot; into one so as to avoid terminating each line with a backslash.  In this one
+         case, the usual Tcl substitutions will occur despite the braces.
+
+         If a pattern is the keyword eof, the corresponding body is executed upon end-of-file.  If a pattern is the keyword timeout, the corresponding body is executed upon timeout.  If no  time‐
+         out  keyword  is used, an implicit null action is executed upon timeout.  The default timeout period is 10 seconds but may be set, for example to 30, by the command &quot;set timeout 30&quot;.  An
+         infinite timeout may be designated by the value -1.  If a pattern is the keyword default, the corresponding body is executed upon either timeout or end-of-file.
+
+         If a pattern matches, then the corresponding body is executed.  expect returns the result of the body (or the empty string if no pattern matched).     In the event  that  multiple  patterns
+         match, the one appearing first is used to select a body.
+
+         Each  time     new output arrives, it is compared to each pattern in the order they are listed.  Thus, you may test for absence of a match by making the last pattern something guaranteed to
+         appear, such as a prompt.    In situations where there is no prompt, you must use timeout (just like you would if you were interacting manually).
+
+         Patterns are specified in three ways.  By default, patterns are specified as with Tcl's string match command.  (Such patterns are also similar to C-shell regular expressions usually  re‐
+         ferred  to as &quot;glob&quot; patterns).  The -gl flag may be used to protect patterns that might otherwise match expect flags from doing so.  Any pattern beginning with a &quot;-&quot; should be protected
+         this way.    (All strings starting with &quot;-&quot; are reserved for future options.)
+
+         For example, the following fragment looks for a successful login.    (Note that abort is presumed to be a procedure defined elsewhere in the script.)
+
+         expect {
+             busy        {puts busy\n ; exp_continue}
+             failed        abort
+             &quot;invalid password&quot; abort
+             timeout        abort
+             connected
+         }
+
+         Quotes are necessary on the fourth pattern since it contains a space, which would otherwise separate the pattern from the action.    Patterns with the same action (such as the 3rd and 4th)
+         require listing the actions again.     This can be avoid by using regexp-style patterns (see below).    More information on forming glob-style patterns can be found in the Tcl manual.
+
+         Regexp-style  patterns follow the syntax defined by Tcl's regexp (short for &quot;regular expression&quot;) command.     regexp patterns are introduced with the flag -re.  The previous example can be
+         rewritten using a regexp as:
+
+         expect {
+             busy    {puts busy\n ; exp_continue}
+             -re &quot;failed|invalid password&quot; abort
+             timeout    abort
+             connected
+         }
+
+         Both types of patterns are &quot;unanchored&quot;.  This means that patterns do not have to match the entire string, but can begin and end the match anywhere in the string (as long     as  everything
+         else matches).  Use ^ to match the beginning of a string, and $ to match the end.    Note that if you do not wait for the end of a string, your responses can easily end up in the middle of
+         the string as they are echoed from the spawned process.  While still producing correct results, the output can look unnatural.  Thus, use of $ is encouraged if you can  exactly  describe
+         the characters at the end of a string.
+
+         Note  that     in  many editors, the ^ and $ match the beginning and end of lines respectively. However, because expect is not line oriented, these characters match the beginning and end of
+         the data (as opposed to lines) currently in the expect matching buffer.  (Also, see the note below on &quot;system indigestion.&quot;)
+
+         The -ex flag causes the pattern to be matched as an &quot;exact&quot; string.  No interpretation of *, ^, etc is made (although the usual Tcl conventions must still be observed).    Exact  patterns
+         are always unanchored.
+
+         The -nocase flag causes uppercase characters of the output to compare as if they were lowercase characters.  The pattern is not affected.
+
+         While reading output, more than 2000 bytes can force earlier bytes to be &quot;forgotten&quot;.  This may be changed with the function match_max.  (Note that excessively large values can slow down
+         the pattern matcher.)  If patlist is full_buffer, the corresponding body is executed if match_max bytes have been received and no    other  patterns     have  matched.      Whether  or  not  the
+         full_buffer keyword is used, the forgotten characters are written to expect_out(buffer).
+
+         If     patlist  is  the keyword null, and nulls are allowed (via the remove_nulls command), the corresponding body is executed if a single ASCII 0 is matched.  It is not possible to match 0
+         bytes via glob or regexp patterns.
+
+         Upon matching a pattern (or eof or full_buffer), any matching and previously unmatched output is saved in the variable expect_out(buffer).     Up to 9 regexp substring matches are saved  in
+         the variables expect_out(1,string) through expect_out(9,string).  If the -indices flag is used before a pattern, the starting and ending indices (in a form suitable for lrange) of the 10
+         strings are stored in the variables expect_out(X,start) and expect_out(X,end) where X is a digit, corresponds to the substring position in the buffer.  0 refers to strings which    matched
+         the entire pattern and is generated for glob patterns as well as regexp patterns.    For example, if a process has produced output of &quot;abcdefgh\n&quot;, the result of:
+
+         expect &quot;cd&quot;
+
+         is as if the following statements had executed:
+
+         set expect_out(0,string) cd
+         set expect_out(buffer) abcd
+
+         and &quot;efgh\n&quot; is left in the output buffer.     If a process produced the output &quot;abbbcabkkkka\n&quot;, the result of:
+
+         expect -indices -re &quot;b(b*).*(k+)&quot;
+
+         is as if the following statements had executed:
+
+         set expect_out(0,start) 1
+         set expect_out(0,end) 10
+         set expect_out(0,string) bbbcabkkkk
+         set expect_out(1,start) 2
+         set expect_out(1,end) 3
+         set expect_out(1,string) bb
+         set expect_out(2,start) 10
+         set expect_out(2,end) 10
+         set expect_out(2,string) k
+         set expect_out(buffer) abbbcabkkkk
+
+         and &quot;a\n&quot; is left in the output buffer.  The pattern &quot;*&quot; (and -re &quot;.*&quot;) will flush the output buffer without reading any more output from the process.
+
+         Normally,    the matched output is discarded from Expect's internal buffers.     This may be prevented by prefixing a pattern with the -notransfer flag.  This flag is especially useful in ex‐
+         perimenting (and can be abbreviated to &quot;-not&quot; for convenience while experimenting).
+
+         The spawn id associated with the matching output (or eof or full_buffer) is stored in expect_out(spawn_id).
+
+         The -timeout flag causes the current expect command to use the following value as a timeout instead of using the value of the timeout variable.
+
+         By default, patterns are matched against output from the current process, however the -i flag declares the output from the named spawn_id list be matched against any  following  patterns
+         (up to the next -i).  The spawn_id list should either be a whitespace separated list of spawn_ids or a variable referring to such a list of spawn_ids.
+
+         For example, the following example waits for &quot;connected&quot; from the current process, or &quot;busy&quot;, &quot;failed&quot; or &quot;invalid password&quot; from the spawn_id named by $proc2.
+
+         expect {
+             -i $proc2 busy {puts busy\n ; exp_continue}
+             -re &quot;failed|invalid password&quot; abort
+             timeout abort
+             connected
+         }
+
+         The value of the global variable any_spawn_id may be used to match patterns to any spawn_ids that are named with all other -i flags in the current expect command.     The spawn_id from a -i
+         flag with no associated pattern (i.e., followed immediately by another -i) is made available to any other patterns in the same expect command associated with any_spawn_id.
+
+         The -i flag may also name a global variable in which case the variable is read for a list of spawn ids.  The variable is reread whenever it changes.  This provides a way of changing  the
+         I/O source while the command is in execution.  Spawn ids provided this way are called &quot;indirect&quot; spawn ids.
+
+         Actions such as break and continue cause control structures (i.e., for, proc) to behave in the usual way.    The command exp_continue allows expect itself to continue executing rather than
+         returning as it normally would.
+
+         This is useful for avoiding explicit loops or repeated expect statements.    The following example is part of a fragment to automate rlogin.     The exp_continue avoids having to write a sec‐
+         ond expect statement (to look for the prompt again) if the rlogin prompts for a password.
+
+         expect {
+             Password: {
+             stty -echo
+             send_user &quot;password (for $user) on $host: &quot;
+             expect_user -re &quot;(.*)\n&quot;
+             send_user &quot;\n&quot;
+             send &quot;$expect_out(1,string)\r&quot;
+             stty echo
+             exp_continue
+             } incorrect {
+             send_user &quot;invalid password or account\n&quot;
+             exit
+             } timeout {
+             send_user &quot;connection to $host timed out\n&quot;
+             exit
+             } eof {
+             send_user \
+                 &quot;connection to host failed: $expect_out(buffer)&quot;
+             exit
+             } -re $prompt
+         }
+
+         For  example, the following fragment might help a user guide an interaction that is already totally automated.  In this case, the terminal is put into raw mode.  If the user presses &quot;+&quot;,
+         a variable is incremented.     If &quot;p&quot; is pressed, several returns are sent to the process, perhaps to poke it in some way, and &quot;i&quot; lets the  user  interact  with  the  process,  effectively
+         stealing away control from the script.  In each case, the exp_continue allows the current expect to continue pattern matching after executing the current action.
+
+         stty raw -echo
+         expect_after {
+             -i $user_spawn_id
+             &quot;p&quot; {send &quot;\r\r\r&quot;; exp_continue}
+             &quot;+&quot; {incr foo; exp_continue}
+             &quot;i&quot; {interact; exp_continue}
+             &quot;quit&quot; exit
+         }
+
+         By default, exp_continue resets the timeout timer.     The timer is not restarted, if exp_continue is called with the -continue_timer flag.
+
+       expect_after [expect_args]
+         works  identically     to the expect_before except that if patterns from both expect and expect_after can match, the expect pattern is used.    See the expect_before command for more informa‐
+         tion.
+
+       expect_background [expect_args]
+         takes the same arguments as expect, however it returns immediately.  Patterns are tested whenever new input arrives.  The pattern timeout and default are meaningless to expect_background
+         and are silently discarded.  Otherwise, the expect_background command uses expect_before and expect_after patterns just like expect does.
+
+         When  expect_background  actions  are being evaluated, background processing for the same spawn id is blocked.  Background processing is unblocked when the action completes.  While back‐
+         ground processing is blocked, it is possible to do a (foreground) expect on the same spawn id.
+
+         It is not possible to execute an expect while an expect_background is unblocked.  expect_background for a particular spawn id is deleted by declaring a  new  expect_background  with  the
+         same spawn id.  Declaring expect_background with no pattern removes the given spawn id from the ability to match patterns in the background.
+
+       expect_before [expect_args]
+         takes  the same arguments as expect, however it returns immediately.  Pattern-action pairs from the most recent expect_before with the same spawn id are implicitly added to any following
+         expect commands.  If a pattern matches, it is treated as if it had been specified in the expect command itself, and the associated body is executed in the context of the expect  command.
+         If patterns from both expect_before and expect can match, the expect_before pattern is used.
+
+         If no pattern is specified, the spawn id is not checked for any patterns.
+
+         Unless overridden by a -i flag, expect_before patterns match against the spawn id defined at the time that the expect_before command was executed (not when its pattern is matched).
+
+         The -info flag causes expect_before to return the current specifications of what patterns it will match.  By default, it reports on the current spawn id.    An optional spawn id specifica‐
+         tion may be given for information on that spawn id.  For example
+
+         expect_before -info -i $proc
+
+         At most one spawn id specification may be given.  The flag -indirect suppresses direct spawn ids that come only from indirect specifications.
+
+         Instead of a spawn id specification, the flag &quot;-all&quot; will cause &quot;-info&quot; to report on all spawn ids.
+
+         The output of the -info flag can be reused as the argument to expect_before.
+
+       expect_tty [expect_args]
+         is like expect but it reads characters from /dev/tty (i.e. keystrokes from the user).  By default, reading is performed in cooked mode.  Thus, lines must end with a return in  order  for
+         expect to see them.  This may be changed via stty (see the stty command below).
+
+       expect_user [expect_args]
+         is     like expect but it reads characters from stdin (i.e. keystrokes from the user).  By default, reading is performed in cooked mode.  Thus, lines must end with a return in order for ex‐
+         pect to see them.    This may be changed via stty (see the stty command below).
+
+       fork  creates a new process.  The new process is an exact copy of the current Expect process.  On success, fork returns 0 to the new (child) process and returns the process  ID     of  the  child
+         process to the parent process.  On failure (invariably due to lack of resources, e.g., swap space, memory), fork returns -1 to the parent process, and no child process is created.
+
+         Forked  processes    exit via the exit command, just like the original process.  Forked processes are allowed to write to the log files.  If you do not disable debugging or logging in most
+         of the processes, the result can be confusing.
+
+         Some pty implementations may be confused by multiple readers and writers, even momentarily.  Thus, it is safest to fork before spawning processes.
+
+       interact [string1 body1] ... [stringn [bodyn]]
+         gives control of the current process to the user, so that keystrokes are sent to the current process, and the stdout and stderr of the current process are returned.
+
+         String-body pairs may be specified as arguments, in which case the body is executed when the corresponding string is entered.  (By     default,  the    string    is  not     sent  to  the    current
+         process.)     The interpreter command is assumed, if the final body is missing.
+
+         If     the  arguments to the entire interact statement require more than one line, all the arguments may be &quot;braced&quot; into one so as to avoid terminating each line with a backslash.    In this
+         one case, the usual Tcl substitutions will occur despite the braces.
+
+         For example, the following command runs interact with the following string-body pairs defined:  When ^Z is pressed, Expect is suspended.  (The -reset flag restores the  terminal    modes.)
+         When  ^A  is  pressed, the user sees &quot;you typed a control-A&quot; and the process is sent a ^A.     When $ is pressed, the user sees the date.  When ^C is pressed, Expect exits.    If &quot;foo&quot; is en‐
+         tered, the user sees &quot;bar&quot;.  When ~~ is pressed, the Expect interpreter runs interactively.
+
+         set CTRLZ \032
+         interact {
+             -reset $CTRLZ {exec kill -STOP [pid]}
+             \001   {send_user &quot;you typed a control-A\n&quot;;
+                 send &quot;\001&quot;
+                }
+             $        {send_user &quot;The date is [clock format [clock seconds]].&quot;}
+             \003   exit
+             foo    {send_user &quot;bar&quot;}
+             ~~
+         }
+
+         In string-body pairs, strings are matched in the order they are listed as arguments.  Strings that partially match are not sent to the current process in anticipation  of     the  remainder
+         coming.   If  characters  are  then  entered such that there can no longer possibly be a match, only the part of the string will be sent to the process that cannot possibly begin another
+         match.  Thus, strings that are substrings of partial matches can match later, if the original strings that was attempting to be match ultimately fails.
+
+         By default, string matching is exact with no wild cards.  (In contrast, the expect command uses glob-style patterns by default.)  The -ex flag may be used to protect patterns that  might
+         otherwise match interact flags from doing so.  Any pattern beginning with a &quot;-&quot; should be protected this way.    (All strings starting with &quot;-&quot; are reserved for future options.)
+
+         The  -re flag forces the string to be interpreted as a regexp-style pattern.  In this case, matching substrings are stored in the variable interact_out similarly to the way expect stores
+         its output in the variable expect_out.  The -indices flag is similarly supported.
+
+         The pattern eof introduces an action that is executed upon end-of-file.  A separate eof pattern may also follow the -output flag in which case it is matched if an eof is    detected  while
+         writing output.  The default eof action is &quot;return&quot;, so that interact simply returns upon any EOF.
+
+         The  pattern  timeout introduces a timeout (in seconds) and action that is executed after no characters have been read for a given time.  The timeout pattern applies to the most recently
+         specified process.     There is no default timeout.  The special variable &quot;timeout&quot; (used by the expect command) has no affect on this timeout.
+
+         For example, the following statement could be used to autologout users who have not typed anything for an hour but who still get frequent system messages:
+
+         interact -input $user_spawn_id timeout 3600 return -output \
+             $spawn_id
+
+         If the pattern is the keyword null, and nulls are allowed (via the remove_nulls command), the corresponding body is executed if a single ASCII 0 is matched.  It is not possible to  match
+         0 bytes via glob or regexp patterns.
+
+         Prefacing a pattern with the flag -iwrite causes the variable interact_out(spawn_id) to be set to the spawn_id which matched the pattern (or eof).
+
+         Actions  such  as    break  and  continue cause control structures (i.e., for, proc) to behave in the usual way.  However return causes interact to return to its caller, while inter_return
+         causes interact to cause a return in its caller.  For example, if &quot;proc foo&quot; called interact which then executed the action inter_return, proc foo would return.  (This means that if  in‐
+         teract calls interpreter interactively typing return will cause the interact to continue, while inter_return will cause the interact to return to its caller.)
+
+         During  interact,    raw  mode  is used so that all characters may be passed to the current process.     If the current process does not catch job control signals, it will stop if sent a stop
+         signal (by default ^Z).  To restart it, send a continue signal (such as by &quot;kill -CONT &lt;pid&gt;&quot;).  If you really want to send a SIGSTOP to such a process (by  ^Z),    consider  spawning  csh
+         first and then running your program.  On the other hand, if you want to send a SIGSTOP to Expect itself, first call interpreter (perhaps by using an escape character), and then press ^Z.
+
+         String-body  pairs     can  be  used    as a shorthand for avoiding having to enter the interpreter and execute commands interactively.     The previous terminal mode is used while the body of a
+         string-body pair is being executed.
+
+         For speed, actions execute in raw mode by default.     The -reset flag resets the terminal to the mode it had before interact was executed (invariably, cooked mode).     Note  that  characters
+         entered  when  the mode is being switched may be lost (an unfortunate feature of the terminal driver on some systems).  The only reason to use -reset is if your action depends on running
+         in cooked mode.
+
+         The -echo flag sends characters that match the following pattern back to the process that generated them as each character is read.  This may be useful when the user needs to  see  feed‐
+         back from partially typed patterns.
+
+         If     a  pattern  is     being echoed but eventually fails to match, the characters are sent to the spawned process.  If the spawned process then echoes them, the user will see the characters
+         twice.  -echo is probably only appropriate in situations where the user is unlikely to not complete the pattern.  For example, the following  excerpt  is    from  rftp,  the  recursive-ftp
+         script,  where  the user is prompted to enter ~g, ~p, or ~l, to get, put, or list the current directory recursively.  These are so far away from the normal ftp commands, that the user is
+         unlikely to type ~ followed by anything else, except mistakenly, in which case, they'll probably just ignore the result anyway.
+
+         interact {
+             -echo ~g {getcurdirectory 1}
+             -echo ~l {getcurdirectory 0}
+             -echo ~p {putcurdirectory}
+         }
+
+         The -nobuffer flag sends characters that match the following pattern on to the output process as characters are read.
+
+         This is useful when you wish to let a program echo back the pattern.  For example, the following might be used to monitor where a person is dialing  (a  Hayes-style  modem).   Each  time
+         &quot;atd&quot; is seen the script logs the rest of the line.
+
+         proc lognumber {} {
+             interact -nobuffer -re &quot;(.*)\r&quot; return
+             puts $log &quot;[clock format [clock seconds]]: dialed $interact_out(1,string)&quot;
+         }
+
+         interact -nobuffer &quot;atd&quot; lognumber
+
+         During interact, previous use of log_user is ignored.  In particular, interact will force its output to be logged (sent to the standard output) since it is presumed the user doesn't wish
+         to interact blindly.
+
+         The -o flag causes any following key-body pairs to be applied to the output of the current process.  This can be useful, for example, when dealing with hosts that send  unwanted    charac‐
+         ters during a telnet session.
+
+         By default, interact expects the user to be writing stdin and reading stdout of the Expect process itself.     The -u flag (for &quot;user&quot;) makes interact look for the user as the process named
+         by its argument (which must be a spawned id).
+
+         This allows two unrelated processes to be joined together without using an explicit loop.    To aid in debugging, Expect diagnostics always go to stderr (or stdout for certain logging  and
+         debugging information).  For the same reason, the interpreter command will read interactively from stdin.
+
+         For  example,  the     following fragment creates a login process.  Then it dials the user (not shown), and finally connects the two together.  Of course, any process may be substituted for
+         login.  A shell, for example, would allow the user to work without supplying an account and password.
+
+         spawn login
+         set login $spawn_id
+         spawn tip modem
+         # dial back out to user
+         # connect user to login
+         interact -u $login
+
+         To send output to multiple processes, list each spawn id list prefaced by a -output flag.    Input for a group of output spawn ids may be determined by a spawn id list prefaced by a -input
+         flag.   (Both  -input  and -output may take lists in the same form as the -i flag in the expect command, except that any_spawn_id is not meaningful in interact.)    All following flags and
+         strings (or patterns) apply to this input until another -input flag appears.  If no -input appears, -output implies &quot;-input $user_spawn_id -output&quot;.  (Similarly, with  patterns  that  do
+         not have -input.)    If one -input is specified, it overrides $user_spawn_id.  If a second -input is specified, it overrides $spawn_id.  Additional -input flags may be specified.
+
+         The  two  implied    input processes default to having their outputs specified as $spawn_id and $user_spawn_id (in reverse).     If a -input flag appears with no -output flag, characters from
+         that process are discarded.
+
+         The -i flag introduces a replacement for the current spawn_id when no other -input or -output flags are used.  A -i flag implies a -o flag.
+
+         It is possible to change the processes that are being interacted with by using indirect spawn ids.     (Indirect spawn ids are described in the section on  the  expect  command.)   Indirect
+         spawn ids may be specified with the -i, -u, -input, or -output flags.
+
+       interpreter  [args]
+         causes the user to be interactively prompted for Expect and Tcl commands.    The result of each command is printed.
+
+         Actions  such  as break and continue cause control structures (i.e., for, proc) to behave in the usual way.  However return causes interpreter to return to its caller, while inter_return
+         causes interpreter to cause a return in its caller.  For example, if &quot;proc foo&quot; called interpreter which then executed the action inter_return, proc foo would return.  Any other    command
+         causes interpreter to continue prompting for new commands.
+
+         By     default,  the prompt contains two integers.  The first integer describes the depth of the evaluation stack (i.e., how many times Tcl_Eval has been called).  The second integer is the
+         Tcl history identifier.  The prompt can be set by defining a procedure called &quot;prompt1&quot; whose return value becomes the next prompt.  If a statement has open quotes,  parens,  braces,  or
+         brackets, a secondary prompt (by default &quot;+&gt; &quot;) is issued upon newline.  The secondary prompt may be set by defining a procedure called &quot;prompt2&quot;.
+
+         During interpreter, cooked mode is used, even if the its caller was using raw mode.
+
+         If stdin is closed, interpreter will return unless the -eof flag is used, in which case the subsequent argument is invoked.
+
+       log_file [args] [[-a] file]
+         If     a  filename  is provided, log_file will record a transcript of the session (beginning at that point) in the file.  log_file will stop recording if no argument is given.  Any previous
+         log file is closed.
+
+         Instead of a filename, a Tcl file identifier may be provided by using the -open or -leaveopen flags.  This is similar to the spawn command.  (See spawn for more info.)
+
+         The -a flag forces output to be logged that was suppressed by the log_user command.
+
+         By default, the log_file command appends to old files rather than truncating them, for the convenience of being able to turn logging off and on multiple times in one session.   To  trun‐
+         cate files, use the -noappend flag.
+
+         The -info flag causes log_file to return a description of the most recent non-info arguments given.
+
+       log_user -info|0|1
+         By     default,  the send/expect dialogue is logged to stdout (and a logfile if open).  The logging to stdout is disabled by the command &quot;log_user 0&quot; and reenabled by &quot;log_user 1&quot;.    Logging
+         to the logfile is unchanged.
+
+         The -info flag causes log_user to return a description of the most recent non-info arguments given.
+
+       match_max [-d] [-i spawn_id] [size]
+         defines the size of the buffer (in bytes) used internally by expect.  With no size argument, the current size is returned.
+
+         With the -d flag, the default size is set.     (The initial default is 2000.)     With the -i flag, the size is set for the named spawn id, otherwise it is set for the current process.
+
+       overlay [-# spawn_id] [-# spawn_id] [...] program [args]
+         executes program args in place of the current Expect program, which terminates.  A bare hyphen argument forces a hyphen in front of the command name as if it  was     a  login  shell.   All
+         spawn_ids are closed except for those named as arguments.    These are mapped onto the named file identifiers.
+
+         Spawn_ids    are mapped to file identifiers for the new program to inherit.    For example, the following line runs chess and allows it to be controlled by the current process - say, a chess
+         master.
+
+         overlay -0 $spawn_id -1 $spawn_id -2 $spawn_id chess
+
+         This is more efficient than &quot;interact -u&quot;, however, it sacrifices the ability to do programmed interaction since the Expect process is no longer in control.
+
+         Note that no controlling terminal is provided.  Thus, if you disconnect or remap standard input, programs that do job control (shells, login, etc) will not function properly.
+
+       parity [-d] [-i spawn_id] [value]
+         defines whether parity should be retained or stripped from the output of spawned processes.  If value is zero, parity is stripped, otherwise it is not stripped.  With no value  argument,
+         the current value is returned.
+
+         With the -d flag, the default parity value is set.     (The initial default is 1, i.e., parity is not stripped.)  With the -i flag, the parity value is set for the named spawn id, otherwise
+         it is set for the current process.
+
+       remove_nulls [-d] [-i spawn_id] [value]
+         defines whether nulls are retained or removed from the output of spawned processes before pattern matching or storing in the variable expect_out or interact_out.    If value  is  1,  nulls
+         are removed.  If value is 0, nulls are not removed.  With no value argument, the current value is returned.
+
+         With  the -d flag, the default value is set.  (The initial default is 1, i.e., nulls are removed.)     With the -i flag, the value is set for the named spawn id, otherwise it is set for the
+         current process.
+
+         Whether or not nulls are removed, Expect will record null bytes to the log and stdout.
+
+       send [-flags] string
+         Sends string to the current process.  For example, the command
+
+         send &quot;hello world\r&quot;
+
+         sends the characters, h e l l o &lt;blank&gt; w o r l d &lt;return&gt; to the current process.     (Tcl includes a printf-like command (called format) which can build arbitrarily complex strings.)
+
+         Characters are sent immediately although programs with line-buffered input will not read the characters until a return character is sent.    A return character is denoted &quot;\r&quot;.
+
+         The -- flag forces the next argument to be interpreted as a string rather than a flag.  Any string can be preceded by &quot;--&quot; whether or not it actually looks like a flag.  This provides  a
+         reliable mechanism to specify variable strings without being tripped up by those that accidentally look like flags.  (All strings starting with &quot;-&quot; are reserved for future options.)
+
+         The  -i  flag declares that the string be sent to the named spawn_id.  If the spawn_id is user_spawn_id, and the terminal is in raw mode, newlines in the string are translated to return-
+         newline sequences so that they appear as if the terminal was in cooked mode.  The -raw flag disables this translation.
+
+         The -null flag sends null characters (0 bytes).  By default, one null is sent.  An integer may follow the -null to indicate how many nulls to send.
+
+         The -break flag generates a break condition.  This only makes sense if the spawn id refers to a tty device opened via &quot;spawn -open&quot;.  If you have spawned    a  process  such  as  tip,  you
+         should use tip's convention for generating a break.
+
+         The  -s  flag  forces output to be sent &quot;slowly&quot;, thus avoid the common situation where a computer outtypes an input buffer that was designed for a human who would never outtype the same
+         buffer.  This output is controlled by the value of the variable &quot;send_slow&quot; which takes a two element list.  The first element is an integer that describes the number of    bytes  to  send
+         atomically.   The    second    element     is a real number that describes the number of seconds by which the atomic sends must be separated.  For example, &quot;set send_slow {10 .001}&quot; would force
+         &quot;send -s&quot; to send strings with 1 millisecond in between each 10 characters sent.
+
+         The -h flag forces output to be sent (somewhat) like a human actually typing.  Human-like delays appear between the characters.  (The algorithm is based upon a Weibull distribution, with
+         modifications  to suit this particular application.)  This output is controlled by the value of the variable &quot;send_human&quot; which takes a five element list.     The first two elements are av‐
+         erage interarrival time of characters in seconds.    The first is used by default.  The second is used at word endings, to simulate the subtle pauses that occasionally occur at such  tran‐
+         sitions.  The third parameter is a measure of variability where .1 is quite variable, 1 is reasonably variable, and 10 is quite invariable.  The extremes are 0 to infinity.  The last two
+         parameters are, respectively, a minimum and maximum interarrival time.  The minimum and maximum are used last and &quot;clip&quot; the final time.  The ultimate average can be quite different from
+         the given average if the minimum and maximum clip enough values.
+
+         As an example, the following command emulates a fast and consistent typist:
+
+         set send_human {.1 .3 1 .05 2}
+         send -h &quot;I'm hungry.  Let's do lunch.&quot;
+
+         while the following might be more suitable after a hangover:
+
+         set send_human {.4 .4 .2 .5 100}
+         send -h &quot;Goodd party lash night!&quot;
+
+         Note that errors are not simulated, although you can set up error correction situations yourself by embedding mistakes and corrections in a send argument.
+
+         The  flags     for sending null characters, for sending breaks, for forcing slow output and for human-style output are mutually exclusive. Only the one specified last will be used. Further‐
+         more, no string argument can be specified with the flags for sending null characters or breaks.
+
+         It is a good idea to precede the first send to a process by an expect.  expect will wait for the process to start, while send cannot.  In particular, if the first send  completes     before
+         the process starts running, you run the risk of having your data ignored.    In situations where interactive programs offer no initial prompt, you can precede send by a delay as in:
+
+         # To avoid giving hackers hints on how to break in,
+         # this system does not prompt for an external password.
+         # Wait for 5 seconds for exec to complete
+         spawn telnet very.secure.gov
+         sleep 5
+         send password\r
+
+         exp_send is an alias for send.  If you are using Expectk or some other variant of Expect in the Tk environment, send is defined by Tk for an entirely different purpose.  exp_send is pro‐
+         vided for compatibility between environments.  Similar aliases are provided for other Expect's other send commands.
+
+       send_error [-flags] string
+         is like send, except that the output is sent to stderr rather than the current process.
+
+       send_log [--] string
+         is like send, except that the string is only sent to the log file (see log_file.)    The arguments are ignored if no log file is open.
+
+       send_tty [-flags] string
+         is like send, except that the output is sent to /dev/tty rather than the current process.
+
+       send_user [-flags] string
+         is like send, except that the output is sent to stdout rather than the current process.
+
+       sleep seconds
+         causes the script to sleep for the given number of seconds.  Seconds may be a decimal number.  Interrupts (and Tk events if you are using Expectk) are processed while Expect sleeps.
+
+       spawn [args] program [args]
+         creates a new process running program args.  Its stdin, stdout and stderr are connected to Expect, so that they may be read and written by other Expect commands.    The connection is  bro‐
+         ken by close or if the process itself closes any of the file identifiers.
+
+         When  a  process  is  started  by    spawn,    the  variable  spawn_id is set to a descriptor referring to that process.  The process described by spawn_id is considered the current process.
+         spawn_id may be read or written, in effect providing job control.
+
+         user_spawn_id is a global variable containing a descriptor which refers to the user.  For example, when spawn_id is set to this value, expect behaves like expect_user.
+
+         error_spawn_id is a global variable containing a descriptor which refers to the standard error.  For example, when spawn_id is set to this value, send behaves like send_error.
+
+         tty_spawn_id is a global variable containing a descriptor which refers to /dev/tty.  If /dev/tty does not exist (such as in a cron, at, or batch script), then  tty_spawn_id  is  not  de‐
+         fined.  This may be tested as:
+
+         if {[info vars tty_spawn_id]} {
+             # /dev/tty exists
+         } else {
+             # /dev/tty doesn't exist
+             # probably in cron, batch, or at script
+         }
+
+         spawn returns the UNIX process id.     If no process is spawned, 0 is returned.  The variable spawn_out(slave,name) is set to the name of the pty slave device.
+
+         By default, spawn echoes the command name and arguments.  The -noecho flag stops spawn from doing this.
+
+         The -console flag causes console output to be redirected to the spawned process.  This is not supported on all systems.
+
+         Internally,  spawn uses a pty, initialized the same way as the user's tty.     This is further initialized so that all settings are &quot;sane&quot; (according to stty(1)).  If the variable stty_init
+         is defined, it is interpreted in the style of stty arguments as further configuration.  For example, &quot;set stty_init raw&quot; will cause further spawned processes's terminals to start in  raw
+         mode.  -nottycopy skips the initialization based on the user's tty.  -nottyinit skips the &quot;sane&quot; initialization.
+
+         Normally,    spawn  takes  little time to execute.  If you notice spawn taking a significant amount of time, it is probably encountering ptys that are wedged.  A number of tests are run on
+         ptys to avoid entanglements with errant processes.     (These take 10 seconds per wedged pty.)  Running Expect with the -d option will show if  Expect  is  encountering  many  ptys    in  odd
+         states.  If you cannot kill the processes to which these ptys are attached, your only recourse may be to reboot.
+
+         If     program cannot be spawned successfully because exec(2) fails (e.g. when program doesn't exist), an error message will be returned by the next interact or expect command as if program
+         had run and produced the error message as output.    This behavior is a natural consequence of the implementation of spawn.    Internally, spawn forks, after which the spawned process has no
+         way to communicate with the original Expect process except by communication via the spawn_id.
+
+         The  -open     flag  causes the next argument to be interpreted as a Tcl file identifier (i.e., returned by open.)  The spawn id can then be used as if it were a spawned process.  (The file
+         identifier should no longer be used.)  This lets you treat raw devices, files, and pipelines as spawned processes without using a pty.  0 is returned to indicate there is     no  associated
+         process.    When the connection to the spawned process is closed, so is the Tcl file identifier.  The -leaveopen flag is similar to -open except that -leaveopen causes the file identifier
+         to be left open even after the spawn id is closed.
+
+         The -pty flag causes a pty to be opened but no process spawned.  0 is returned to indicate there is no associated process.     Spawn_id is set as usual.
+
+         The variable spawn_out(slave,fd) is set to a file identifier corresponding to the pty slave.  It can be closed using &quot;close -slave&quot;.
+
+         The -ignore flag names a signal to be ignored in the spawned process.  Otherwise, signals get the default behavior.  Signals are named as in the trap command, except that each signal re‐
+         quires a separate flag.
+
+       strace level
+         causes following statements to be printed before being executed.  (Tcl's trace command traces variables.)    level indicates how far down in the call stack to trace.  For example, the fol‐
+         lowing command runs Expect while tracing the first 4 levels of calls, but none below that.
+
+         expect -c &quot;strace 4&quot; script.exp
+
+         The -info flag causes strace to return a description of the most recent non-info arguments given.
+
+       stty args
+         changes terminal modes similarly to the external stty command.
+
+         By default, the controlling terminal is accessed.    Other terminals can be accessed by appending &quot;&lt; /dev/tty...&quot; to the command.  (Note that the arguments should not  be  grouped    into  a
+         single argument.)
+
+         Requests  for  status  return it as the result of the command.  If no status is requested and the controlling terminal is accessed, the previous status of the raw and echo attributes are
+         returned in a form which can later be used by the command.
+
+         For example, the arguments raw or -cooked put the terminal into raw mode.    The arguments -raw or cooked put the terminal into cooked mode.     The arguments echo and -echo put the  terminal
+         into echo and noecho mode respectively.
+
+         The  following  example  illustrates how to temporarily disable echoing.  This could be used in otherwise-automatic scripts to avoid embedding passwords in them.    (See more discussion on
+         this under EXPECT HINTS below.)
+
+         stty -echo
+         send_user &quot;Password: &quot;
+         expect_user -re &quot;(.*)\n&quot;
+         set password $expect_out(1,string)
+         stty echo
+
+       system args
+         gives args to sh(1) as input, just as if it had been typed as a command from a terminal.  Expect waits until the shell terminates.     The return status from sh is handled the same way that
+         exec handles its return status.
+
+         In contrast to exec which redirects stdin and stdout to the script, system performs no redirection (other than that indicated by the string itself).  Thus, it is possible to use programs
+         which must talk directly to /dev/tty.  For the same reason, the results of system are not recorded in the log.
+
+       timestamp [args]
+         returns a timestamp.  With no arguments, the number of seconds since the epoch is returned.
+
+         The -format flag introduces a string which is returned but with substitutions made according to the POSIX rules for strftime.  For example %a is replaced by an abbreviated  weekday  name
+         (i.e., Sat).  Others are:
+         %a     abbreviated weekday name
+         %A     full weekday name
+         %b     abbreviated month name
+         %B     full month name
+         %c     date-time as in: Wed Oct  6 11:45:56 1993
+         %d     day of the month (01-31)
+         %H     hour (00-23)
+         %I     hour (01-12)
+         %j     day (001-366)
+         %m     month (01-12)
+         %M     minute (00-59)
+         %p     am or pm
+         %S     second (00-61)
+         %u     day (1-7, Monday is first day of week)
+         %U     week (00-53, first Sunday is first day of week one)
+         %V     week (01-53, ISO 8601 style)
+         %w     day (0-6)
+         %W     week (00-53, first Monday is first day of week one)
+         %x     date-time as in: Wed Oct  6 1993
+         %X     time as in: 23:59:59
+         %y     year (00-99)
+         %Y     year as in: 1993
+         %Z     timezone (or nothing if not determinable)
+         %%     a bare percent sign
+
+         Other % specifications are undefined.  Other characters will be passed through untouched.    Only the C locale is supported.
+
+         The -seconds flag introduces a number of seconds since the epoch to be used as a source from which to format.  Otherwise, the current time is used.
+
+         The -gmt flag forces timestamp output to use the GMT timezone.  With no flag, the local timezone is used.
+
+       trap [[command] signals]
+         causes  the  given     command  to be executed upon future receipt of any of the given signals.  The command is executed in the global scope.     If command is absent, the signal action is re‐
+         turned.  If command is the string SIG_IGN, the signals are ignored.  If command is the string SIG_DFL, the signals are result to the system default.  signals is either a single signal or
+         a list of signals.     Signals may be specified numerically or symbolically as per signal(3).     The &quot;SIG&quot; prefix may be omitted.
+
+         With no arguments (or the argument -number), trap returns the signal number of the trap command currently being executed.
+
+         The -code flag uses the return code of the command in place of whatever code Tcl was about to return when the command originally started running.
+
+         The -interp flag causes the command to be evaluated using the interpreter active at the time the command started running rather than when the trap was declared.
+
+         The -name flag causes the trap command to return the signal name of the trap command currently being executed.
+
+         The -max flag causes the trap command to return the largest signal number that can be set.
+
+         For example, the command &quot;trap {send_user &quot;Ouch!&quot;} SIGINT&quot; will print &quot;Ouch!&quot;  each time the user presses ^C.
+
+         By default, SIGINT (which can usually be generated by pressing ^C) and SIGTERM cause Expect to exit.  This is due to the following trap, created by default when Expect starts.
+
+         trap exit {SIGINT SIGTERM}
+
+         If you use the -D flag to start the debugger, SIGINT is redefined to start the interactive debugger.  This is due to the following trap:
+
+         trap {exp_debug 1} SIGINT
+
+         The debugger trap can be changed by setting the environment variable EXPECT_DEBUG_INIT to a new trap command.
+
+         You  can,    of  course,  override both of these just by adding trap commands to your script.  In particular, if you have your own &quot;trap exit SIGINT&quot;, this will override the debugger trap.
+         This is useful if you want to prevent users from getting to the debugger at all.
+
+         If you want to define your own trap on SIGINT but still trap to the debugger when it is running, use:
+
+         if {![exp_debug]} {trap mystuff SIGINT}
+
+         Alternatively, you can trap to the debugger using some other signal.
+
+         trap will not let you override the action for SIGALRM as this is used internally to Expect.  The disconnect command sets SIGALRM to SIG_IGN (ignore).  You can reenable this  as  long  as
+         you disable it during subsequent spawn commands.
+
+         See signal(3) for more info.
+
+       wait [args]
+         delays until a spawned process (or the current process if none is named) terminates.
+
+         wait normally returns a list of four integers.  The first integer is the pid of the process that was waited upon.    The second integer is the corresponding spawn id.  The third integer is
+         -1 if an operating system error occurred, or 0 otherwise.    If the third integer was 0, the fourth integer is the status returned by the spawned process.  If the third integer was -1, the
+         fourth integer is the value of errno set by the operating system.    The global variable errorCode is also set.
+
+         Additional     elements  may appear at the end of the return value from wait.     An optional fifth element identifies a class of information.  Currently, the only possible value for this ele‐
+         ment is CHILDKILLED in which case the next two values are the C-style signal name and a short textual description.
+
+         The -i flag declares the process to wait corresponding to the named spawn_id (NOT the process id).     Inside a SIGCHLD handler, it is possible to wait for any spawned process by using  the
+         spawn id -1.
+
+         The  -nowait flag causes the wait to return immediately with the indication of a successful wait.    When the process exits (later), it will automatically disappear without the need for an
+         explicit wait.
+
+         The wait command may also be used wait for a forked process using the arguments &quot;-i -1&quot;.  Unlike its use with spawned processes, this command can be executed at any time.      There     is  no
+         control over which process is reaped.  However, the return value can be checked for the process id.
+
+LIBRARIES
+       Expect  automatically  knows  about two built-in libraries for Expect scripts.  These are defined by the directories named in the variables exp_library and exp_exec_library.  Both are meant to
+       contain utility files that can be used by other scripts.
+
+       exp_library contains architecture-independent files.  exp_exec_library contains architecture-dependent files.  Depending on your system, both directories may be totally empty.     The  existence
+       of the file $exp_exec_library/cat-buffers describes whether your /bin/cat buffers by default.
+
+PRETTY-PRINTING
+       A vgrind definition is available for pretty-printing Expect scripts.  Assuming the vgrind definition supplied with the Expect distribution is correctly installed, you can use it as:
+
+       vgrind -lexpect file
+
+EXAMPLES
+       It many not be apparent how to put everything together that the help describes.  I encourage you to read and try out the examples in the example directory of the Expect distribution.  Some
+       of them are real programs.  Others are simply illustrative of certain techniques, and of course, a couple are just quick hacks.    The INSTALL file has a quick overview of these programs.
+
+       The Expect papers (see SEE ALSO) are also useful.  While some papers use syntax corresponding to earlier versions of Expect, the accompanying rationales are still valid and go into a lot  more
+       detail than this help.
+
+CAVEATS
+       Extensions  may    collide with Expect's command names.  For example, send is defined by Tk for an entirely different purpose.  For this reason, most of the Expect commands are also available as
+       &quot;exp_XXXX&quot;.  Commands and variables beginning with &quot;exp&quot;, &quot;inter&quot;, &quot;spawn&quot;, and &quot;timeout&quot; do not have aliases.  Use the extended command names if you need this compatibility  between  environ‐
+       ments.
+
+       Expect  takes  a     rather     liberal view of scoping.  In particular, variables read by commands specific to the Expect program will be sought first from the local scope, and if not found, in the
+       global scope.  For example, this obviates the need to place &quot;global timeout&quot; in every procedure you write that uses expect.  On the other hand, variables written are always in the local  scope
+       (unless    a  &quot;global&quot;  command has been issued).    The most common problem this causes is when spawn is executed in a procedure.  Outside the procedure, spawn_id no longer exists, so the spawned
+       process is no longer accessible simply because of scoping.  Add a &quot;global spawn_id&quot; to such a procedure.
+
+       If you cannot enable the multispawning capability (i.e., your system supports neither select (BSD *.*), poll (SVR&gt;2), nor something equivalent), Expect will only be able to  control  a     single
+       process    at  a  time.   In this case, do not attempt to set spawn_id, nor should you execute processes via exec while a spawned process is running.  Furthermore, you will not be able to expect
+       from multiple processes (including the user as one) at the same time.
+
+       Terminal parameters can have a big effect on scripts.  For example, if a script is written to look for echoing, it will misbehave if echoing is turned off.  For this reason, Expect forces sane
+       terminal parameters by default.    Unfortunately, this can make things unpleasant for other programs.  As an example, the emacs shell wants to change the &quot;usual&quot; mappings: newlines get mapped to
+       newlines instead of carriage-return newlines, and echoing is disabled.  This allows one to use emacs to edit the input line.  Unfortunately, Expect cannot possibly guess this.
+
+       You can request that Expect not override its default setting of terminal parameters, but you must then be very careful when writing scripts for such environments.  In the case of emacs,  avoid
+       depending upon things like echoing and end-of-line mappings.
+
+       The  commands  that  accepted  arguments braced into a single list (the expect variants and interact) use a heuristic to decide if the list is actually one argument or many.  The heuristic can
+       fail only in the case when the list actually does represent a single argument which has multiple embedded \n's with non-whitespace characters between them.  This seems sufficiently improbable,
+       however    the  argument  &quot;-nobrace&quot;  can    be  used to force a single argument to be handled as a single argument.     This could conceivably be used with machine-generated Expect code.  Similarly,
+       -brace forces a single argument to be handle as multiple patterns/actions.
+
+BUGS
+       It was really tempting to name the program &quot;sex&quot; (for either &quot;Smart EXec&quot; or &quot;Send-EXpect&quot;), but good sense (or perhaps just Puritanism) prevailed.
+
+       On some systems, when a shell is spawned, it complains about not being able to access the tty but runs anyway.  This means your system has a mechanism for gaining the controlling tty that  Ex‐
+       pect doesn't know about.     Please find out what it is, and send this information back to me.
+
+       Ultrix 4.1 (at least the latest versions around here) considers timeouts of above 1000000 to be equivalent to 0.
+
+       Digital UNIX 4.0A (and probably other versions) refuses to allocate ptys if you define a SIGCHLD handler.  See grantpt page for more info.
+
+       IRIX 6.0 does not handle pty permissions correctly so that if Expect attempts to allocate a pty previously used by someone else, it fails.  Upgrade to IRIX 6.1.
+
+       Telnet  (verified  only under SunOS 4.1.2) hangs if TERM is not set.  This is a problem under cron, at and in cgi scripts, which do not define TERM.  Thus, you must set it explicitly - to what
+       type is usually irrelevant.  It just has to be set to something!     The following probably suffices for most cases.
+
+       set env(TERM) vt100
+
+       Tip (verified only under BSDI BSD/OS 3.1 i386) hangs if SHELL and HOME are not set.  This is a problem under cron, at and in cgi scripts, which    do  not     define     these    environment  variables.
+       Thus, you must set them explicitly - to what type is usually irrelevant.     It just has to be set to something!  The following probably suffices for most cases.
+
+       set env(SHELL) /bin/sh
+       set env(HOME) /usr/local/bin
+
+       Some  implementations  of ptys are designed so that the kernel throws away any unread output after 10 to 15 seconds (actual number is implementation-dependent) after the process has closed the
+       file descriptor.     Thus Expect programs such as
+
+       spawn date
+       sleep 20
+       expect
+
+       will fail.  To avoid this, invoke non-interactive programs with exec rather than spawn.    While such situations are conceivable, in practice I have never encountered a situation     in  which  the
+       final output of a truly interactive program would be lost due to this behavior.
+
+       On the other hand, Cray UNICOS ptys throw away any unread output immediately after the process has closed the file descriptor.  I have reported this to Cray and they are working on a fix.
+
+       Sometimes  a delay is required between a prompt and a response, such as when a tty interface is changing UART settings or matching baud rates by looking for start/stop bits.  Usually, all this
+       is require is to sleep for a second or two.  A more robust technique is to retry until the hardware is ready to receive input.  The following example uses both strategies:
+
+       send &quot;speed 9600\r&quot;;
+       sleep 1
+       expect {
+           timeout {send &quot;\r&quot;; exp_continue}
+           $prompt
+       }
+
+       trap -code will not work with any command that sits in Tcl's event loop, such as sleep.    The problem is that in the event loop, Tcl discards the return codes  from  async  event  handlers.   A
+       workaround is to set a flag in the trap code.  Then check the flag immediately after the command (i.e., sleep).
+
+       The expect_background command ignores -timeout arguments and has no concept of timeouts in general.
+
+EXPECT HINTS
+       There are a couple of things about Expect that may be non-intuitive.  This section attempts to address some of these things with a couple of suggestions.
+
+       A common expect problem is how to recognize shell prompts.  Since these are customized differently by differently people and different shells, portably automating rlogin can be difficult with‐
+       out knowing the prompt.    A reasonable convention is to have users store a regular expression describing their prompt (in particular, the end of it) in the environment  variable     EXPECT_PROMPT.
+       Code like the following can be used.  If EXPECT_PROMPT doesn't exist, the code still has a good chance of functioning correctly.
+
+       set prompt &quot;(%|#|\\$) $&quot;         ;# default prompt
+       catch {set prompt $env(EXPECT_PROMPT)}
+
+       expect -re $prompt
+
+       I  encourage you to write expect patterns that include the end of whatever you expect to see.  This avoids the possibility of answering a question before seeing the entire thing.  In addition,
+       while you may well be able to answer questions before seeing them entirely, if you answer early,     your answer may appear echoed back in the middle of the question.  In other words, the result‐
+       ing dialogue will be correct but look scrambled.
+
+       Most  prompts  include  a space character at the end.  For example, the prompt from ftp is 'f', 't', 'p', '&gt;' and &lt;blank&gt;.  To match this prompt, you must account for each of these characters.
+       It is a common mistake not to include the blank.     Put the blank in explicitly.
+
+       If you use a pattern of the form X*, the * will match all the output received from the end of X to the last thing received.  This sounds intuitive but can be  somewhat    confusing  because  the
+       phrase &quot;last thing received&quot; can vary depending upon the speed of the computer and the processing of I/O both by the kernel and the device driver.
+
+       In  particular, humans tend to see program output arriving in huge chunks (atomically) when in reality most programs produce output one line at a time.    Assuming this is the case, the * in the
+       pattern of the previous paragraph may only match the end of the current line even though there seems to be more, because at the time of the match that was all the  output  that     had  been  re‐
+       ceived.
+
+       expect has no way of knowing that further output is coming unless your pattern specifically accounts for it.
+
+       Even  depending    on  line-oriented buffering is unwise.    Not only do programs rarely make promises about the type of buffering they do, but system indigestion can break output lines up so that
+       lines break at seemingly random places.    Thus, if you can express the last few characters of a prompt when writing patterns, it is wise to do so.
+
+       If you are waiting for a pattern in the last output of a program and the program emits something else instead, you will not be able to detect that with the timeout keyword.  The reason is that
+       expect will not timeout - instead it will get an eof indication.     Use that instead.  Even better, use both.  That way if that line is ever moved around, you won't have to edit the line itself.
+
+       Newlines     are  usually  converted  to  carriage    return,     linefeed  sequences when output by the terminal driver.  Thus, if you want a pattern that explicitly matches the two lines, from, say,
+       printf(&quot;foo\nbar&quot;), you should use the pattern &quot;foo\r\nbar&quot;.
+
+       A similar translation occurs when reading from the user, via expect_user.  In this case, when you press return, it will be translated to a newline.  If Expect then passes  that     to  a    program
+       which  sets its terminal to raw mode (like telnet), there is going to be a problem, as the program expects a true return.  (Some programs are actually forgiving in that they will automatically
+       translate newlines to returns, but most don't.)    Unfortunately, there is no way to find out that a program put its terminal into raw mode.
+
+       Rather than manually replacing newlines with returns, the solution is to use the command &quot;stty raw&quot;, which will stop the translation.  Note, however, that this means that you  will  no     longer
+       get the cooked line-editing features.
+
+       interact implicitly sets your terminal to raw mode so this problem will not arise then.
+
+       It is often useful to store passwords (or other private information) in Expect scripts.    This is not recommended since anything that is stored on a computer is susceptible to being accessed by
+       anyone.    Thus, interactively prompting for passwords from a script is a smarter idea than embedding them literally.  Nonetheless, sometimes such embedding is the only possibility.
+
+       Unfortunately, the UNIX file system has no direct way of creating scripts which are executable but unreadable.  Systems which support setgid shell scripts may indirectly simulate this as  fol‐
+       lows:
+
+       Create the Expect script (that contains the secret data) as usual.  Make its permissions be 750 (-rwxr-x---) and owned by a trusted group, i.e., a group which is allowed to read it.  If neces‐
+       sary, create a new group for this purpose.  Next, create a /bin/sh script with permissions 2751 (-rwxr-s--x) owned by the same group as before.
+
+       The result is a script which may be executed (and read) by anyone.  When invoked, it runs the Expect script.
+
+SEE ALSO
+       Tcl(3), libexpect(3)
+       &quot;Exploring Expect: A Tcl-Based Toolkit for Automating Interactive Programs&quot; by Don Libes, pp. 602, ISBN 1-56592-090-2, O'Reilly and Associates, 1995.
+       &quot;expect: Curing Those Uncontrollable Fits of Interactivity&quot; by Don Libes, Proceedings of the Summer 1990 USENIX Conference, Anaheim, California, June 11-15, 1990.
+       &quot;Using expect to Automate System Administration Tasks&quot; by Don Libes, Proceedings of the 1990 USENIX Large Installation Systems Administration Conference, Colorado  Springs,  Colorado,    October
+       17-19, 1990.
+       &quot;Tcl: An Embeddable Command Language&quot; by John Ousterhout, Proceedings of the Winter 1990 USENIX Conference, Washington, D.C., January 22-26, 1990.
+       &quot;expect: Scripts for Controlling Interactive Programs&quot; by Don Libes, Computing Systems, Vol. 4, No. 2, University of California Press Journals, November 1991.
+       &quot;Regression Testing and Conformance Testing Interactive Programs&quot;, by Don Libes, Proceedings of the Summer 1992 USENIX Conference, pp. 135-144, San Antonio, TX, June 12-15, 1992.
+       &quot;Kibitz - Connecting Multiple Interactive Programs Together&quot;, by Don Libes, Software - Practice &amp; Experience, John Wiley &amp; Sons, West Sussex, England, Vol. 23, No. 5, May, 1993.
+       &quot;A Debugger for Tcl Applications&quot;, by Don Libes, Proceedings of the 1993 Tcl/Tk Workshop, Berkeley, CA, June 10-11, 1993.
+
+AUTHOR
+       Don Libes, National Institute of Standards and Technology
+
+ACKNOWLEDGMENTS
+       Thanks to John Ousterhout for Tcl, and Scott Paisley for inspiration.  Thanks to Rob Savoye for Expect's autoconfiguration code.
+
+       The HISTORY file documents much of the evolution of expect.  It makes interesting reading and might give you further insight to this software.  Thanks to the people mentioned in it who sent me
+       bug fixes and gave other assistance.
+
+       Design and implementation of Expect was paid for in part by the U.S. government and is therefore in the public domain.  However the author and NIST would like credit if this program and  docu‐
+       mentation or portions of them are used.
+
+                                                29 December 1994                                              EXPECT(1)
+</code></pre><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/docs/tools/utility/exa/><div class="card my-1"><div class="card-body py-2">&larr; Exa</div></div></a><a class=ms-auto href=/docs/tools/utility/hexyl/><div class="card my-1"><div class="card-body py-2">Hexyl &rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-xxl><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Phoenix Journey - H@cking 'round the cable. Future is her3 '' Watch it @gain.</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline><li class=list-inline-item><a href=/privacy-policy/>Privacy</a></li></ul></div></div></div></footer><script src=/js/bootstrap.min.650aeec64c81d69d4c0850fc73c93da3f0330cec0a27772feed7f90f60baa5f47f1c45687d71914bdafd1c4e860d40f6dc08ede27a2f08431ff929c9a2d24621.js integrity="sha512-ZQruxkyB1p1MCFD8c8k9o/AzDOwKJ3cv7tf5D2C6pfR/HEVofXGRS9r9HE6GDUD23Ajt4novCEMf+SnJotJGIQ==" crossorigin=anonymous defer></script>
+<script src=/js/highlight.min.3f0a703c54cbed82ca277187e23cf2d272da28c15ce7e33cde685d40b53d741893d5b74d35bb2d20a81f56c289084f245bdd0c9145d39d7094d3dfbc62d1326a.js integrity="sha512-PwpwPFTL7YLKJ3GH4jzy0nLaKMFc5+M83mhdQLU9dBiT1bdNNbstIKgfVsKJCE8kW90MkUXTnXCU09+8YtEyag==" crossorigin=anonymous defer></script>
+<script src=/main.min.fe24b8c6f2d8a08f4a0cbaa8849bba360f471ff31b8b813a31d56742860f6d915541006eb0d35a8a42eb3318378b73c3c9a945472d491dfaf6f0325b4da464b9.js integrity="sha512-/iS4xvLYoI9KDLqohJu6Ng9HH/Mbi4E6MdVnQoYPbZFVQQBusNNaikLrMxg3i3PDyalFRy1JHfr28DJbTaRkuQ==" crossorigin=anonymous defer></script>
+<script src=https://nutek.neosb.net/index.min.6ea2d902a232243fc23791d4e0c96de8ef65036d8fce7935fef17e36cad07de3d0e66dea972ae70fb0f1417bd2019dc6ce33196a01c2396d51719a4476665d89.js integrity="sha512-bqLZAqIyJD/CN5HU4Mlt6O9lA22Pznk1/vF+NsrQfePQ5m3qlyrnD7DxQXvSAZ3GzjMZagHCOW1RcZpEdmZdiQ==" crossorigin=anonymous defer></script></body></html>

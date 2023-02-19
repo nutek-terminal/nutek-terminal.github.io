@@ -1,0 +1,617 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=https://nutek.neosb.net/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://nutek.neosb.net/fonts/vendor/jost/jost-v4-latin-500.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://nutek.neosb.net/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script><script>(()=>{Object.keys(localStorage).forEach(function(e){/^global-alert-/.test(e)&&document.documentElement.setAttribute("data-global-alert","closed")})})()</script><link rel=stylesheet href=https://nutek.neosb.net/main.870a72aafaf033a74d28a04462c3b527108bb8a69d569608f9dff502faea670875130874b56edfaf6335639cca181eeaa0f4735d8400d9608139380cacc6f97e.css integrity="sha512-hwpyqvrwM6dNKKBEYsO1JxCLuKadVpYI+d/1AvrqZwh1Ewh0tW7fr2M1Y5zKGB7qoPRzXYQA2WCBOTgMrMb5fg==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>Ripgrep - Nutek Terminal</title><meta name=description content="Description # ripgrep recursively searches directories for a regex pattern while respecting your gitignore rules.
+Installation # brew install ripgrep Usage # file | rg pattern Resources # ripgrep help # ripgrep 13.0.0 Andrew Gallant jamslam@gmail.com
+ripgrep (rg) recursively searches the current directory for a regex pattern. By default, ripgrep will respect gitignore rules and automatically skip hidden files/directories and binary files.
+Use -h for short descriptions and &amp;ndash;help for more details."><link rel=canonical href=https://nutek.neosb.net/docs/tools/utility/ripgrep/><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="Ripgrep"><meta property="og:description" content="Description # ripgrep recursively searches directories for a regex pattern while respecting your gitignore rules.
+Installation # brew install ripgrep Usage # file | rg pattern Resources # ripgrep help # ripgrep 13.0.0 Andrew Gallant jamslam@gmail.com
+ripgrep (rg) recursively searches the current directory for a regex pattern. By default, ripgrep will respect gitignore rules and automatically skip hidden files/directories and binary files.
+Use -h for short descriptions and &ndash;help for more details."><meta property="og:url" content="https://nutek.neosb.net/docs/tools/utility/ripgrep/"><meta property="og:site_name" content="Nutek Terminal"><meta property="article:published_time" content="2023-02-16T08:49:41+01:00"><meta property="article:modified_time" content="2023-02-16T08:49:41+01:00"><meta property="og:image" content="https://nutek.neosb.net/doks.png"><meta property="og:image:alt" content="Nutek Terminal"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@museyoucoulduse"><meta name=twitter:creator content="@museyoucoulduse"><meta name=twitter:title content="Ripgrep"><meta name=twitter:description content><meta name=twitter:image content="https://nutek.neosb.net/doks.png"><meta name=twitter:image:alt content="Ripgrep"><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://nutek.neosb.net/#/schema/organization/1","name":"Nutek","url":"https://nutek.neosb.net/","sameAs":["https://twitter.com/museyoucoulduse","https://github.com/nutek-terminal/"],"logo":{"@type":"ImageObject","@id":"https://nutek.neosb.net/#/schema/image/1","url":"https://nutek.neosb.net/logo-nutek.png","width":512,"height":512,"caption":"Nutek"},"image":{"@id":"https://nutek.neosb.net/#/schema/image/1"}},{"@type":"WebSite","@id":"https://nutek.neosb.net/#/schema/website/1","url":"https://nutek.neosb.net/","name":"Nutek Terminal","description":"Nutek Terminal is a system for building secure apps and assessing security of already working apps. Cybersecurity first class!","publisher":{"@id":"https://nutek.neosb.net/#/schema/organization/1"}},{"@type":"WebPage","@id":"https://nutek.neosb.net/docs/tools/utility/ripgrep/","url":"https://nutek.neosb.net/docs/tools/utility/ripgrep/","name":"Ripgrep","description":"","isPartOf":{"@id":"https://nutek.neosb.net/#/schema/website/1"},"about":{"@id":"https://nutek.neosb.net/#/schema/organization/1"},"datePublished":"2023-02-16T08:49:41CET","dateModified":"2023-02-16T08:49:41CET","breadcrumb":{"@id":"https://nutek.neosb.net/docs/tools/utility/ripgrep/#/schema/breadcrumb/1"},"primaryImageOfPage":{"@id":"https://nutek.neosb.net/docs/tools/utility/ripgrep/#/schema/image/2"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://nutek.neosb.net/docs/tools/utility/ripgrep/"]}]},{"@type":"BreadcrumbList","@id":"https://nutek.neosb.net/docs/tools/utility/ripgrep/#/schema/breadcrumb/1","name":"Breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"https://nutek.neosb.net/","url":"https://nutek.neosb.net/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@type":"WebPage","@id":"https://nutek.neosb.net/docs/","url":"https://nutek.neosb.net/docs/","name":"Docs"}},{"@type":"ListItem","position":3,"item":{"@type":"WebPage","@id":"https://nutek.neosb.net/docs/tools/","url":"https://nutek.neosb.net/docs/tools/","name":"Tools"}},{"@type":"ListItem","position":4,"item":{"@type":"WebPage","@id":"https://nutek.neosb.net/docs/tools/utility/","url":"https://nutek.neosb.net/docs/tools/utility/","name":"Utility"}},{"@type":"ListItem","position":5,"item":{"@id":"https://nutek.neosb.net/docs/tools/utility/ripgrep/"}}]},{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://nutek.neosb.net/#/schema/article/1","headline":"Ripgrep","description":"","isPartOf":{"@id":"https://nutek.neosb.net/docs/tools/utility/ripgrep/"},"mainEntityOfPage":{"@id":"https://nutek.neosb.net/docs/tools/utility/ripgrep/"},"datePublished":"2023-02-16T08:49:41CET","dateModified":"2023-02-16T08:49:41CET","author":{"@id":"https://nutek.neosb.net/#/schema/person/2"},"publisher":{"@id":"https://nutek.neosb.net/#/schema/organization/1"},"image":{"@id":"https://nutek.neosb.net/docs/tools/utility/ripgrep/#/schema/image/2"}}]},{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://nutek.neosb.net/#/schema/person/2","name":"Szymon Błaszczyński","sameAs":["https://twitter.com/museyoucoulduse","https://github.com/buahaha"]}]},{"@context":"https://schema.org","@graph":[{"@type":"ImageObject","@id":"https://nutek.neosb.net/docs/tools/utility/ripgrep/#/schema/image/2","url":"https://nutek.neosb.net/doks.png","contentUrl":"https://nutek.neosb.net/doks.png","caption":"Ripgrep"}]}]}</script><meta name=theme-color content="#fff"><link rel=icon href=https://nutek.neosb.net/favicon.ico sizes=any><link rel=icon type=image/svg+xml href=https://nutek.neosb.net/favicon.svg><link rel=apple-touch-icon sizes=180x180 href=https://nutek.neosb.net/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://nutek.neosb.net/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://nutek.neosb.net/favicon-16x16.png><link rel=manifest crossorigin=use-credentials href=https://nutek.neosb.net/site.webmanifest></head><body class="docs single"><div id=announcement data-id=global-alert-b57ba685a53596026347db8f33b67ed7 class="alert alert-primary alert-dismissible fade show text-lg-center" role=alert>Introducing the nutek-cent, Nutek Terminal flavor that is aimed at learning the basics...<br><a class="alert-link stretched-link" href=https://hub.docker.com/r/neosb/nutek-cent>Check out Docker Hub</a>.<br/> If you're an expert already, stay tuned for nutek-fedsec!
+<button type=button class=btn-close data-bs-dismiss=alert aria-label=Close></button></div><div class=sticky-top><div class=header-bar></div><header class="navbar navbar-expand-lg navbar-light doks-navbar"><nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation"><a class="navbar-brand order-0" href=/ aria-label="Nutek Terminal">Nutek Terminal</a>
+<button class="btn btn-link order-0 ms-auto d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasExample aria-controls=offcanvasExample><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button><div class="offcanvas offcanvas-start d-lg-none" tabindex=-1 id=offcanvasExample aria-labelledby=offcanvasExampleLabel><div class=header-bar></div><div class=offcanvas-header><h5 class=offcanvas-title id=offcanvasExampleLabel>Browse docs</h5><button type=button class=btn-close data-bs-dismiss=offcanvas aria-label=Close></button></div><div class=offcanvas-body><aside class="doks-sidebar mt-n3"><nav id=doks-docs-nav aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-5f2cae171c6192fa410df4385f7218aa aria-expanded=false>
+Prologue</button><div class=collapse id=section-5f2cae171c6192fa410df4385f7218aa><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/introduction/>Introduction</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/quick-start/>Quick Start</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-368fe771261fcb18f7988833c9294a20 aria-expanded=false>
+Tutorial</button><div class=collapse id=section-368fe771261fcb18f7988833c9294a20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-8625e1de7be14c39b1d14dc03d822497 aria-expanded=true>
+Tools</button><div class="collapse show" id=section-8625e1de7be14c39b1d14dc03d822497><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python-neovim/>Python & Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python3/>Python3. Filling the Tank</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/hugo/>Hugo. My First Website</a></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-dcfafcb4323b102c7e204555d313ba0a aria-expanded=false>
+Attack</button><div class=collapse id=section-dcfafcb4323b102c7e204555d313ba0a><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/sqlmap/>Sqlmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/xh/>Xh</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ettercap/>Ettercap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hashcat/>Hashcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hydra/>Hydra</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/john/>John</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/metasploit/>Metasploit</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/mitmproxy/>Mitmproxy</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ncrack/>Ncrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/socat/>Socat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/bettercap/>Bettercap</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-ca0dbad92a874b2f69b549293387925e aria-expanded=false>
+Code</button><div class=collapse id=section-ca0dbad92a874b2f69b549293387925e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/radare2/>Radare2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/rats/>Rats</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/zzuf/>Zzuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cppcheck/>Cppcheck</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/fmt/>Fmt</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/gitleaks/>Gitleaks</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/grpc/>Grpc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/hyperscan/>Hyperscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/jansson/>Jansson</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/adns/>Adns</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/bvi/>Bvi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/capstone/>Capstone</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cflow/>Cflow</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-4aec8c62cef82bc80bd3192973dc8609 aria-expanded=false>
+Defend</button><div class=collapse id=section-4aec8c62cef82bc80bd3192973dc8609><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/fwknop/>Fwknop</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/gnupg/>Gnupg</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/suricata/>Suricata</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-1e984dbe12c8a779526c498701b8bc73 aria-expanded=false>
+Knowledge</button><div class=collapse id=section-1e984dbe12c8a779526c498701b8bc73><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/testssl/>Testssl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/zmap/>Zmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/smap/>Smap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpdump/>Tcpdump</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpflow/>Tcpflow</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/termshark/>Termshark</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nmap/>Nmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nuclei/>Nuclei</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/p0f/>P0f</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/rustscan/>Rustscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/masscan/>Masscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/mtr/>Mtr</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nethogs/>Nethogs</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ngrep/>Ngrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nikto/>Nikto</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/fping/>Fping</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gau/>Gau</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gobuster/>Gobuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httpx/>Httpx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httrack/>Httrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/arp-scan/>Arp Scan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/bmon/>Bmon</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/dnsx/>Dnsx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/feroxbuster/>Feroxbuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ffuf/>Ffuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/amass/>Amass</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-94df2a6972ca1fa79411645fe9b42339 aria-expanded=true>
+Utility</button><div class="collapse show" id=section-94df2a6972ca1fa79411645fe9b42339><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/w3m/>W3m</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/whatmask/>Whatmask</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/viu/>Viu</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/tmux/>Tmux</a></li><li><a class="docs-link rounded active" href=https://nutek.neosb.net/docs/tools/utility/ripgrep/>Ripgrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/sd/>Sd</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/podman/>Podman</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/pandoc/>Pandoc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/openvpn/>Openvpn</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ouch/>Ouch</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/neovim/>Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/mdcat/>Mdcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/monolith/>Monolith</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/macchina/>Macchina</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jq/>Jq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jql/>Jql</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/htmlq/>Htmlq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ipcalc/>Ipcalc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/irssi/>Irssi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/exa/>Exa</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/expect/>Expect</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/hexyl/>Hexyl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dos2unix/>Dos2unix</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dust/>Dust</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bat/>Bat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bottom/>Bottom</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/discount/>Discount</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/argon2/>Argon2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/atuin/>Atuin</a></li></ul></div></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/bing-search/>Bing Search</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-6a26f548831e6a8c26bfbbd9f6ec61e0 aria-expanded=false>
+Help</button><div class=collapse id=section-6a26f548831e6a8c26bfbbd9f6ec61e0><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/how-to-update/>How to Update</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/troubleshooting/>Troubleshooting</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/faq/>FAQ</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/nutek-versions/>Nutek Versions</a></li></ul></div></li></ul></nav></aside></div></div><button class="btn btn-menu order-2 d-block d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasDoks aria-controls=offcanvasDoks aria-label="Open main menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex=-1 id=offcanvasDoks data-bs-backdrop=true aria-labelledby=offcanvasDoksLabel><div class="header-bar d-lg-none"></div><div class="offcanvas-header d-lg-none"><h2 class="h5 offcanvas-title ps-2" id=offcanvasDoksLabel><a class=text-dark href=/>Nutek Terminal</a></h2><button type=button class="btn-close text-reset me-2" data-bs-dismiss=offcanvas aria-label="Close main menu"></button></div><div class="offcanvas-body p-4 p-lg-0"><ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto"><li class=nav-item><a class="nav-link ps-0 py-1 active" href=/docs/prologue/introduction/>Docs</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/blog/>Blog</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>Get Started
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/docs/prologue/quick-start/>Quick Start</a></li><li><a class=dropdown-item href=/docs/tutorial/>Tutorial</a></li><li><a class=dropdown-item href=/docs/tools>Tools</a></li></ul></li></ul><hr class="text-black-50 my-4 d-lg-none"><form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2"><input id=search class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded d-none"></div></form><hr class="text-black-50 my-4 d-lg-none"><ul class="nav flex-column flex-lg-row"><li class=nav-item><a class="nav-link social-link" href=https://github.com/nutek-terminal><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg><small class="ms-2 d-lg-none">GitHub</small></a></li><li class=nav-item><a class="nav-link social-link" href="https://open.spotify.com/artist/420HxhBO1pJTMyQR6oMua4?si=eyExY0VMRM6z1OkpP2jPBA"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 496 512"><path fill="#1ed760" d="M248 8C111.1 8 0 119.1.0 256s111.1 248 248 248 248-111.1 248-248S384.9 8 248 8z"/><path d="M406.6 231.1c-5.2.0-8.4-1.3-12.9-3.9-71.2-42.5-198.5-52.7-280.9-29.7-3.6 1-8.1 2.6-12.9 2.6-13.2.0-23.3-10.3-23.3-23.6.0-13.6 8.4-21.3 17.4-23.9 35.2-10.3 74.6-15.2 117.5-15.2 73 0 149.5 15.2 205.4 47.8 7.8 4.5 12.9 10.7 12.9 22.6.0 13.6-11 23.3-23.2 23.3zm-31 76.2c-5.2.0-8.7-2.3-12.3-4.2-62.5-37-155.7-51.9-238.6-29.4-4.8 1.3-7.4 2.6-11.9 2.6-10.7.0-19.4-8.7-19.4-19.4s5.2-17.8 15.5-20.7c27.8-7.8 56.2-13.6 97.8-13.6 64.9.0 127.6 16.1 177 45.5 8.1 4.8 11.3 11 11.3 19.7-.1 10.8-8.5 19.5-19.4 19.5zm-26.9 65.6c-4.2.0-6.8-1.3-10.7-3.6-62.4-37.6-135-39.2-206.7-24.5-3.9 1-9 2.6-11.9 2.6-9.7.0-15.8-7.7-15.8-15.8.0-10.3 6.1-15.2 13.6-16.8 81.9-18.1 165.6-16.5 237 26.2 6.1 3.9 9.7 7.4 9.7 16.5s-7.1 15.4-15.2 15.4z"/></svg><small class="ms-2 d-lg-none">Spotify</small></a></li><li class=nav-item><a class="nav-link social-link" href=https://twitter.com/museyoucoulduse><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9.0 01-3.14 1.53 4.48 4.48.0 00-7.86 3v1A10.66 10.66.0 013 4s-4 9 5 13a11.64 11.64.0 01-7 2c9 5 20 0 20-11.5a4.5 4.5.0 00-.08-.83A7.72 7.72.0 0023 3z"/></svg><small class="ms-2 d-lg-none">Twitter</small></a></li></ul><hr class="text-black-50 my-4 d-lg-none"><button id=mode class="btn btn-link" type=button aria-label="Toggle user interface mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button></div></div></nav></header></div><div class=container-xxl><aside class=doks-sidebar><nav id=doks-docs-nav class="collapse d-lg-none" aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-5f2cae171c6192fa410df4385f7218aa aria-expanded=false>
+Prologue</button><div class=collapse id=section-5f2cae171c6192fa410df4385f7218aa><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/introduction/>Introduction</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/quick-start/>Quick Start</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-368fe771261fcb18f7988833c9294a20 aria-expanded=false>
+Tutorial</button><div class=collapse id=section-368fe771261fcb18f7988833c9294a20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-8625e1de7be14c39b1d14dc03d822497 aria-expanded=true>
+Tools</button><div class="collapse show" id=section-8625e1de7be14c39b1d14dc03d822497><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python-neovim/>Python & Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python3/>Python3. Filling the Tank</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/hugo/>Hugo. My First Website</a></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-dcfafcb4323b102c7e204555d313ba0a aria-expanded=false>
+Attack</button><div class=collapse id=section-dcfafcb4323b102c7e204555d313ba0a><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/sqlmap/>Sqlmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/xh/>Xh</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ettercap/>Ettercap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hashcat/>Hashcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hydra/>Hydra</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/john/>John</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/metasploit/>Metasploit</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/mitmproxy/>Mitmproxy</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ncrack/>Ncrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/socat/>Socat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/bettercap/>Bettercap</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-ca0dbad92a874b2f69b549293387925e aria-expanded=false>
+Code</button><div class=collapse id=section-ca0dbad92a874b2f69b549293387925e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/radare2/>Radare2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/rats/>Rats</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/zzuf/>Zzuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cppcheck/>Cppcheck</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/fmt/>Fmt</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/gitleaks/>Gitleaks</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/grpc/>Grpc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/hyperscan/>Hyperscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/jansson/>Jansson</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/adns/>Adns</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/bvi/>Bvi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/capstone/>Capstone</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cflow/>Cflow</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-4aec8c62cef82bc80bd3192973dc8609 aria-expanded=false>
+Defend</button><div class=collapse id=section-4aec8c62cef82bc80bd3192973dc8609><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/fwknop/>Fwknop</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/gnupg/>Gnupg</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/suricata/>Suricata</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-1e984dbe12c8a779526c498701b8bc73 aria-expanded=false>
+Knowledge</button><div class=collapse id=section-1e984dbe12c8a779526c498701b8bc73><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/testssl/>Testssl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/zmap/>Zmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/smap/>Smap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpdump/>Tcpdump</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpflow/>Tcpflow</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/termshark/>Termshark</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nmap/>Nmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nuclei/>Nuclei</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/p0f/>P0f</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/rustscan/>Rustscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/masscan/>Masscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/mtr/>Mtr</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nethogs/>Nethogs</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ngrep/>Ngrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nikto/>Nikto</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/fping/>Fping</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gau/>Gau</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gobuster/>Gobuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httpx/>Httpx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httrack/>Httrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/arp-scan/>Arp Scan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/bmon/>Bmon</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/dnsx/>Dnsx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/feroxbuster/>Feroxbuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ffuf/>Ffuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/amass/>Amass</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-94df2a6972ca1fa79411645fe9b42339 aria-expanded=true>
+Utility</button><div class="collapse show" id=section-94df2a6972ca1fa79411645fe9b42339><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/w3m/>W3m</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/whatmask/>Whatmask</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/viu/>Viu</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/tmux/>Tmux</a></li><li><a class="docs-link rounded active" href=https://nutek.neosb.net/docs/tools/utility/ripgrep/>Ripgrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/sd/>Sd</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/podman/>Podman</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/pandoc/>Pandoc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/openvpn/>Openvpn</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ouch/>Ouch</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/neovim/>Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/mdcat/>Mdcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/monolith/>Monolith</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/macchina/>Macchina</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jq/>Jq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jql/>Jql</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/htmlq/>Htmlq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ipcalc/>Ipcalc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/irssi/>Irssi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/exa/>Exa</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/expect/>Expect</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/hexyl/>Hexyl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dos2unix/>Dos2unix</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dust/>Dust</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bat/>Bat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bottom/>Bottom</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/discount/>Discount</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/argon2/>Argon2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/atuin/>Atuin</a></li></ul></div></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/bing-search/>Bing Search</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-6a26f548831e6a8c26bfbbd9f6ec61e0 aria-expanded=false>
+Help</button><div class=collapse id=section-6a26f548831e6a8c26bfbbd9f6ec61e0><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/how-to-update/>How to Update</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/troubleshooting/>Troubleshooting</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/faq/>FAQ</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/nutek-versions/>Nutek Versions</a></li></ul></div></li></ul></nav></aside></div><div class="wrap container-xxl" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class=docs-links aria-label="Main navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-5f2cae171c6192fa410df4385f7218aa aria-expanded=false>
+Prologue</button><div class=collapse id=section-5f2cae171c6192fa410df4385f7218aa><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/introduction/>Introduction</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/prologue/quick-start/>Quick Start</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-368fe771261fcb18f7988833c9294a20 aria-expanded=false>
+Tutorial</button><div class=collapse id=section-368fe771261fcb18f7988833c9294a20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-8625e1de7be14c39b1d14dc03d822497 aria-expanded=true>
+Tools</button><div class="collapse show" id=section-8625e1de7be14c39b1d14dc03d822497><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python-neovim/>Python & Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/python3/>Python3. Filling the Tank</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/hugo/>Hugo. My First Website</a></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-dcfafcb4323b102c7e204555d313ba0a aria-expanded=false>
+Attack</button><div class=collapse id=section-dcfafcb4323b102c7e204555d313ba0a><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/sqlmap/>Sqlmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/xh/>Xh</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ettercap/>Ettercap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hashcat/>Hashcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/hydra/>Hydra</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/john/>John</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/metasploit/>Metasploit</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/mitmproxy/>Mitmproxy</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/ncrack/>Ncrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/socat/>Socat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/attack/bettercap/>Bettercap</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-ca0dbad92a874b2f69b549293387925e aria-expanded=false>
+Code</button><div class=collapse id=section-ca0dbad92a874b2f69b549293387925e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/radare2/>Radare2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/rats/>Rats</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/zzuf/>Zzuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cppcheck/>Cppcheck</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/fmt/>Fmt</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/gitleaks/>Gitleaks</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/grpc/>Grpc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/hyperscan/>Hyperscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/jansson/>Jansson</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/adns/>Adns</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/bvi/>Bvi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/capstone/>Capstone</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/code/cflow/>Cflow</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-4aec8c62cef82bc80bd3192973dc8609 aria-expanded=false>
+Defend</button><div class=collapse id=section-4aec8c62cef82bc80bd3192973dc8609><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/fwknop/>Fwknop</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/gnupg/>Gnupg</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/defend/suricata/>Suricata</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-1e984dbe12c8a779526c498701b8bc73 aria-expanded=false>
+Knowledge</button><div class=collapse id=section-1e984dbe12c8a779526c498701b8bc73><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/testssl/>Testssl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/zmap/>Zmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/smap/>Smap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpdump/>Tcpdump</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/tcpflow/>Tcpflow</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/termshark/>Termshark</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nmap/>Nmap</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nuclei/>Nuclei</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/p0f/>P0f</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/rustscan/>Rustscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/masscan/>Masscan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/mtr/>Mtr</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nethogs/>Nethogs</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ngrep/>Ngrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/nikto/>Nikto</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/fping/>Fping</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gau/>Gau</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/gobuster/>Gobuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httpx/>Httpx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/httrack/>Httrack</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/arp-scan/>Arp Scan</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/bmon/>Bmon</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/dnsx/>Dnsx</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/feroxbuster/>Feroxbuster</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/ffuf/>Ffuf</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/know/amass/>Amass</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-94df2a6972ca1fa79411645fe9b42339 aria-expanded=true>
+Utility</button><div class="collapse show" id=section-94df2a6972ca1fa79411645fe9b42339><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/w3m/>W3m</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/whatmask/>Whatmask</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/viu/>Viu</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/tmux/>Tmux</a></li><li><a class="docs-link rounded active" href=https://nutek.neosb.net/docs/tools/utility/ripgrep/>Ripgrep</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/sd/>Sd</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/podman/>Podman</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/pandoc/>Pandoc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/openvpn/>Openvpn</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ouch/>Ouch</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/neovim/>Neovim</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/mdcat/>Mdcat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/monolith/>Monolith</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/macchina/>Macchina</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jq/>Jq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/jql/>Jql</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/htmlq/>Htmlq</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/ipcalc/>Ipcalc</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/irssi/>Irssi</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/exa/>Exa</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/expect/>Expect</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/hexyl/>Hexyl</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dos2unix/>Dos2unix</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/dust/>Dust</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bat/>Bat</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/bottom/>Bottom</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/discount/>Discount</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/argon2/>Argon2</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/utility/atuin/>Atuin</a></li></ul></div></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/tools/bing-search/>Bing Search</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-6a26f548831e6a8c26bfbbd9f6ec61e0 aria-expanded=false>
+Help</button><div class=collapse id=section-6a26f548831e6a8c26bfbbd9f6ec61e0><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/how-to-update/>How to Update</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/troubleshooting/>Troubleshooting</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/faq/>FAQ</a></li><li><a class="docs-link rounded" href=https://nutek.neosb.net/docs/help/nutek-versions/>Nutek Versions</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#installation>Installation</a></li><li><a href=#usage>Usage</a></li><li><a href=#resources>Resources</a></li><li><a href=#help>help</a></li><li><a href=#user-guide>User Guide</a><ul><li><a href=#table-of-contents>Table of Contents</a></li><li><a href=#basics>Basics</a></li><li><a href=#recursive-search>Recursive search</a></li><li><a href=#automatic-filtering>Automatic filtering</a></li><li><a href=#manual-filtering-globs>Manual filtering: globs</a></li><li><a href=#manual-filtering-file-types>Manual filtering: file types</a></li><li><a href=#replacements>Replacements</a></li><li><a href=#configuration-file>Configuration file</a></li><li><a href=#file-encoding>File encoding</a></li><li><a href=#binary-data>Binary data</a></li><li><a href=#preprocessor>Preprocessor</a></li><li><a href=#common-options>Common options</a></li></ul></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#installation>Installation</a></li><li><a href=#usage>Usage</a></li><li><a href=#resources>Resources</a></li><li><a href=#help>help</a></li><li><a href=#user-guide>User Guide</a><ul><li><a href=#table-of-contents>Table of Contents</a></li><li><a href=#basics>Basics</a></li><li><a href=#recursive-search>Recursive search</a></li><li><a href=#automatic-filtering>Automatic filtering</a></li><li><a href=#manual-filtering-globs>Manual filtering: globs</a></li><li><a href=#manual-filtering-file-types>Manual filtering: file types</a></li><li><a href=#replacements>Replacements</a></li><li><a href=#configuration-file>Configuration file</a></li><li><a href=#file-encoding>File encoding</a></li><li><a href=#binary-data>Binary data</a></li><li><a href=#preprocessor>Preprocessor</a></li><li><a href=#common-options>Common options</a></li></ul></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl-9"><h1>Ripgrep</h1><p class=lead></p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#installation>Installation</a></li><li><a href=#usage>Usage</a></li><li><a href=#resources>Resources</a></li><li><a href=#help>help</a></li><li><a href=#user-guide>User Guide</a><ul><li><a href=#table-of-contents>Table of Contents</a></li><li><a href=#basics>Basics</a></li><li><a href=#recursive-search>Recursive search</a></li><li><a href=#automatic-filtering>Automatic filtering</a></li><li><a href=#manual-filtering-globs>Manual filtering: globs</a></li><li><a href=#manual-filtering-file-types>Manual filtering: file types</a></li><li><a href=#replacements>Replacements</a></li><li><a href=#configuration-file>Configuration file</a></li><li><a href=#file-encoding>File encoding</a></li><li><a href=#binary-data>Binary data</a></li><li><a href=#preprocessor>Preprocessor</a></li><li><a href=#common-options>Common options</a></li></ul></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#description>Description</a></li><li><a href=#installation>Installation</a></li><li><a href=#usage>Usage</a></li><li><a href=#resources>Resources</a></li><li><a href=#help>help</a></li><li><a href=#user-guide>User Guide</a><ul><li><a href=#table-of-contents>Table of Contents</a></li><li><a href=#basics>Basics</a></li><li><a href=#recursive-search>Recursive search</a></li><li><a href=#automatic-filtering>Automatic filtering</a></li><li><a href=#manual-filtering-globs>Manual filtering: globs</a></li><li><a href=#manual-filtering-file-types>Manual filtering: file types</a></li><li><a href=#replacements>Replacements</a></li><li><a href=#configuration-file>Configuration file</a></li><li><a href=#file-encoding>File encoding</a></li><li><a href=#binary-data>Binary data</a></li><li><a href=#preprocessor>Preprocessor</a></li><li><a href=#common-options>Common options</a></li></ul></li></ul></nav></div></nav><h2 id=description>Description <a href=#description class=anchor aria-hidden=true>#</a></h2><p>ripgrep recursively searches directories for a regex pattern while respecting your gitignore rules.</p><h2 id=installation>Installation <a href=#installation class=anchor aria-hidden=true>#</a></h2><pre><code class=language-bash>brew install ripgrep
+</code></pre><h2 id=usage>Usage <a href=#usage class=anchor aria-hidden=true>#</a></h2><pre><code class=language-bash>file | rg pattern
+</code></pre><h2 id=resources>Resources <a href=#resources class=anchor aria-hidden=true>#</a></h2><ul><li><a href=https://github.com/BurntSushi/ripgrep>ripgrep</a></li></ul><h2 id=help>help <a href=#help class=anchor aria-hidden=true>#</a></h2><p>ripgrep 13.0.0
+Andrew Gallant <a href=mailto:jamslam@gmail.com>jamslam@gmail.com</a></p><p>ripgrep (rg) recursively searches the current directory for a regex pattern.
+By default, ripgrep will respect gitignore rules and automatically skip hidden
+files/directories and binary files.</p><p>Use -h for short descriptions and &ndash;help for more details.</p><p>Project home page: https://github.com/BurntSushi/ripgrep</p><h2 id=user-guide>User Guide <a href=#user-guide class=anchor aria-hidden=true>#</a></h2><p>This guide is intended to give an elementary description of ripgrep and an
+overview of its capabilities. This guide assumes that ripgrep is
+<a href=README.md#installation>installed</a>
+and that readers have passing familiarity with using command line tools. This
+also assumes a Unix-like system, although most commands are probably easily
+translatable to any command line shell environment.</p><h3 id=table-of-contents>Table of Contents <a href=#table-of-contents class=anchor aria-hidden=true>#</a></h3><ul><li><a href=#basics>Basics</a></li><li><a href=#recursive-search>Recursive search</a></li><li><a href=#automatic-filtering>Automatic filtering</a></li><li><a href=#manual-filtering-globs>Manual filtering: globs</a></li><li><a href=#manual-filtering-file-types>Manual filtering: file types</a></li><li><a href=#replacements>Replacements</a></li><li><a href=#configuration-file>Configuration file</a></li><li><a href=#file-encoding>File encoding</a></li><li><a href=#binary-data>Binary data</a></li><li><a href=#preprocessor>Preprocessor</a></li><li><a href=#common-options>Common options</a></li></ul><h3 id=basics>Basics <a href=#basics class=anchor aria-hidden=true>#</a></h3><p>ripgrep is a command line tool that searches your files for patterns that
+you give it. ripgrep behaves as if reading each file line by line. If a line
+matches the pattern provided to ripgrep, then that line will be printed. If a
+line does not match the pattern, then the line is not printed.</p><p>The best way to see how this works is with an example. To show an example, we
+need something to search. Let&rsquo;s try searching ripgrep&rsquo;s source code. First
+grab a ripgrep source archive from
+https://github.com/BurntSushi/ripgrep/archive/0.7.1.zip
+and extract it:</p><pre><code class=language-text>curl -LO https://github.com/BurntSushi/ripgrep/archive/0.7.1.zip
+unzip 0.7.1.zip
+cd ripgrep-0.7.1
+ls
+benchsuite  grep       tests         Cargo.toml       LICENSE-MIT
+ci          ignore     wincolor      CHANGELOG.md     README.md
+complete    pkg        appveyor.yml  compile          snapcraft.yaml
+doc         src        build.rs      COPYING          UNLICENSE
+globset     termcolor  Cargo.lock    HomebrewFormula
+</code></pre><p>Let&rsquo;s try our first search by looking for all occurrences of the word <code>fast</code>
+in <code>README.md</code>:</p><pre><code class=language-text>rg fast README.md
+75:  faster than both. (N.B. It is not, strictly speaking, a &quot;drop-in&quot; replacement
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast while
+119:### Is it really faster than everything else?
+124:Summarizing, `ripgrep` is fast because:
+129:  optimizations to make searching very fast.
+</code></pre><p>(<strong>Note:</strong> If you see an error message from ripgrep saying that it didn&rsquo;t
+search any files, then re-run ripgrep with the <code>--debug</code> flag. One likely cause
+of this is that you have a <code>*</code> rule in a <code>$HOME/.gitignore</code> file.)</p><p>So what happened here? ripgrep read the contents of <code>README.md</code>, and for each
+line that contained <code>fast</code>, ripgrep printed it to your terminal. ripgrep also
+included the line number for each line by default. If your terminal supports
+colors, then your output might actually look something like this screenshot:</p><p><a href=https://burntsushi.net/stuff/ripgrep-guide-sample.png><img class="img-fluid lazyload blur-up" src=https://burntsushi.net/stuff/ripgrep-guide-sample.png alt="A screenshot of a sample search ripgrep"></a></p><p>In this example, we searched for something called a &ldquo;literal&rdquo; string. This
+means that our pattern was just some normal text that we asked ripgrep to
+find. But ripgrep supports the ability to specify patterns via <a href=https://en.wikipedia.org/wiki/Regular_expression>regular
+expressions</a>. As an example,
+what if we wanted to find all lines have a word that contains <code>fast</code> followed
+by some number of other letters?</p><pre><code class=language-text>rg 'fast\w+' README.md
+75:  faster than both. (N.B. It is not, strictly speaking, a &quot;drop-in&quot; replacement
+119:### Is it really faster than everything else?
+</code></pre><p>In this example, we used the pattern <code>fast\w+</code>. This pattern tells ripgrep to
+look for any lines containing the letters <code>fast</code> followed by <em>one or more</em>
+word-like characters. Namely, <code>\w</code> matches characters that compose words (like
+<code>a</code> and <code>L</code> but unlike <code>.</code> and <code>" "</code> [remove the quotes]). The <code>+</code> after the <code>\w</code> means, &ldquo;match the
+previous pattern one or more times.&rdquo; This means that the word <code>fast</code> won&rsquo;t
+match because there are no word characters following the final <code>t</code>. But a word
+like <code>faster</code> will. <code>faste</code> would also match!</p><p>Here&rsquo;s a different variation on this same theme:</p><pre><code class=language-text>rg 'fast\w*' README.md
+75:  faster than both. (N.B. It is not, strictly speaking, a &quot;drop-in&quot; replacement
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast while
+119:### Is it really faster than everything else?
+124:Summarizing, `ripgrep` is fast because:
+129:  optimizations to make searching very fast.
+</code></pre><p>In this case, we used <code>fast\w*</code> for our pattern instead of <code>fast\w+</code>. The <code>*</code>
+means that it should match <em>zero</em> or more times. In this case, ripgrep will
+print the same lines as the pattern <code>fast</code>, but if your terminal supports
+colors, you&rsquo;ll notice that <code>faster</code> will be highlighted instead of just the
+<code>fast</code> prefix.</p><p>It is beyond the scope of this guide to provide a full tutorial on regular
+expressions, but ripgrep&rsquo;s specific syntax is documented here:
+https://docs.rs/regex/1.7.1/regex/#syntax</p><h3 id=recursive-search>Recursive search <a href=#recursive-search class=anchor aria-hidden=true>#</a></h3><p>In the previous section, we showed how to use ripgrep to search a single file.
+In this section, we&rsquo;ll show how to use ripgrep to search an entire directory
+of files. In fact, <em>recursively</em> searching your current working directory is
+the default mode of operation for ripgrep, which means doing this is very
+simple.</p><p>Using our unzipped archive of ripgrep source code, here&rsquo;s how to find all
+function definitions whose name is <code>write</code>:</p><pre><code class=language-text>rg 'fn write\('
+src/printer.rs
+469:    fn write(&amp;mut self, buf: &amp;[u8]) {
+
+termcolor/src/lib.rs
+227:    fn write(&amp;mut self, b: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+250:    fn write(&amp;mut self, b: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+428:    fn write(&amp;mut self, b: &amp;[u8]) -&gt; io::Result&lt;usize&gt; { self.wtr.write(b) }
+441:    fn write(&amp;mut self, b: &amp;[u8]) -&gt; io::Result&lt;usize&gt; { self.wtr.write(b) }
+454:    fn write(&amp;mut self, buf: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+511:    fn write(&amp;mut self, buf: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+848:    fn write(&amp;mut self, buf: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+915:    fn write(&amp;mut self, buf: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+949:    fn write(&amp;mut self, buf: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+1114:    fn write(&amp;mut self, buf: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+1348:    fn write(&amp;mut self, buf: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+1353:    fn write(&amp;mut self, buf: &amp;[u8]) -&gt; io::Result&lt;usize&gt; {
+</code></pre><p>(<strong>Note:</strong> We escape the <code>(</code> here because <code>(</code> has special significance inside
+regular expressions. You could also use <code>rg -F 'fn write('</code> to achieve the
+same thing, where <code>-F</code> interprets your pattern as a literal string instead of
+a regular expression.)</p><p>In this example, we didn&rsquo;t specify a file at all. Instead, ripgrep defaulted
+to searching your current directory in the absence of a path. In general,
+<code>rg foo</code> is equivalent to <code>rg foo ./</code>.</p><p>This particular search showed us results in both the <code>src</code> and <code>termcolor</code>
+directories. The <code>src</code> directory is the core ripgrep code where as <code>termcolor</code>
+is a dependency of ripgrep (and is used by other tools). What if we only wanted
+to search core ripgrep code? Well, that&rsquo;s easy, just specify the directory you
+want:</p><pre><code class=language-text>rg 'fn write\(' src
+src/printer.rs
+469:    fn write(&amp;mut self, buf: &amp;[u8]) {
+</code></pre><p>Here, ripgrep limited its search to the <code>src</code> directory. Another way of doing
+this search would be to <code>cd</code> into the <code>src</code> directory and simply use <code>rg 'fn write\('</code> again.</p><h3 id=automatic-filtering>Automatic filtering <a href=#automatic-filtering class=anchor aria-hidden=true>#</a></h3><p>After recursive search, ripgrep&rsquo;s most important feature is what it <em>doesn&rsquo;t</em>
+search. By default, when you search a directory, ripgrep will ignore all of
+the following:</p><ol><li>Files and directories that match glob patterns in these three categories:<ol><li>gitignore globs (including global and repo-specific globs).</li><li><code>.ignore</code> globs, which take precedence over all gitignore globs
+when there&rsquo;s a conflict.</li><li><code>.rgignore</code> globs, which take precedence over all <code>.ignore</code> globs
+when there&rsquo;s a conflict.</li></ol></li><li>Hidden files and directories.</li><li>Binary files. (ripgrep considers any file with a <code>NUL</code> byte to be binary.)</li><li>Symbolic links aren&rsquo;t followed.</li></ol><p>All of these things can be toggled using various flags provided by ripgrep:</p><ol><li>You can disable all ignore-related filtering with the <code>--no-ignore</code> flag.</li><li>Hidden files and directories can be searched with the <code>--hidden</code> (<code>-.</code> for
+short) flag.</li><li>Binary files can be searched via the <code>--text</code> (<code>-a</code> for short) flag.
+Be careful with this flag! Binary files may emit control characters to your
+terminal, which might cause strange behavior.</li><li>ripgrep can follow symlinks with the <code>--follow</code> (<code>-L</code> for short) flag.</li></ol><p>As a special convenience, ripgrep also provides a flag called <code>--unrestricted</code>
+(<code>-u</code> for short). Repeated uses of this flag will cause ripgrep to disable
+more and more of its filtering. That is, <code>-u</code> will disable <code>.gitignore</code>
+handling, <code>-uu</code> will search hidden files and directories and <code>-uuu</code> will search
+binary files. This is useful when you&rsquo;re using ripgrep and you aren&rsquo;t sure
+whether its filtering is hiding results from you. Tacking on a couple <code>-u</code>
+flags is a quick way to find out. (Use the <code>--debug</code> flag if you&rsquo;re still
+perplexed, and if that doesn&rsquo;t help,
+<a href=https://github.com/BurntSushi/ripgrep/issues/new>file an issue</a>.)</p><p>ripgrep&rsquo;s <code>.gitignore</code> handling actually goes a bit beyond just <code>.gitignore</code>
+files. ripgrep will also respect repository specific rules found in
+<code>$GIT_DIR/info/exclude</code>, as well as any global ignore rules in your
+<code>core.excludesFile</code> (which is usually <code>$XDG_CONFIG_HOME/git/ignore</code> on
+Unix-like systems).</p><p>Sometimes you want to search files that are in your <code>.gitignore</code>, so it is
+possible to specify additional ignore rules or overrides in a <code>.ignore</code>
+(application agnostic) or <code>.rgignore</code> (ripgrep specific) file.</p><p>For example, let&rsquo;s say you have a <code>.gitignore</code> file that looks like this:</p><pre><code class=language-text>log/
+</code></pre><p>This generally means that any <code>log</code> directory won&rsquo;t be tracked by <code>git</code>.
+However, perhaps it contains useful output that you&rsquo;d like to include in your
+searches, but you still don&rsquo;t want to track it in <code>git</code>. You can achieve this
+by creating a <code>.ignore</code> file in the same directory as the <code>.gitignore</code> file
+with the following contents:</p><pre><code class=language-text>!log/
+</code></pre><p>ripgrep treats <code>.ignore</code> files with higher precedence than <code>.gitignore</code> files
+(and treats <code>.rgignore</code> files with higher precedence than <code>.ignore</code> files).
+This means ripgrep will see the <code>!log/</code> whitelist rule first and search that
+directory.</p><p>Like <code>.gitignore</code>, a <code>.ignore</code> file can be placed in any directory. Its rules
+will be processed with respect to the directory it resides in, just like
+<code>.gitignore</code>.</p><p>To process <code>.gitignore</code> and <code>.ignore</code> files case insensitively, use the flag
+<code>--ignore-file-case-insensitive</code>. This is especially useful on case insensitive
+file systems like those on Windows and macOS. Note though that this can come
+with a significant performance penalty, and is therefore disabled by default.</p><p>For a more in depth description of how glob patterns in a <code>.gitignore</code> file
+are interpreted, please see <code>man gitignore</code>.</p><h3 id=manual-filtering-globs>Manual filtering: globs <a href=#manual-filtering-globs class=anchor aria-hidden=true>#</a></h3><p>In the previous section, we talked about ripgrep&rsquo;s filtering that it does by
+default. It is &ldquo;automatic&rdquo; because it reacts to your environment. That is, it
+uses already existing <code>.gitignore</code> files to produce more relevant search
+results.</p><p>In addition to automatic filtering, ripgrep also provides more manual or ad hoc
+filtering. This comes in two varieties: additional glob patterns specified in
+your ripgrep commands and file type filtering. This section covers glob
+patterns while the next section covers file type filtering.</p><p>In our ripgrep source code (see <a href=#basics>Basics</a> for instructions on how to
+get a source archive to search), let&rsquo;s say we wanted to see which things depend
+on <code>clap</code>, our argument parser.</p><p>We could do this:</p><pre><code class=language-text>rg clap
+[lots of results]
+</code></pre><p>But this shows us many things, and we&rsquo;re only interested in where we wrote
+<code>clap</code> as a dependency. Instead, we could limit ourselves to TOML files, which
+is how dependencies are communicated to Rust&rsquo;s build tool, Cargo:</p><pre><code class=language-text>rg clap -g '*.toml'
+Cargo.toml
+35:clap = &quot;2.26&quot;
+51:clap = &quot;2.26&quot;
+</code></pre><p>The <code>-g '*.toml'</code> syntax says, &ldquo;make sure every file searched matches this
+glob pattern.&rdquo; Note that we put <code>'*.toml'</code> in single quotes to prevent our
+shell from expanding the <code>*</code>.</p><p>If we wanted, we could tell ripgrep to search anything <em>but</em> <code>*.toml</code> files:</p><pre><code class=language-text>rg clap -g '!*.toml'
+[lots of results]
+</code></pre><p>This will give you a lot of results again as above, but they won&rsquo;t include
+files ending with <code>.toml</code>. Note that the use of a <code>!</code> here to mean &ldquo;negation&rdquo;
+is a bit non-standard, but it was chosen to be consistent with how globs in
+<code>.gitignore</code> files are written. (Although, the meaning is reversed. In
+<code>.gitignore</code> files, a <code>!</code> prefix means whitelist, and on the command line, a
+<code>!</code> means blacklist.)</p><p>Globs are interpreted in exactly the same way as <code>.gitignore</code> patterns. That
+is, later globs will override earlier globs. For example, the following command
+will search only <code>*.toml</code> files:</p><pre><code class=language-text>rg clap -g '!*.toml' -g '*.toml'
+</code></pre><p>Interestingly, reversing the order of the globs in this case will match
+nothing, since the presence of at least one non-blacklist glob will institute a
+requirement that every file searched must match at least one glob. In this
+case, the blacklist glob takes precedence over the previous glob and prevents
+any file from being searched at all!</p><h3 id=manual-filtering-file-types>Manual filtering: file types <a href=#manual-filtering-file-types class=anchor aria-hidden=true>#</a></h3><p>Over time, you might notice that you use the same glob patterns over and over.
+For example, you might find yourself doing a lot of searches where you only
+want to see results for Rust files:</p><pre><code class=language-text>rg 'fn run' -g '*.rs'
+</code></pre><p>Instead of writing out the glob every time, you can use ripgrep&rsquo;s support for
+file types:</p><pre><code class=language-text>rg 'fn run' --type rust
+</code></pre><p>or, more succinctly,</p><pre><code class=language-text>rg 'fn run' -trust
+</code></pre><p>The way the <code>--type</code> flag functions is simple. It acts as a name that is
+assigned to one or more globs that match the relevant files. This lets you
+write a single type that might encompass a broad range of file extensions. For
+example, if you wanted to search C files, you&rsquo;d have to check both C source
+files and C header files:</p><pre><code class=language-text>rg 'int main' -g '*.{c,h}'
+</code></pre><p>or you could just use the C file type:</p><pre><code class=language-text>rg 'int main' -tc
+</code></pre><p>Just as you can write blacklist globs, you can blacklist file types too:</p><pre><code class=language-text>rg clap --type-not rust
+</code></pre><p>or, more succinctly,</p><pre><code class=language-text>rg clap -Trust
+</code></pre><p>That is, <code>-t</code> means &ldquo;include files of this type&rdquo; where as <code>-T</code> means &ldquo;exclude
+files of this type.&rdquo;</p><p>To see the globs that make up a type, run <code>rg --type-list</code>:</p><pre><code class=language-text>rg --type-list | rg '^make:'
+make: *.mak, *.mk, GNUmakefile, Gnumakefile, Makefile, gnumakefile, makefile
+</code></pre><p>By default, ripgrep comes with a bunch of pre-defined types. Generally, these
+types correspond to well known public formats. But you can define your own
+types as well. For example, perhaps you frequently search &ldquo;web&rdquo; files, which
+consist of JavaScript, HTML and CSS:</p><pre><code class=language-text>rg --type-add 'web:*.html' --type-add 'web:*.css' --type-add 'web:*.js' -tweb title
+</code></pre><p>or, more succinctly,</p><pre><code class=language-text>rg --type-add 'web:*.{html,css,js}' -tweb title
+</code></pre><p>The above command defines a new type, <code>web</code>, corresponding to the glob
+<code>*.{html,css,js}</code>. It then applies the new filter with <code>-tweb</code> and searches for
+the pattern <code>title</code>. If you ran</p><pre><code class=language-text>rg --type-add 'web:*.{html,css,js}' --type-list
+</code></pre><p>Then you would see your <code>web</code> type show up in the list, even though it is not
+part of ripgrep&rsquo;s built-in types.</p><p>It is important to stress here that the <code>--type-add</code> flag only applies to the
+current command. It does not add a new file type and save it somewhere in a
+persistent form. If you want a type to be available in every ripgrep command,
+then you should either create a shell alias:</p><pre><code class=language-text>alias rg=&quot;rg --type-add 'web:*.{html,css,js}'&quot;
+</code></pre><p>or add <code>--type-add=web:*.{html,css,js}</code> to your ripgrep configuration file.
+(<a href=#configuration-file>Configuration files</a> are covered in more detail later.)</p><h4 id=the-special-all-file-type>The special <code>all</code> file type <a href=#the-special-all-file-type class=anchor aria-hidden=true>#</a></h4><p>A special option supported by the <code>--type</code> flag is <code>all</code>. <code>--type all</code> looks
+for a match in any of the supported file types listed by <code>--type-list</code>,
+including those added on the command line using <code>--type-add</code>. It&rsquo;s equivalent
+to the command <code>rg --type agda --type asciidoc --type asm ...</code>, where <code>...</code>
+stands for a list of <code>--type</code> flags for the rest of the types in <code>--type-list</code>.</p><p>As an example, let&rsquo;s suppose you have a shell script in your current directory,
+<code>my-shell-script</code>, which includes a shell library, <code>my-shell-library.bash</code>.
+Both <code>rg --type sh</code> and <code>rg --type all</code> would only search for matches in
+<code>my-shell-library.bash</code>, not <code>my-shell-script</code>, because the globs matched
+by the <code>sh</code> file type don&rsquo;t include files without an extension. On the
+other hand, <code>rg --type-not all</code> would search <code>my-shell-script</code> but not
+<code>my-shell-library.bash</code>.</p><h3 id=replacements>Replacements <a href=#replacements class=anchor aria-hidden=true>#</a></h3><p>ripgrep provides a limited ability to modify its output by replacing matched
+text with some other text. This is easiest to explain with an example. Remember
+when we searched for the word <code>fast</code> in ripgrep&rsquo;s README?</p><pre><code class=language-text>rg fast README.md
+75:  faster than both. (N.B. It is not, strictly speaking, a &quot;drop-in&quot; replacement
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast while
+119:### Is it really faster than everything else?
+124:Summarizing, `ripgrep` is fast because:
+129:  optimizations to make searching very fast.
+</code></pre><p>What if we wanted to <em>replace</em> all occurrences of <code>fast</code> with <code>FAST</code>? That&rsquo;s
+easy with ripgrep&rsquo;s <code>--replace</code> flag:</p><pre><code class=language-text>rg fast README.md --replace FAST
+75:  FASTer than both. (N.B. It is not, strictly speaking, a &quot;drop-in&quot; replacement
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays FAST while
+119:### Is it really FASTer than everything else?
+124:Summarizing, `ripgrep` is FAST because:
+129:  optimizations to make searching very FAST.
+</code></pre><p>or, more succinctly,</p><pre><code class=language-text>rg fast README.md -r FAST
+[snip]
+</code></pre><p>In essence, the <code>--replace</code> flag applies <em>only</em> to the matching portion of text
+in the output. If you instead wanted to replace an entire line of text, then
+you need to include the entire line in your match. For example:</p><pre><code class=language-text>rg '^.*fast.*$' README.md -r FAST
+75:FAST
+88:FAST
+119:FAST
+124:FAST
+129:FAST
+</code></pre><p>Alternatively, you can combine the <code>--only-matching</code> (or <code>-o</code> for short) with
+the <code>--replace</code> flag to achieve the same result:</p><pre><code class=language-text>rg fast README.md --only-matching --replace FAST
+75:FAST
+88:FAST
+119:FAST
+124:FAST
+129:FAST
+</code></pre><p>or, more succinctly,</p><pre><code class=language-text>rg fast README.md -or FAST
+[snip]
+</code></pre><p>Finally, replacements can include capturing groups. For example, let&rsquo;s say
+we wanted to find all occurrences of <code>fast</code> followed by another word and
+join them together with a dash. The pattern we might use for that is
+<code>fast\s+(\w+)</code>, which matches <code>fast</code>, followed by any amount of whitespace,
+followed by any number of &ldquo;word&rdquo; characters. We put the <code>\w+</code> in a &ldquo;capturing
+group&rdquo; (indicated by parentheses) so that we can reference it later in our
+replacement string. For example:</p><pre><code class=language-text>rg 'fast\s+(\w+)' README.md -r 'fast-$1'
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast-while
+124:Summarizing, `ripgrep` is fast-because:
+</code></pre><p>Our replacement string here, <code>fast-$1</code>, consists of <code>fast-</code> followed by the
+contents of the capturing group at index <code>1</code>. (Capturing groups actually start
+at index 0, but the <code>0</code>th capturing group always corresponds to the entire
+match. The capturing group at index <code>1</code> always corresponds to the first
+explicit capturing group found in the regex pattern.)</p><p>Capturing groups can also be named, which is sometimes more convenient than
+using the indices. For example, the following command is equivalent to the
+above command:</p><pre><code class=language-text>rg 'fast\s+(?P&lt;word&gt;\w+)' README.md -r 'fast-$word'
+88:  color and full Unicode support. Unlike GNU grep, `ripgrep` stays fast-while
+124:Summarizing, `ripgrep` is fast-because:
+</code></pre><p>It is important to note that ripgrep <strong>will never modify your files</strong>. The
+<code>--replace</code> flag only controls ripgrep&rsquo;s output. (And there is no flag to let
+you do a replacement in a file.)</p><h3 id=configuration-file>Configuration file <a href=#configuration-file class=anchor aria-hidden=true>#</a></h3><p>It is possible that ripgrep&rsquo;s default options aren&rsquo;t suitable in every case.
+For that reason, and because shell aliases aren&rsquo;t always convenient, ripgrep
+supports configuration files.</p><p>Setting up a configuration file is simple. ripgrep will not look in any
+predetermined directory for a config file automatically. Instead, you need to
+set the <code>RIPGREP_CONFIG_PATH</code> environment variable to the file path of your
+config file. Once the environment variable is set, open the file and just type
+in the flags you want set automatically. There are only two rules for
+describing the format of the config file:</p><ol><li>Every line is a shell argument, after trimming whitespace.</li><li>Lines starting with <code>#</code> (optionally preceded by any amount of whitespace)
+are ignored.</li></ol><p>In particular, there is no escaping. Each line is given to ripgrep as a single
+command line argument verbatim.</p><p>Here&rsquo;s an example of a configuration file, which demonstrates some of the
+formatting peculiarities:</p><pre><code class=language-text>cat $HOME/.ripgreprc
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=150
+--max-columns-preview
+
+# Add my 'web' type.
+--type-add
+web:*.{html,css,js}*
+
+# Using glob patterns to include/exclude files or folders
+--glob=!git/*
+
+# or
+--glob
+!git/*
+
+# Set the colors.
+--colors=line:none
+--colors=line:style:bold
+
+# Because who cares about case!?
+--smart-case
+</code></pre><p>When we use a flag that has a value, we either put the flag and the value on
+the same line but delimited by an <code>=</code> sign (e.g., <code>--max-columns=150</code>), or we
+put the flag and the value on two different lines. This is because ripgrep&rsquo;s
+argument parser knows to treat the single argument <code>--max-columns=150</code> as a
+flag with a value, but if we had written <code>--max-columns 150</code> in our
+configuration file, then ripgrep&rsquo;s argument parser wouldn&rsquo;t know what to do
+with it.</p><p>Putting the flag and value on different lines is exactly equivalent and is a
+matter of style.</p><p>Comments are encouraged so that you remember what the config is doing. Empty
+lines are OK too.</p><p>So let&rsquo;s say you&rsquo;re using the above configuration file, but while you&rsquo;re at a
+terminal, you really want to be able to see lines longer than 150 columns. What
+do you do? Thankfully, all you need to do is pass <code>--max-columns 0</code> (or <code>-M0</code>
+for short) on the command line, which will override your configuration file&rsquo;s
+setting. This works because ripgrep&rsquo;s configuration file is <em>prepended</em> to the
+explicit arguments you give it on the command line. Since flags given later
+override flags given earlier, everything works as expected. This works for most
+other flags as well, and each flag&rsquo;s documentation states which other flags
+override it.</p><p>If you&rsquo;re confused about what configuration file ripgrep is reading arguments
+from, then running ripgrep with the <code>--debug</code> flag should help clarify things.
+The debug output should note what config file is being loaded and the arguments
+that have been read from the configuration.</p><p>Finally, if you want to make absolutely sure that ripgrep <em>isn&rsquo;t</em> reading a
+configuration file, then you can pass the <code>--no-config</code> flag, which will always
+prevent ripgrep from reading extraneous configuration from the environment,
+regardless of what other methods of configuration are added to ripgrep in the
+future.</p><h3 id=file-encoding>File encoding <a href=#file-encoding class=anchor aria-hidden=true>#</a></h3><p><a href=https://en.wikipedia.org/wiki/Character_encoding>Text encoding</a> is a complex
+topic, but we can try to summarize its relevancy to ripgrep:</p><ul><li>Files are generally just a bundle of bytes. There is no reliable way to know
+their encoding.</li><li>Either the encoding of the pattern must match the encoding of the files being
+searched, or a form of transcoding must be performed that converts either the
+pattern or the file to the same encoding as the other.</li><li>ripgrep tends to work best on plain text files, and among plain text files,
+the most popular encodings likely consist of ASCII, latin1 or UTF-8. As
+a special exception, UTF-16 is prevalent in Windows environments</li></ul><p>In light of the above, here is how ripgrep behaves when <code>--encoding auto</code> is
+given, which is the default:</p><ul><li>All input is assumed to be ASCII compatible (which means every byte that
+corresponds to an ASCII codepoint actually is an ASCII codepoint). This
+includes ASCII itself, latin1 and UTF-8.</li><li>ripgrep works best with UTF-8. For example, ripgrep&rsquo;s regular expression
+engine supports Unicode features. Namely, character classes like <code>\w</code> will
+match all word characters by Unicode&rsquo;s definition and <code>.</code> will match any
+Unicode codepoint instead of any byte. These constructions assume UTF-8,
+so they simply won&rsquo;t match when they come across bytes in a file that aren&rsquo;t
+UTF-8.</li><li>To handle the UTF-16 case, ripgrep will do something called &ldquo;BOM sniffing&rdquo;
+by default. That is, the first three bytes of a file will be read, and if
+they correspond to a UTF-16 BOM, then ripgrep will transcode the contents of
+the file from UTF-16 to UTF-8, and then execute the search on the transcoded
+version of the file. (This incurs a performance penalty since transcoding
+is needed in addition to regex searching.) If the file contains invalid
+UTF-16, then the Unicode replacement codepoint is substituted in place of
+invalid code units.</li><li>To handle other cases, ripgrep provides a <code>-E/--encoding</code> flag, which permits
+you to specify an encoding from the
+<a href=https://encoding.spec.whatwg.org/#concept-encoding-get>Encoding Standard</a>.
+ripgrep will assume <em>all</em> files searched are the encoding specified (unless
+the file has a BOM) and will perform a transcoding step just like in the
+UTF-16 case described above.</li></ul><p>By default, ripgrep will not require its input be valid UTF-8. That is, ripgrep
+can and will search arbitrary bytes. The key here is that if you&rsquo;re searching
+content that isn&rsquo;t UTF-8, then the usefulness of your pattern will degrade. If
+you&rsquo;re searching bytes that aren&rsquo;t ASCII compatible, then it&rsquo;s likely the
+pattern won&rsquo;t find anything. With all that said, this mode of operation is
+important, because it lets you find ASCII or UTF-8 <em>within</em> files that are
+otherwise arbitrary bytes.</p><p>As a special case, the <code>-E/--encoding</code> flag supports the value <code>none</code>, which
+will completely disable all encoding related logic, including BOM sniffing.
+When <code>-E/--encoding</code> is set to <code>none</code>, ripgrep will search the raw bytes of
+the underlying file with no transcoding step. For example, here&rsquo;s how you might
+search the raw UTF-16 encoding of the string <code>Шерлок</code>:</p><pre><code class=language-text>rg '(?-u)\(\x045\x04@\x04;\x04&gt;\x04:\x04' -E none -a some-utf16-file
+</code></pre><p>Of course, that&rsquo;s just an example meant to show how one can drop down into
+raw bytes. Namely, the simpler command works as you might expect automatically:</p><pre><code class=language-text>rg 'Шерлок' some-utf16-file
+</code></pre><p>Finally, it is possible to disable ripgrep&rsquo;s Unicode support from within the
+regular expression. For example, let&rsquo;s say you wanted <code>.</code> to match any byte
+rather than any Unicode codepoint. (You might want this while searching a
+binary file, since <code>.</code> by default will not match invalid UTF-8.) You could do
+this by disabling Unicode via a regular expression flag:</p><pre><code class=language-text>rg '(?-u:.)'
+</code></pre><p>This works for any part of the pattern. For example, the following will find
+any Unicode word character followed by any ASCII word character followed by
+another Unicode word character:</p><pre><code class=language-text>rg '\w(?-u:\w)\w'
+</code></pre><h3 id=binary-data>Binary data <a href=#binary-data class=anchor aria-hidden=true>#</a></h3><p>In addition to skipping hidden files and files in your <code>.gitignore</code> by default,
+ripgrep also attempts to skip binary files. ripgrep does this by default
+because binary files (like PDFs or images) are typically not things you want to
+search when searching for regex matches. Moreover, if content in a binary file
+did match, then it&rsquo;s possible for undesirable binary data to be printed to your
+terminal and wreak havoc.</p><p>Unfortunately, unlike skipping hidden files and respecting your <code>.gitignore</code>
+rules, a file cannot as easily be classified as binary. In order to figure out
+whether a file is binary, the most effective heuristic that balances
+correctness with performance is to simply look for <code>NUL</code> bytes. At that point,
+the determination is simple: a file is considered &ldquo;binary&rdquo; if and only if it
+contains a <code>NUL</code> byte somewhere in its contents.</p><p>The issue is that while most binary files will have a <code>NUL</code> byte toward the
+beginning of its contents, this is not necessarily true. The <code>NUL</code> byte might
+be the very last byte in a large file, but that file is still considered
+binary. While this leads to a fair amount of complexity inside ripgrep&rsquo;s
+implementation, it also results in some unintuitive user experiences.</p><p>At a high level, ripgrep operates in three different modes with respect to
+binary files:</p><ol><li>The default mode is to attempt to remove binary files from a search
+completely. This is meant to mirror how ripgrep removes hidden files and
+files in your <code>.gitignore</code> automatically. That is, as soon as a file is
+detected as binary, searching stops. If a match was already printed (because
+it was detected long before a <code>NUL</code> byte), then ripgrep will print a warning
+message indicating that the search stopped prematurely. This default mode
+<strong>only applies to files searched by ripgrep as a result of recursive
+directory traversal</strong>, which is consistent with ripgrep&rsquo;s other automatic
+filtering. For example, <code>rg foo .file</code> will search <code>.file</code> even though it
+is hidden. Similarly, <code>rg foo binary-file</code> will search <code>binary-file</code> in
+&ldquo;binary&rdquo; mode automatically.</li><li>Binary mode is similar to the default mode, except it will not always
+stop searching after it sees a <code>NUL</code> byte. Namely, in this mode, ripgrep
+will continue searching a file that is known to be binary until the first
+of two conditions is met: 1) the end of the file has been reached or 2) a
+match is or has been seen. This means that in binary mode, if ripgrep
+reports no matches, then there are no matches in the file. When a match does
+occur, ripgrep prints a message similar to one it prints when in its default
+mode indicating that the search has stopped prematurely. This mode can be
+forcefully enabled for all files with the <code>--binary</code> flag. The purpose of
+binary mode is to provide a way to discover matches in all files, but to
+avoid having binary data dumped into your terminal.</li><li>Text mode completely disables all binary detection and searches all files
+as if they were text. This is useful when searching a file that is
+predominantly text but contains a <code>NUL</code> byte, or if you are specifically
+trying to search binary data. This mode can be enabled with the <code>-a/--text</code>
+flag. Note that when using this mode on very large binary files, it is
+possible for ripgrep to use a lot of memory.</li></ol><p>Unfortunately, there is one additional complexity in ripgrep that can make it
+difficult to reason about binary files. That is, the way binary detection works
+depends on the way that ripgrep searches your files. Specifically:</p><ul><li>When ripgrep uses memory maps, then binary detection is only performed on the
+first few kilobytes of the file in addition to every matching line.</li><li>When ripgrep doesn&rsquo;t use memory maps, then binary detection is performed on
+all bytes searched.</li></ul><p>This means that whether a file is detected as binary or not can change based
+on the internal search strategy used by ripgrep. If you prefer to keep
+ripgrep&rsquo;s binary file detection consistent, then you can disable memory maps
+via the <code>--no-mmap</code> flag. (The cost will be a small performance regression when
+searching very large files on some platforms.)</p><h3 id=preprocessor>Preprocessor <a href=#preprocessor class=anchor aria-hidden=true>#</a></h3><p>In ripgrep, a preprocessor is any type of command that can be run to transform
+the input of every file before ripgrep searches it. This makes it possible to
+search virtually any kind of content that can be automatically converted to
+text without having to teach ripgrep how to read said content.</p><p>One common example is searching PDFs. PDFs are first and foremost meant to be
+displayed to users. But PDFs often have text streams in them that can be useful
+to search. In our case, we want to search Bruce Watson&rsquo;s excellent
+dissertation,
+<a href=https://burntsushi.net/stuff/1995-watson.pdf>Taxonomies and Toolkits of Regular Language Algorithms</a>.
+After downloading it, let&rsquo;s try searching it:</p><pre><code class=language-text>rg 'The Commentz-Walter algorithm' 1995-watson.pdf
+$
+</code></pre><p>Surely, a dissertation on regular language algorithms would mention
+Commentz-Walter. Indeed it does, but our search isn&rsquo;t picking it up because
+PDFs are a binary format, and the text shown in the PDF may not be encoded as
+simple contiguous UTF-8. Namely, even passing the <code>-a/--text</code> flag to ripgrep
+will not make our search work.</p><p>One way to fix this is to convert the PDF to plain text first. This won&rsquo;t work
+well for all PDFs, but does great in a lot of cases. (Note that the tool we
+use, <code>pdftotext</code>, is part of the <a href=https://poppler.freedesktop.org>poppler</a>
+PDF rendering library.)</p><pre><code class=language-text>pdftotext 1995-watson.pdf &gt; 1995-watson.txt
+rg 'The Commentz-Walter algorithm' 1995-watson.txt
+316:The Commentz-Walter algorithms : : : : : : : : : : : : : : :
+7165:4.4 The Commentz-Walter algorithms
+10062:in input string S , we obtain the Boyer-Moore algorithm. The Commentz-Walter algorithm
+17218:The Commentz-Walter algorithm (and its variants) displayed more interesting behaviour,
+17249:Aho-Corasick algorithms are used extensively. The Commentz-Walter algorithms are used
+17297: The Commentz-Walter algorithms (CW). In all versions of the CW algorithms, a common program skeleton is used with di erent shift functions. The CW algorithms are
+</code></pre><p>But having to explicitly convert every file can be a pain, especially when you
+have a directory full of PDF files. Instead, we can use ripgrep&rsquo;s preprocessor
+feature to search the PDF. ripgrep&rsquo;s <code>--pre</code> flag works by taking a single
+command name and then executing that command for every file that it searches.
+ripgrep passes the file path as the first and only argument to the command and
+also sends the contents of the file to stdin. So let&rsquo;s write a simple shell
+script that wraps <code>pdftotext</code> in a way that conforms to this interface:</p><pre><code class=language-text>cat preprocess
+#!/bin/sh
+
+exec pdftotext - -
+</code></pre><p>With <code>preprocess</code> in the same directory as <code>1995-watson.pdf</code>, we can now use it
+to search the PDF:</p><pre><code class=language-text>rg --pre ./preprocess 'The Commentz-Walter algorithm' 1995-watson.pdf
+316:The Commentz-Walter algorithms : : : : : : : : : : : : : : :
+7165:4.4 The Commentz-Walter algorithms
+10062:in input string S , we obtain the Boyer-Moore algorithm. The Commentz-Walter algorithm
+17218:The Commentz-Walter algorithm (and its variants) displayed more interesting behaviour,
+17249:Aho-Corasick algorithms are used extensively. The Commentz-Walter algorithms are used
+17297: The Commentz-Walter algorithms (CW). In all versions of the CW algorithms, a common program skeleton is used with di erent shift functions. The CW algorithms are
+</code></pre><p>Note that <code>preprocess</code> must be resolvable to a command that ripgrep can read.
+The simplest way to do this is to put your preprocessor command in a directory
+that is in your <code>PATH</code> (or equivalent), or otherwise use an absolute path.</p><p>As a bonus, this turns out to be quite a bit faster than other specialized PDF
+grepping tools:</p><pre><code class=language-text>time rg --pre ./preprocess 'The Commentz-Walter algorithm' 1995-watson.pdf -c
+6
+
+real    0.697
+user    0.684
+sys     0.007
+maxmem  16 MB
+faults  0
+
+time pdfgrep 'The Commentz-Walter algorithm' 1995-watson.pdf -c
+6
+
+real    1.336
+user    1.310
+sys     0.023
+maxmem  16 MB
+faults  0
+</code></pre><p>If you wind up needing to search a lot of PDFs, then ripgrep&rsquo;s parallelism can
+make the speed difference even greater.</p><h4 id=a-more-robust-preprocessor>A more robust preprocessor <a href=#a-more-robust-preprocessor class=anchor aria-hidden=true>#</a></h4><p>One of the problems with the aforementioned preprocessor is that it will fail
+if you try to search a file that isn&rsquo;t a PDF:</p><pre><code class=language-text>echo foo &gt; not-a-pdf
+rg --pre ./preprocess 'The Commentz-Walter algorithm' not-a-pdf
+not-a-pdf: preprocessor command failed: '&quot;./preprocess&quot; &quot;not-a-pdf&quot;':
+-------------------------------------------------------------------------------
+Syntax Warning: May not be a PDF file (continuing anyway)
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't find trailer dictionary
+Syntax Error: Couldn't read xref table
+</code></pre><p>To fix this, we can make our preprocessor script a bit more robust by only
+running <code>pdftotext</code> when we think the input is a non-empty PDF:</p><pre><code class=language-text>cat preprocessor
+#!/bin/sh
+
+case &quot;$1&quot; in
+*.pdf)
+  # The -s flag ensures that the file is non-empty.
+  if [ -s &quot;$1&quot; ]; then
+    exec pdftotext - -
+  else
+    exec cat
+  fi
+  ;;
+*)
+  exec cat
+  ;;
+esac
+</code></pre><p>We can even extend our preprocessor to search other kinds of files. Sometimes
+we don&rsquo;t always know the file type from the file name, so we can use the <code>file</code>
+utility to &ldquo;sniff&rdquo; the type of the file based on its contents:</p><pre><code class=language-text>cat processor
+#!/bin/sh
+
+case &quot;$1&quot; in
+*.pdf)
+  # The -s flag ensures that the file is non-empty.
+  if [ -s &quot;$1&quot; ]; then
+    exec pdftotext - -
+  else
+    exec cat
+  fi
+  ;;
+*)
+  case $(file &quot;$1&quot;) in
+  *Zstandard*)
+    exec pzstd -cdq
+    ;;
+  *)
+    exec cat
+    ;;
+  esac
+  ;;
+esac
+</code></pre><h4 id=reducing-preprocessor-overhead>Reducing preprocessor overhead <a href=#reducing-preprocessor-overhead class=anchor aria-hidden=true>#</a></h4><p>There is one more problem with the above approach: it requires running a
+preprocessor for every single file that ripgrep searches. If every file needs
+a preprocessor, then this is OK. But if most don&rsquo;t, then this can substantially
+slow down searches because of the overhead of launching new processors. You
+can avoid this by telling ripgrep to only invoke the preprocessor when the file
+path matches a glob. For example, consider the performance difference even when
+searching a repository as small as ripgrep&rsquo;s:</p><pre><code class=language-text>time rg --pre pre-rg 'fn is_empty' -c
+crates/globset/src/lib.rs:1
+crates/matcher/src/lib.rs:2
+crates/ignore/src/overrides.rs:1
+crates/ignore/src/gitignore.rs:1
+crates/ignore/src/types.rs:1
+
+real    0.138
+user    0.485
+sys     0.209
+maxmem  7 MB
+faults  0
+
+time rg --pre pre-rg --pre-glob '*.pdf' 'fn is_empty' -c
+crates/globset/src/lib.rs:1
+crates/ignore/src/types.rs:1
+crates/ignore/src/gitignore.rs:1
+crates/ignore/src/overrides.rs:1
+crates/matcher/src/lib.rs:2
+
+real    0.008
+user    0.010
+sys     0.002
+maxmem  7 MB
+faults  0
+</code></pre><h3 id=common-options>Common options <a href=#common-options class=anchor aria-hidden=true>#</a></h3><p>ripgrep has a lot of flags. Too many to keep in your head at once. This section
+is intended to give you a sampling of some of the most important and frequently
+used options that will likely impact how you use ripgrep on a regular basis.</p><ul><li><code>-h</code>: Show ripgrep&rsquo;s condensed help output.</li><li><code>--help</code>: Show ripgrep&rsquo;s longer form help output. (Nearly what you&rsquo;d find in
+ripgrep&rsquo;s help, so pipe it into a pager!)</li><li><code>-i/--ignore-case</code>: When searching for a pattern, ignore case differences.
+That is <code>rg -i fast</code> matches <code>fast</code>, <code>fASt</code>, <code>FAST</code>, etc.</li><li><code>-S/--smart-case</code>: This is similar to <code>--ignore-case</code>, but disables itself
+if the pattern contains any uppercase letters. Usually this flag is put into
+alias or a config file.</li><li><code>-F/--fixed-strings</code>: Disable regular expression matching and treat the pattern
+as a literal string.</li><li><code>-w/--word-regexp</code>: Require that all matches of the pattern be surrounded
+by word boundaries. That is, given <code>pattern</code>, the <code>--word-regexp</code> flag will
+cause ripgrep to behave as if <code>pattern</code> were actually <code>\b(?:pattern)\b</code>.</li><li><code>-c/--count</code>: Report a count of total matched lines.</li><li><code>--files</code>: Print the files that ripgrep <em>would</em> search, but don&rsquo;t actually
+search them.</li><li><code>-a/--text</code>: Search binary files as if they were plain text.</li><li><code>-U/--multiline</code>: Permit matches to span multiple lines.</li><li><code>-z/--search-zip</code>: Search compressed files (gzip, bzip2, lzma, xz, lz4,
+brotli, zstd). This is disabled by default.</li><li><code>-C/--context</code>: Show the lines surrounding a match.</li><li><code>--sort path</code>: Force ripgrep to sort its output by file name. (This disables
+parallelism, so it might be slower.)</li><li><code>-L/--follow</code>: Follow symbolic links while recursively searching.</li><li><code>-M/--max-columns</code>: Limit the length of lines printed by ripgrep.</li><li><code>--debug</code>: Shows ripgrep&rsquo;s debug output. This is useful for understanding
+why a particular file might be ignored from search, or what kinds of
+configuration ripgrep is loading from the environment.</li></ul><p>this <code>user guide</code> is taken from <a href=https://raw.githubusercontent.com/BurntSushi/ripgrep/master/GUIDE.md>here</a></p><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/docs/tools/utility/tmux/><div class="card my-1"><div class="card-body py-2">&larr; Tmux</div></div></a><a class=ms-auto href=/docs/tools/utility/sd/><div class="card my-1"><div class="card-body py-2">Sd &rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-xxl><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Phoenix Journey - H@cking 'round the cable. Future is her3 '' Watch it @gain.</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline><li class=list-inline-item><a href=/privacy-policy/>Privacy</a></li></ul></div></div></div></footer><script src=/js/bootstrap.min.650aeec64c81d69d4c0850fc73c93da3f0330cec0a27772feed7f90f60baa5f47f1c45687d71914bdafd1c4e860d40f6dc08ede27a2f08431ff929c9a2d24621.js integrity="sha512-ZQruxkyB1p1MCFD8c8k9o/AzDOwKJ3cv7tf5D2C6pfR/HEVofXGRS9r9HE6GDUD23Ajt4novCEMf+SnJotJGIQ==" crossorigin=anonymous defer></script>
+<script src=/js/highlight.min.3f0a703c54cbed82ca277187e23cf2d272da28c15ce7e33cde685d40b53d741893d5b74d35bb2d20a81f56c289084f245bdd0c9145d39d7094d3dfbc62d1326a.js integrity="sha512-PwpwPFTL7YLKJ3GH4jzy0nLaKMFc5+M83mhdQLU9dBiT1bdNNbstIKgfVsKJCE8kW90MkUXTnXCU09+8YtEyag==" crossorigin=anonymous defer></script>
+<script src=/main.min.fe24b8c6f2d8a08f4a0cbaa8849bba360f471ff31b8b813a31d56742860f6d915541006eb0d35a8a42eb3318378b73c3c9a945472d491dfaf6f0325b4da464b9.js integrity="sha512-/iS4xvLYoI9KDLqohJu6Ng9HH/Mbi4E6MdVnQoYPbZFVQQBusNNaikLrMxg3i3PDyalFRy1JHfr28DJbTaRkuQ==" crossorigin=anonymous defer></script>
+<script src=https://nutek.neosb.net/index.min.6ea2d902a232243fc23791d4e0c96de8ef65036d8fce7935fef17e36cad07de3d0e66dea972ae70fb0f1417bd2019dc6ce33196a01c2396d51719a4476665d89.js integrity="sha512-bqLZAqIyJD/CN5HU4Mlt6O9lA22Pznk1/vF+NsrQfePQ5m3qlyrnD7DxQXvSAZ3GzjMZagHCOW1RcZpEdmZdiQ==" crossorigin=anonymous defer></script></body></html>
