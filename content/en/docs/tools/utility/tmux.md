@@ -95,6 +95,13 @@ You can set the key binding mode using Ctrl-b, then
 
 or vi.
 
+### Copy
+
+1. Get into copy mode `C-b + [`
+2. Select text `C-space`
+3. Copy `C-w`
+4. Exit copy mode `q`
+
 ## Resources
 
 - [tmux](https://github.com/tmux/tmux/wiki)
